@@ -2,7 +2,7 @@
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Simulado ETEC · três provas num arquivo só</title>
-<!-- N.05.01.00_PADRONIZADOR_001 · C015 · V05.04 · 01/10/2026
+<!-- N.05.01.00_PADRONIZADOR_001 · C263 · V05.12 · 06/10/2026
      Junta os 3 simulados ETEC (2023 · 2024/2025 · 2025/2026) num HTML só.
      Gerado por junta_etec.py — nunca editar este arquivo à mão. -->
 <style>
@@ -375,14 +375,277 @@ body.m7f-final{--f1:#9A6614;--f2:#5C3A00;--f3:#2E1C00}
 .btrefaz{width:100%;border:3px solid #8A6D00;background:#C79A18;color:#3B2200;border-radius:12px;padding:12px;
   font-family:inherit;font-weight:900;font-size:17px;cursor:pointer;margin:0 0 8px}
 .card h2 .ctxnum{vertical-align:middle;margin-right:6px}
+/* ══════════════════════════════════════════════════════════════════
+   🔴 CLD-028 · V05.05 · topo da RETOMADA e gênero textual · ver junta_etec.py
+   ══════════════════════════════════════════════════════════════════ */
+.chip.telan{background:#2E6029;color:#fff}
+.chip#stTela{background:#EEF4F2;color:#4A5C64;border:2px solid #D3DEDB}
+.chip#stNav{background:#17242B;color:#fff}
+.chip#stNota,.chip#stNotaGrupo{background:#EEF4F2}
+#btTC{font-size:16px;font-weight:800;border:2px solid #2E6029;background:#fff;color:#2E6029;border-radius:20px;padding:3px 12px;cursor:pointer;font-family:inherit}
+.chip.sai{background:#EEF4F2;color:#B3001B}
+#cronoBox{font-variant-numeric:tabular-nums;align-self:center}
+#avisoTC{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:2100;padding:24px}
+#avisoTC.abre{display:block}
+#avisoTC .cx{background:#fff;max-width:480px;margin:70px auto;border-radius:16px;padding:24px;text-align:center}
+#avisoTC .cx button{display:block;width:100%;margin:10px 0 0;padding:12px;border-radius:12px;border:0;font:inherit;font-weight:900;background:#2E6029;color:#fff;cursor:pointer}
+#avisoTC .cx button.cinza{background:#6E6E6E}
+.genbx{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0 6px}
+.genpill{display:inline-flex;align-items:center;gap:6px;background:#6B4B9C;color:#fff;font:inherit;font-weight:900;
+  border-radius:14px;padding:4px 14px;font-size:17px;cursor:pointer;border:3px solid #4A2C7D}
+.gensub{font-size:16px;color:#4A2C7D;font-weight:700}
+.gsel{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;border-radius:50%;
+  background:#6B4B9C;color:#fff;border:2px solid #4A2C7D;font:inherit;font-size:16px;font-weight:900;line-height:1;
+  padding:0 5px;margin:0 4px 0 0;cursor:pointer;vertical-align:1px}
+.gsel.est{cursor:default}
+mark.gtr{background:#EDE6F5;color:inherit;border-bottom:3px solid #6B4B9C;border-radius:3px;padding:0 2px;cursor:pointer}
+.genjan .gendiz{font-size:16px;color:#4A2C7D;font-weight:700;margin:2px 0 10px}
+.genparte{border-left:8px solid #6B4B9C;padding:6px 0 6px 12px;margin:12px 0}
+.genparte .gpt{font-size:17px;margin-bottom:4px}
+.cumpre{display:flex;gap:9px;align-items:flex-start;margin:7px 0;font-size:16px;line-height:1.4}
+.chave{display:inline-block;flex:none;background:#C62828;color:#fff;font-weight:900;border-radius:9px;padding:2px 9px;font-size:15px}
+.genver{margin-top:10px;border:3px solid #6B4B9C;background:#fff;color:#4A2C7D;border-radius:12px;padding:8px 12px;font:inherit;font-weight:900;cursor:pointer}
+
+
+/* 🔴 CLD-031 · número de comando: dois dígitos, negrito e grifado ("Escolha 03") */
+.m7n{font-weight:900;background:#FFE680;color:#3B2A00;border-radius:5px;padding:0 4px;font-variant-numeric:tabular-nums}
+
+/* 🔴 CLD-149 · SIMU-ETEC V05.07 */
+/* ① R.30 · 1 frase por linha · 1 card por parágrafo */
+#palco .etln{display:block;margin:0 0 5px}
+#palco .etln:last-child{margin-bottom:0}
+#palco .base > p.etpar{position:relative;border:3px solid #90A4AE;border-radius:12px;background:#fff;padding:10px 12px 10px 52px;margin:10px 0}
+#palco .base > p.etpar > .etpn{position:absolute;left:10px;top:10px;min-width:30px;height:30px;border-radius:50%;background:#2E5C8A;color:#fff;
+  font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center;border:3px solid #1B3A5C}
+/* ② R.01 · as cores da tabela (as mesmas da RETOMADA) · a antiga .gf amarela continua para quem não tem classe de cor */
+#palco .gf.gf-ver{background:#BFEFC2}
+#palco .gf.gf-azu{background:#93E3FF}
+#palco .gf.gf-lar{background:#FFC000}
+#palco .gf.gf-ros,#palco .gf.gf-sin{background:#FFC5EC}
+#palco .gf.gf-sin{font-weight:900;white-space:nowrap}
+#palco .gf.gf-cnt{background:transparent;color:#C62828;font-weight:900;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:3px}
+#palco .gf.gf-int{background:transparent;color:#C62828;font-weight:900;padding:0 1px}
+#palco .gf{white-space:normal;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+/* ③ cards de ajuda */
+#palco details.etaj{margin:10px 0;border:3px solid #90A4AE;border-radius:13px;background:#F7FAFC;padding:10px 14px}
+#palco details.etaj > summary{font-weight:900;cursor:pointer;color:#263238;font-size:16px}
+#palco details.etaj .etajc{margin-top:8px;font-size:16px;line-height:1.6}
+#palco details.etcores{border-color:#4A8C3F;background:#F1F8EE}
+#palco details.etbots{border-color:#2E5C8A;background:#EEF4FA}
+/* ④ Missão 3 · Polya */
+#palco .polya{margin:12px 0;border:3px solid #6A1B9A;border-radius:14px;background:#FAF5FD;padding:12px 14px}
+#palco .pytit{font-weight:900;font-size:17px;color:#4A148C;margin-bottom:8px}
+#palco .pyet{border:3px solid #CE93D8;border-radius:12px;background:#fff;padding:10px 12px;margin:9px 0;font-size:16px;line-height:1.55}
+#palco .pyet.trava{opacity:.6;background:#F3F3F3;border-color:#BDBDBD}
+#palco .pyh{font-weight:900;color:#4A148C;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+#palco .pyh .pyn{min-width:28px;height:28px;border-radius:50%;background:#6A1B9A;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;border:3px solid #38006B}
+#palco .pyop{display:block;width:100%;text-align:left;margin:7px 0;padding:10px 12px;border:3px solid #B0BEC5;border-radius:11px;background:#F7FAFC;font:inherit;font-weight:700;cursor:pointer}
+#palco .pyop.ok{border-color:#2E7D32;background:#EDF7ED}
+#palco .pyop.no{border-color:#C62828;background:#FDECEC;text-decoration:line-through}
+#palco .pychips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+#palco .pychip{padding:7px 12px;border:3px solid #B0BEC5;border-radius:999px;background:#fff;font:inherit;font-weight:800;cursor:pointer}
+#palco .pychip.sel{border-color:#6A1B9A;background:#EDE0F5}
+#palco .pychip.ok{border-color:#2E7D32;background:#BFEFC2}
+#palco .pyconf{margin-top:6px;padding:9px 16px;border:3px solid #6A1B9A;border-radius:11px;background:#6A1B9A;color:#fff;font:inherit;font-weight:900;cursor:pointer}
+#palco .pyconf:disabled{background:#CFD8DC;border-color:#B0BEC5;color:#607D8B;cursor:default}
+#palco .pyerr{color:#C62828;font-weight:800}
+#palco .pyokt{color:#2E7D32;font-weight:900}
+#palco button.pytr{opacity:.45;cursor:not-allowed}
+#palco .pyop:disabled,#palco .pychip:disabled{color:#263238;opacity:1}
+/* borda fina nunca (preferência do Marcos): os 2 chips do topo tinham 2 px · medido por etec_full.py ("bordas finas 8") */
+#stTela,#btTC{border-width:3px !important}
+
+/* etec_c176.css · CLD-176 · 🧭 Método de estudo em tela separada · borda 3 px · emoji 20 px · 1 frase por linha */
+.mtwrap{display:flex;flex-direction:column;gap:12px}
+.mtem20{font-size:22px;line-height:1;vertical-align:middle}
+.mtln{display:block;margin:0 0 6px;line-height:1.5}
+.mtsm2{font-size:14px;color:#546E7A}
+.mttopo{border:3px solid #4527A0;border-radius:14px;background:#EDE7F6;padding:12px 14px}
+.mtt1{font-size:19px;font-weight:900;color:#311B92;margin-bottom:6px}
+.mtir,.mtabrir{display:block;width:100%;font:inherit;font-weight:900;font-size:16px;text-align:left;border:3px solid #4527A0;border-radius:12px;background:#4527A0;color:#fff;padding:11px 14px;cursor:pointer;margin-top:6px}
+.mtabrir{background:#fff;color:#4527A0;margin:10px 0}
+.mtabrir:hover,.mtir:hover{filter:brightness(1.08)}
+.mtcfg{border:3px solid #6A1B9A;border-radius:12px;background:#F5EDF9;padding:8px 12px}
+.mtcfg>summary{font-weight:900;color:#4A148C;cursor:pointer}
+.mtsw{display:flex;align-items:center;gap:8px;width:100%;font:inherit;font-weight:800;text-align:left;border:3px solid #6A1B9A;border-radius:10px;background:#fff;color:#4A148C;padding:7px 10px;margin:6px 0;cursor:pointer}
+.mtsw .mttick{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:3px solid #6A1B9A;border-radius:6px;font-weight:900}
+.mtsw.on .mttick{background:#2E7D32;border-color:#2E7D32;color:#fff}
+.mtet{border:3px solid var(--c);border-radius:14px;background:var(--b);overflow:hidden}
+.mtcab{display:flex;align-items:center;gap:10px;width:100%;font:inherit;text-align:left;border:0;background:transparent;color:var(--c);font-weight:900;font-size:17px;padding:10px 12px;cursor:pointer}
+.mtcab.trava{opacity:.6}
+.mtct{flex:1;min-width:0}
+.mttp{display:inline-block;font-size:11px;font-weight:900;border:3px solid var(--c);border-radius:999px;padding:0 7px;margin-right:6px;background:#fff}
+.mtch{display:block;font-size:13px;font-weight:700;color:#37474F}
+.mtst{font-size:20px}
+.mtcorpo{padding:0 10px 12px}
+.mtsub{border:3px solid var(--c);border-radius:12px;background:#fff;padding:10px 12px;margin:10px 0}
+.mtst2{font-weight:900;color:var(--c);margin-bottom:8px}
+.mtn{font-size:20px;margin-right:4px}
+.mtops{display:flex;flex-direction:column;gap:7px;margin:6px 0}
+.mtop{font:inherit;font-weight:700;text-align:left;border:3px solid #90A4AE;border-radius:10px;background:#fff;color:#263238;padding:9px 11px;cursor:pointer}
+.mtop.ok{border-color:#2E7D32;background:#E8F5E9}
+.mtop.no{border-color:#C62828;background:#FFEBEE;text-decoration:line-through}
+.mtbts{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+.mtbt{font:inherit;font-weight:900;border:3px solid #4527A0;border-radius:10px;background:#fff;color:#4527A0;padding:8px 12px;cursor:pointer}
+.mtbt.v{background:#2E7D32;border-color:#2E7D32;color:#fff}
+.mtbt.a{background:#1565C0;border-color:#1565C0;color:#fff}
+.mtbt.on{background:#4527A0;color:#fff}
+.mtbt:disabled{opacity:.45;cursor:default}
+.mtokt{color:#1B5E20;font-weight:900}
+.mtdet{border:3px solid #B0BEC5;border-radius:10px;background:#FAFAFA;padding:6px 10px;margin:6px 0}
+.mtdet>summary{font-weight:900;cursor:pointer}
+.mtpar{border:3px solid #CFD8DC;border-radius:10px;background:#fff;padding:8px 10px;margin:8px 0;line-height:1.55}
+.mtpn{display:inline-block;background:#455A64;color:#fff;border-radius:999px;font-size:12px;font-weight:900;padding:1px 7px;margin-right:6px}
+.mtlt{font-weight:900;color:#37474F;margin:4px 0}
+.mtenun{border:3px solid #D1C4E9;border-radius:10px;background:#FAF8FF;padding:8px 10px;line-height:1.6;margin:6px 0}
+.mtgl{display:inline-block;background:#93E3FF;border-radius:6px;padding:0 6px;font-weight:900}
+.mtgv{display:inline-block;background:#BFEFC2;border-radius:6px;padding:0 6px;font-weight:900}
+.mttb{border-collapse:collapse;margin:8px 0;width:100%;font-size:15px}
+.mttb th,.mttb td{border:3px solid #90A4AE;padding:5px 7px;text-align:left;vertical-align:middle}
+.mttb th{background:#ECEFF1}
+.mtpede td{background:#FFF8E1;font-weight:800}
+.mtcx{width:96px;font:inherit;font-size:18px;font-weight:900;text-align:center;border:3px solid #6A1B9A;border-radius:9px;padding:3px 6px;background:#fff}
+.mtcx.pq{width:84px;font-size:16px}
+.mtcxf{display:inline-block;min-width:70px;text-align:center;border:3px solid #2E7D32;border-radius:9px;background:#E8F5E9;color:#1B5E20;font-weight:900;padding:2px 8px}
+.mtlac{border:3px dashed #B39DDB;border-radius:10px;padding:8px 10px;background:#FBF9FF}
+.mtlac.feito{border-style:solid;border-color:#2E7D32;background:#F1F8E9}
+.mtfr{font-size:19px;font-weight:800;line-height:2;margin:4px 0}
+.mtdica{background:#FFF6DC;border:3px solid #E0B44C;border-radius:10px;padding:8px 10px;margin-top:6px;font-weight:700;color:#5D4300}
+.mttabs{display:flex;gap:8px;flex-wrap:wrap}
+.mttab{border:3px solid #CFD8DC;border-radius:10px;background:#F4F1EB;padding:6px 8px;min-width:140px}
+.mttl{display:flex;justify-content:space-between;gap:8px;font-weight:800;border-bottom:3px solid #E5E0D6;padding:2px 0}
+.mttl:last-child{border-bottom:0}
+.mthip{width:100%;font:inherit;border:3px solid #6A1B9A;border-radius:10px;padding:8px;margin:6px 0}
+.mtchips{display:flex;flex-wrap:wrap;gap:6px}
+.mtchip{border:3px solid #2E7D32;border-radius:999px;background:#BFEFC2;font-weight:900;padding:2px 10px}
+.mtconv{border:3px solid #00838F;border-radius:10px;background:#E0F7FA;padding:8px 10px}
+.mtlinha{border-left:6px solid #00838F;margin:6px 0 6px 10px;padding-left:12px}
+.mtli{display:flex;gap:10px;align-items:baseline;margin:8px 0}
+.mtano{flex:0 0 auto;border:3px solid #00838F;border-radius:999px;background:#fff;font-weight:900;padding:0 8px;color:#006064}
+.mtex{border:3px dashed #E07B2C;border-radius:10px;background:#FFF8F1;padding:8px 10px;margin:8px 0}
+.mtel{border:3px solid #CFD8DC;border-radius:10px;background:#fff;padding:8px 10px;margin:8px 0}
+.mtel.risc .mtelt{text-decoration:line-through;color:#90A4AE}
+.mtsvg{display:block;width:100%;max-width:460px;height:auto;margin:6px auto;background:#fff;border:3px solid #ECEFF1;border-radius:12px}
+.mtpz{max-width:220px}
+.mteq{font-size:30px;font-weight:900;fill:#263238}
+.mtmd{font-size:18px;font-weight:800;fill:#263238}
+.mtsm{font-size:13px;font-weight:900}
+.mtem{font-size:24px}
+.mtlg{font-size:13px;font-weight:900;fill:#6A1B9A}
+.mt-op{font-size:20px;font-weight:900}
+/* animações · ciclo de 6 s · a seta é desenhada, o sinal some e o novo aparece (mesma gramática do Atravessa o igual) */
+.mt-seta,.mt-arco{fill:none;stroke:#6A1B9A;stroke-width:6;stroke-linecap:round;stroke-dasharray:400;animation:mtDesenha 6s ease-in-out infinite}
+.mt-ponta{fill:#6A1B9A;animation:mtPonta 6s ease-in-out infinite}
+.mt-surge{animation:mtSurge 6s ease-in-out infinite}
+.mt-surge2{animation:mtSurge2 6s ease-in-out infinite}
+.mt-sai,.mt-caixa,.mt-corta{animation:mtSai 6s ease-in-out infinite}
+.mt-chega{animation:mtSurge 6s ease-in-out infinite}
+.mt-grupo{animation:mtSurge 6s ease-in-out infinite}
+.mt-lupa{animation:mtLupa 6s ease-in-out infinite}
+.mt-acha{animation:mtAcha 6s ease-in-out infinite}
+.mt-fatia{animation:mtSurge 6s ease-in-out infinite}
+.mt-fatia.f2{animation-name:mtSurgeB}
+.mt-fatia.f3{animation-name:mtSurge2}
+@keyframes mtDesenha{0%{stroke-dashoffset:400}35%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:400}}
+@keyframes mtPonta{0%,32%{opacity:0}40%,88%{opacity:1}100%{opacity:0}}
+@keyframes mtSurge{0%,30%{opacity:0}45%,92%{opacity:1}100%{opacity:0}}
+@keyframes mtSurgeB{0%,45%{opacity:0}58%,92%{opacity:1}100%{opacity:0}}
+@keyframes mtSurge2{0%,55%{opacity:0}70%,92%{opacity:1}100%{opacity:0}}
+@keyframes mtSai{0%,25%{opacity:1}45%,92%{opacity:.15}100%{opacity:1}}
+@keyframes mtLupa{0%{transform:translate(40px,24px)}30%{transform:translate(200px,50px)}55%,92%{transform:translate(140px,76px)}100%{transform:translate(40px,24px)}}
+@keyframes mtAcha{0%,50%{opacity:0}60%,92%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.mt-seta,.mt-arco,.mt-ponta,.mt-surge,.mt-surge2,.mt-sai,.mt-caixa,.mt-corta,.mt-chega,.mt-grupo,.mt-lupa,.mt-acha,.mt-fatia{animation:none}}
+
+/* 🔴 CLD-228 · 👨‍🏫 sair vermelho no topo (o mesmo da REVISÃO SAAIB) */
+.m7profsai{position:fixed;top:10px;right:10px;z-index:6000;display:flex;flex-direction:column;align-items:center;gap:2px;
+  background:linear-gradient(180deg,#E53935,#B71C1C);border:4px solid #7F0000;border-radius:14px;padding:6px 10px;cursor:pointer;
+  font:inherit;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.m7profsai .em{font-size:30px;line-height:1}
+.m7profsai .tx{font-size:14px;font-weight:900;color:#FFFFFF}
+.m7profsai .tx2{font-size:11px;font-weight:800;color:#FFE0E0}
+body.m7comsair4 #statusbar{padding-right:92px!important}
+
+/* 🔴 CLD-254 · a conta armada na malha quadriculada, passo a passo (o mesmo jeito do preparatório SARESP) */
+.ctabt{display:block;width:100%;margin:10px 0 0;font:inherit;font-weight:900;font-size:16px;text-align:left;border:4px solid #002776;border-radius:12px;background:linear-gradient(135deg,#E3F2FD,#BBDEFB);color:#002776;padding:10px 14px;cursor:pointer}
+.ctabt .em20,.ctapn .em20{font-size:22px;vertical-align:-3px}
+.ctapn{margin:10px 0 0;border:4px solid #002776;border-radius:14px;background:#fff;padding:8px}
+.ctahd{display:flex;align-items:center;gap:8px;font-weight:900;color:#002776;font-size:16px;margin-bottom:8px}
+.ctafe{margin-left:auto;font:inherit;font-weight:900;font-size:14px;border:4px solid #C62828;border-radius:10px;background:#FFEBEE;color:#8E0000;padding:4px 10px;cursor:pointer}
+.cta3{display:grid;grid-template-columns:170px minmax(0,1fr) auto;gap:10px;align-items:start}
+.ctac3{border:4px solid #002776;border-radius:12px;padding:8px;min-width:0}
+.ctac3.e{border-color:#009C3B;background:#F1FAF3}
+.ctac3.m{border-color:#002776;background:#fff}
+.ctac3.d{border-color:#B8860B;background:#FFFBEA}
+.ctat{font-weight:900;font-size:14px;color:#002776;margin-bottom:6px}
+.ctaq div{font-size:16px;font-weight:700;line-height:1.45;margin:2px 0}
+.ctaresp{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.ctaresp input{width:120px;font:inherit;font-size:20px;font-weight:900;border:4px solid #4A2F7A;border-radius:10px;padding:4px 8px}
+.ctaok2{font:inherit;font-weight:900;font-size:16px;border:4px solid #1B5E20;border-radius:10px;background:#2E7D32;color:#fff;padding:6px 14px;cursor:pointer;margin-top:8px}
+.ctaresp .ctaok2{margin-top:0}
+.ctamsg{margin-top:8px;font-weight:800;font-size:15px}
+.ctav{font-size:14px;color:#607D8B;font-weight:700;padding:6px 2px}
+.ctaok{border:4px solid #2E7D32;border-radius:12px;background:#E8F5E9;padding:10px 12px;font-weight:800;font-size:16px;line-height:1.6}
+/* a malha: papel quadriculado */
+.ctamalha{overflow-x:auto;padding:8px;border-radius:8px;
+  background-color:#FCFDFF;background-image:linear-gradient(#DCE6F2 1px,transparent 1px),linear-gradient(90deg,#DCE6F2 1px,transparent 1px);background-size:28px 30px}
+.ctal{display:flex;white-space:nowrap}
+.ctac{position:relative;display:inline-flex;align-items:center;justify-content:center;width:28px;height:30px;flex:0 0 28px;font-family:Consolas,"Courier New",monospace;font-size:21px;font-weight:900;color:#002776}
+.ctac.prod{color:#C62828}
+.ctac.resto{color:#1B5E20}
+.ctac.parc{color:#6A1B9A}
+.ctac.sobe{font-size:14px;color:#D84315;height:22px}
+.ctac.vg::after{content:",";position:absolute;right:-4px;bottom:2px;font-size:24px;color:#D84315}
+.ctac.desce::before{content:"↓";position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:18px;color:#D84315}
+.ctal.risco{border-bottom:3px solid #002776;width:max-content}
+.ctarisco{border-top:3px solid #002776;width:100%;margin:2px 0}
+.ctadiv{display:flex;align-items:flex-start;gap:0}
+.ctadv{border-left:4px solid #002776;padding-left:4px;min-width:60px;flex:0 0 auto}
+.ctadvn{font-family:Consolas,"Courier New",monospace;font-size:21px;font-weight:900;color:#002776;height:30px;line-height:30px;border-bottom:4px solid #002776;padding-right:8px}
+.ctaquo{font-family:Consolas,"Courier New",monospace;font-size:21px;font-weight:900;color:#1565C0;height:30px;line-height:30px;letter-spacing:1px;white-space:nowrap}
+.ctaaviso{font-weight:800;color:#D84315;margin-bottom:6px}
+.ctaori{margin-top:6px;font-weight:800;color:#455A64}
+.ctafim{margin-top:6px;font-size:18px;font-weight:800;color:#1B5E20}
+.ctapot{font-size:20px;font-weight:900;color:#002776;line-height:1.8}
+.ctatab{font-size:14px}
+.ctatt{font-weight:900;color:#7A5C00;margin-bottom:4px}
+.ctatl{display:grid;grid-template-columns:1fr auto auto;gap:4px;white-space:nowrap;padding:2px 4px;border-bottom:2px solid #F0E3B5;font-weight:800}
+.ctatl span:first-child{text-align:right}.ctatl .ig{color:#7A5C00}.ctatl b{text-align:right;color:#0B5C2A}
+@media (max-width:820px){ .cta3{grid-template-columns:1fr} .ctac3.m{order:-1} }
+
+.ctadd{flex:0 0 auto}
+.ctac3.d{padding:6px}
+.ctac3.d{min-width:140px;max-width:190px}
+.ctatab{font-size:13px}
+
+/* 🔴 CLD-258 · número da resolução: círculo cheio, número branco, separado do texto */
+.mtst2{display:flex;align-items:center;gap:8px}
+.mtnum{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 6px;border-radius:999px;background:#0B5C4A;color:#fff;font-weight:900;font-size:18px;border:4px solid #08463A}
+.mtln .mtsn{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:24px;padding:0 6px;margin-right:8px;border-radius:999px;background:#0B5C4A;color:#fff;font-weight:900;font-size:16px;vertical-align:1px}
 </style></head>
 <body>
-<div class="topo">🎓 Simulado ETEC <span class="v">V05.04</span>
+<div class="topo">🎓 Simulado ETEC <span class="v">V05.12</span>
   <span class="eu" id="euTopo"></span></div>
 <!-- 🔴 CLD-014 · o topo da base (a faixa .topo antiga fica escondida pelo CSS, não apagada) -->
-<div id="statusbar"><span class="chip ver" id="stVer">V05.04</span><span class="chip" id="stNome">Estudante: —</span>
+<!-- 🔴 CLD-028 · o topo da RETOMADA. Antigo (desativado):
+<div id="statusbar"><span class="chip ver" id="stVer">V05.12</span><span class="chip" id="stNome">Estudante: —</span>
   <span class="chip" id="stTurma">Turma: —</span><span class="chip tela" id="stTela">identificação</span>
-  <span class="chip notac" id="stNota">✔ 0</span><span class="espaco"></span><span class="chip" id="stHora">🕐 --:--</span></div>
+  <span class="chip notac" id="stNota">✔ 0</span><span class="espaco"></span><span class="chip" id="stHora">🕐 - -:- -</span></div>
+-->
+<div id="statusbar"><span class="chip ver" id="stVer">V05.12</span><span class="chip" id="stNome">Estudante: —</span>
+  <span class="chip" id="stTurma">Turma: —</span><span class="chip telan" id="stTelaN">Tela 1</span>
+  <span class="chip" id="stTela">identificação</span><span class="chip" id="stNav" style="display:none"></span>
+  <span class="espaco"></span><span class="chip" id="stHora">🕐 --:--</span>
+  <span class="chip notac" id="stNota">Simulado · acertos 00</span><span class="chip" id="stNotaGrupo" style="display:none"></span>
+  <button type="button" id="btTC" onclick="pedirTelaCheia()"><span class="em20">🖥️</span> Tela cheia</button>
+  <span class="chip sai" id="stSaidas"><span class="em20">👁️</span> Saídas: 0</span>
+  <div id="cronoBox"><span id="cronoTxt">00:00</span></div></div>
+<div id="avisoTC"><div class="cx">
+  <h2>Você saiu da tela cheia</h2>
+  <p>Este simulado é feito em tela cheia. A saída fica registrada no topo.</p>
+  <div style="font-size:40px;font-weight:900;color:#B3001B" id="contTC">1</div>
+  <button type="button" onclick="voltarTelaCheia()">Voltar para a tela cheia</button>
+  <button type="button" class="cinza" onclick="ignorarTelaCheia()">Continuar sem tela cheia</button>
+</div></div>
 <div id="idbar"><div class="l1">Simulado · Vestibulinho ETEC · 9º ano</div>
   <div class="l2"><span class="unid">PROVAS: </span>2023 · 2024/2025 · 2025/2026</div>
   <div class="l3"><span class="em20">🏫</span> E.E. Dr. Benedicto Martins Barbosa</div></div>
@@ -407,7 +670,7 @@ var PROVAS  = [{"id": "2023", "rotulo": "2023", "oficial": "Vestibulinho ETEC ·
 var AREAS   = ["Linguagens", "Matemática", "Ciências da Natureza", "Ciências Humanas"];
 var CORAREA = {"Linguagens": "#7B2D8E", "Matemática": "#1565C0", "Ciências da Natureza": "#2E7D32", "Ciências Humanas": "#B75B10"};
 var EMOAREA = {"Linguagens": "📖", "Matemática": "🔢", "Ciências da Natureza": "🌱", "Ciências Humanas": "🌍"};
-var VERSAO  = "V05.04";
+var VERSAO  = "V05.12";
 
 var estudante="", turma="", modo="", filtroArea="", filtroProva="";
 var fila=[], iQ=0, resp={}, tela="ident";
@@ -647,7 +910,7 @@ var ESPORTES = {
 var CFG = {grifo:false, glos:false};
 try{
   var _c=JSON.parse(localStorage.getItem("etec_cfg")||"null");
-  if(_c){ CFG.grifo=!!_c.grifo; CFG.glos=!!_c.glos }
+  if(_c){ CFG.grifo=!!_c.grifo; CFG.glos=!!_c.glos; CFG.gen=!!_c.gen }   /* CLD-028 · + gênero textual */
 }catch(e){}
 function salvarCfg(){ try{ localStorage.setItem("etec_cfg", JSON.stringify(CFG)) }catch(e){} }
 function temGrifo(){ try{ return typeof GRIFO!=="undefined" && GRIFO && Object.keys(GRIFO).length>0 }catch(e){ return false } }
@@ -1112,7 +1375,10 @@ function telaQuestao(){
     h+='<details class="base"'+(primeira?" open":"")+'><summary><span class="em20">📄</span> '+esc(b.titulo)+'</summary>'+
        (b.paragrafos||[]).map(function(p){ return '<p>'+p+'</p>' }).join("")+'</details>';
   }
-  if(q.texto_proprio) h+='<div class="base"><p>'+q.texto_proprio+'</p></div>';
+  /* 🔴 CLD-028 · texto_proprio é uma LISTA de parágrafos: '<p>'+lista+'</p>' colava todos num
+     parágrafo só, separados por vírgula. Antiga:
+  if(q.texto_proprio) h+='<div class="base"><p>'+q.texto_proprio+'</p></div>'; */
+  if(q.texto_proprio) h+='<div class="base">'+[].concat(q.texto_proprio).map(function(p){ return '<p>'+p+'</p>' }).join("")+'</div>';
   h+='<div class="qbox"><div class="qlab"><span class="em20">❓</span> PERGUNTA</div><div class="enun">'+apoio(q.enunciado,q)+'</div></div>'+
      '<div class="conector"><span class="em20">👉</span> Leia as '+(["","uma","duas","três","quatro","cinco"][letras.length]||letras.length)+
      '. <b>Só uma</b> está certa. Marque <b>uma</b> e confirme.</div></div>';
@@ -1216,6 +1482,215 @@ function voltar(){
   return voltar_OFF_CLD014();
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   🔴 CLD-028 · V05.05 · PADRONIZADOR_002 · 01/10/2026
+   Marcos, 01/10 17:07: "No ETEC está faltando contador de tela / Assim como acho que mais
+   algumas coisas que ficam nas linhas fixas do topo / Também na tela como você quer fazer,
+   precisava que tivesse mais uma opção que seria gênero textual / E esse gênero textual
+   ativado funciona como no de língua portuguesa que você montou hoje".
+   T · o topo fica como o da RETOMADA: Tela N de M · etapa · NAV · hora · acertos e nota do
+       simulado · acertos do grupo · 🖥️ Tela cheia · 👁️ Saídas · ⏱ cronômetro.
+   G · 2.3 📐 Gênero textual: pastilha do gênero sobre o texto (abre como ele se constrói, com
+       as perguntas 5W2H e o "este texto cumpre?") e selos numerados nos trechos de cada parte.
+       Dados: genero_etec.json (validado por genero_chk.py: trecho = pedaço exato do texto).
+   Nada apagado: pintarTopo, telaCfg, telaQuestao e avancar reatribuídas; antigas em *_V0504.
+   ══════════════════════════════════════════════════════════════════════════ */
+var GENERO_ETEC = {"generos": {"Campanha social": {"diz": "Serve para informar o público e convencê-lo a agir por uma causa.", "partes": [{"id": "p1", "rot": "Chamada ao leitor", "diz": "Fala direto com você para prender a atenção.", "perg": [{"k": "QUEM", "p": "Com quem o texto conversa?"}, {"k": "COMO", "p": "Que pergunta puxa o leitor?"}]}, {"id": "p2", "rot": "Informação de apoio", "diz": "Mostra por que o tema importa.", "perg": [{"k": "O QUÊ", "p": "Que fato o texto apresenta?"}, {"k": "QUANTO", "p": "Que número reforça o fato?"}]}, {"id": "p3", "rot": "Problema", "diz": "Mostra a ameaça que precisa ser enfrentada.", "perg": [{"k": "O QUÊ", "p": "Qual é o problema?"}, {"k": "QUANTO", "p": "Qual é o tamanho do problema?"}]}, {"id": "p4", "rot": "Apelo à ação", "diz": "Pede que o público participe.", "perg": [{"k": "O QUÊ", "p": "O que o texto pede ao leitor?"}, {"k": "POR QUÊ", "p": "Por que o leitor deve agir?"}]}, {"id": "p5", "rot": "Marcas de circulação", "diz": "Mostra onde a campanha circula.", "perg": [{"k": "ONDE", "p": "Em que lugar esse texto circula?"}, {"k": "COMO", "p": "Que sinal mostra isso?"}]}]}, "Texto de divulgação científica": {"diz": "Serve para explicar um assunto da ciência para quem não é especialista.", "partes": [{"id": "p1", "rot": "Tema", "diz": "Apresenta o assunto do texto.", "perg": [{"k": "O QUÊ", "p": "Sobre o que o texto fala?"}]}, {"id": "p2", "rot": "Explicação", "diz": "Explica como o fenômeno funciona.", "perg": [{"k": "COMO", "p": "Como isso acontece?"}, {"k": "POR QUÊ", "p": "Por que isso acontece?"}]}, {"id": "p3", "rot": "Dado ou exemplo", "diz": "Prova a explicação com número, pesquisa ou caso.", "perg": [{"k": "QUANTO", "p": "Que número aparece?"}, {"k": "QUEM", "p": "Quem pesquisou ou serve de exemplo?"}]}, {"id": "p4", "rot": "Conclusão", "diz": "Fecha o texto com a importância do assunto.", "perg": [{"k": "POR QUÊ", "p": "Por que esse assunto importa?"}]}]}, "Verbete": {"diz": "Serve para definir uma palavra ou um conceito, como num dicionário ou enciclopédia.", "partes": [{"id": "p1", "rot": "Definição", "diz": "Diz o que a coisa é.", "perg": [{"k": "O QUÊ", "p": "O que é isso?"}]}, {"id": "p2", "rot": "Características", "diz": "Descreve como a coisa é.", "perg": [{"k": "COMO", "p": "Como ela é?"}, {"k": "QUANTO", "p": "Que medidas aparecem?"}]}, {"id": "p3", "rot": "Informação complementar", "diz": "Acrescenta um dado importante sobre o conceito.", "perg": [{"k": "POR QUÊ", "p": "Por que isso é importante?"}]}]}, "Texto informativo de história": {"diz": "Serve para contar e explicar um fato do passado.", "partes": [{"id": "p1", "rot": "Fato", "diz": "Diz o que aconteceu.", "perg": [{"k": "O QUÊ", "p": "O que aconteceu?"}]}, {"id": "p2", "rot": "Época e lugar", "diz": "Situa o fato no tempo e no espaço.", "perg": [{"k": "QUANDO", "p": "Quando aconteceu?"}, {"k": "ONDE", "p": "Onde aconteceu?"}]}, {"id": "p3", "rot": "Pessoas envolvidas", "diz": "Mostra quem participou do fato.", "perg": [{"k": "QUEM", "p": "Quem participou?"}]}, {"id": "p4", "rot": "Causa ou consequência", "diz": "Explica o motivo ou o resultado do fato.", "perg": [{"k": "POR QUÊ", "p": "Por que aconteceu?"}, {"k": "COMO", "p": "Como isso mudou as coisas?"}]}]}, "Reportagem": {"diz": "Serve para aprofundar um tema real, com cenas, lugares e falas de pessoas.", "partes": [{"id": "p1", "rot": "Abertura com cena", "diz": "Começa contando uma cena para prender o leitor.", "perg": [{"k": "QUEM", "p": "Quem aparece na cena?"}, {"k": "O QUÊ", "p": "O que aconteceu?"}]}, {"id": "p2", "rot": "Lugar", "diz": "Diz onde a história se passa.", "perg": [{"k": "ONDE", "p": "Onde vivem as pessoas da reportagem?"}]}, {"id": "p3", "rot": "Depoimento", "diz": "Traz a fala de alguém, entre aspas.", "perg": [{"k": "QUEM", "p": "Quem fala?"}, {"k": "O QUÊ", "p": "O que essa pessoa diz?"}]}, {"id": "p4", "rot": "Explicação do tema", "diz": "Amplia a cena para o tema geral.", "perg": [{"k": "COMO", "p": "Como é essa relação em geral?"}]}, {"id": "p5", "rot": "Fechamento", "diz": "Termina com uma informação marcante.", "perg": [{"k": "O QUÊ", "p": "Que ideia fica no final?"}, {"k": "POR QUÊ", "p": "Por que ela é importante?"}]}]}, "Fragmento de romance": {"diz": "Serve para expressar sentimentos e reflexões com linguagem literária.", "partes": [{"id": "p1", "rot": "Voz em 1ª pessoa", "diz": "Quem fala é o próprio narrador, com \"eu\" e \"meu\".", "perg": [{"k": "QUEM", "p": "Quem está falando?"}]}, {"id": "p2", "rot": "Imagem", "diz": "Cria uma cena com palavras que despertam sensações.", "perg": [{"k": "COMO", "p": "Como a cena é descrita?"}, {"k": "ONDE", "p": "Onde a cena acontece?"}]}, {"id": "p3", "rot": "Reflexão", "diz": "Tira uma lição ou um pensamento da cena.", "perg": [{"k": "O QUÊ", "p": "O que o narrador aprende?"}, {"k": "POR QUÊ", "p": "Por que isso é importante para ele?"}]}]}, "Tirinha": {"diz": "Serve para contar uma história curta em quadrinhos, quase sempre com humor ou crítica.", "partes": [{"id": "p1", "rot": "Personagens", "diz": "Mostra quem participa da história.", "perg": [{"k": "QUEM", "p": "Quem aparece nos quadrinhos?"}]}, {"id": "p2", "rot": "Situação", "diz": "Apresenta o que está acontecendo.", "perg": [{"k": "O QUÊ", "p": "O que está acontecendo?"}, {"k": "ONDE", "p": "Onde a cena se passa?"}]}, {"id": "p3", "rot": "Balões de fala", "diz": "Mostram o que os personagens dizem.", "perg": [{"k": "COMO", "p": "Como os personagens falam?"}]}, {"id": "p4", "rot": "Desfecho", "diz": "O último quadrinho traz a virada ou a graça.", "perg": [{"k": "O QUÊ", "p": "O que muda no final?"}, {"k": "POR QUÊ", "p": "Por que o final surpreende?"}]}]}, "Charge": {"diz": "Serve para criticar um fato atual por meio de um desenho com humor.", "partes": [{"id": "p1", "rot": "Cena desenhada", "diz": "Mostra a situação na imagem.", "perg": [{"k": "ONDE", "p": "Onde a cena se passa?"}, {"k": "QUEM", "p": "Quem aparece?"}]}, {"id": "p2", "rot": "Exagero", "diz": "Aumenta um detalhe para chamar a atenção.", "perg": [{"k": "COMO", "p": "Que detalhe foi exagerado?"}]}, {"id": "p3", "rot": "Crítica", "diz": "Revela o problema real que o desenho denuncia.", "perg": [{"k": "O QUÊ", "p": "Que problema é criticado?"}, {"k": "POR QUÊ", "p": "Por que ele preocupa?"}]}]}, "Diagrama": {"diz": "Serve para mostrar relações entre elementos com desenhos e setas.", "partes": [{"id": "p1", "rot": "Elementos", "diz": "Mostra os seres ou itens do esquema.", "perg": [{"k": "QUEM", "p": "Quem faz parte do diagrama?"}]}, {"id": "p2", "rot": "Setas", "diz": "Ligam os elementos e mostram a relação.", "perg": [{"k": "COMO", "p": "Como as setas ligam os elementos?"}]}, {"id": "p3", "rot": "Base do esquema", "diz": "Mostra por onde a leitura começa.", "perg": [{"k": "ONDE", "p": "Onde fica o ponto de partida?"}, {"k": "O QUÊ", "p": "O que está na base?"}]}, {"id": "p4", "rot": "Leitura geral", "diz": "Junta tudo numa ideia só.", "perg": [{"k": "O QUÊ", "p": "O que o diagrama mostra no todo?"}]}]}}, "textos": {"b:2023::oceanos": {"genero": "Campanha social", "por_que": "Informa sobre os oceanos e pede que o leitor participe.", "partes": {"p1": {"trecho": "sabia que o oceano desempenha um papel fundamental na regulação do clima no planeta?"}, "p2": {"trecho": "Vivemos em um planeta azul, com oceanos e mares cobrindo mais de 70% da superfície da Terra."}, "p3": {"trecho": "Todos os anos, cerca de 8 milhões de toneladas de resíduo plástico acabam nos ecossistemas marinhos."}, "p4": {"trecho": "Cuidar dos oceanos é cuidar do clima e da vida. Como as mudanças climáticas afetam você? Conte pra gente!"}, "p5": {"trecho": "#HoraDeAgir #mudançadoclima #criseclimática #AçãoClimática"}}}, "q:2023-04": {"genero": "Texto de divulgação científica", "por_que": "Explica a diferença entre mar e oceano com linguagem simples.", "partes": {"p1": {"trecho": "O limite entre mar e oceano é muito delicado"}, "p2": {"trecho": "A diferença entre os mares e os oceanos está na sua extensão territorial."}, "p3": {"trecho": "o ser humano não conseguiu chegar, ou transportar qualquer equipamento ao ponto mais fundo, que pode alcançar milhares de metros."}, "p4": {"trecho": "Os oceanos existentes em nosso planeta concentram a maior parte da água da Terra, também conhecida como Planeta Azul."}}}, "b:2023::aquaman": {"genero": "Texto de divulgação científica", "por_que": "Usa um super-herói para falar de ciência dos oceanos com números.", "partes": {"p1": {"trecho": "Estamos longe de compreender a complexidade dos oceanos."}, "p2": {"trecho": "Aquaman, herdeiro do trono de Atlantis, está entre os super-heróis que mais têm conhecimento sobre essa parte do nosso planeta."}, "p3": {"trecho": "o herói é capaz de atingir a velocidade de 3 mil metros por segundo quando está nadando, o que exigiria um gasto de 240 milhões de quilocalorias a cada segundo."}, "p4": {"trecho": "", "ver": "O texto termina no dado numérico. Não traz conclusão."}}}, "b:2023::teia": {"genero": "Diagrama", "por_que": "Mostra seres marinhos ligados por setas que indicam quem come quem.", "partes": {"p1": {"trecho": "", "ver": "Olhe os desenhos dos seres marinhos: fitoplâncton, krill, peixes, focas, orcas e outros."}, "p2": {"trecho": "", "ver": "Olhe as setas: cada uma aponta de quem é comido para quem come."}, "p3": {"trecho": "", "ver": "Olhe o fitoplâncton: ele produz o próprio alimento e é a base da teia."}, "p4": {"trecho": "", "ver": "Siga as setas da base até a orca para ver a teia alimentar inteira."}}}, "q:2023-10": {"genero": "Tirinha", "por_que": "Conta uma história curta em quadrinhos com o personagem Armandinho.", "partes": {"p1": {"trecho": "", "ver": "Olhe o Armandinho e as outras crianças nos quadrinhos."}, "p2": {"trecho": "", "ver": "Olhe a cena dos tênis nos primeiros quadrinhos."}, "p3": {"trecho": "", "ver": "Leia os balões para ver o que o Armandinho diz."}, "p4": {"trecho": "", "ver": "Olhe o último quadrinho: ali aparece a empatia do Armandinho."}}}, "q:2023-11": {"genero": "Charge", "por_que": "Usa um desenho com humor para criticar a poluição das águas.", "partes": {"p1": {"trecho": "", "ver": "Olhe o ambiente aquático desenhado e quem está nele."}, "p2": {"trecho": "", "ver": "Procure o detalhe exagerado que mostra a sujeira da água."}, "p3": {"trecho": "", "ver": "Pense no problema real: a poluição de mares e rios ameaça a vida."}}}, "q:2023-12": {"genero": "Verbete", "por_que": "Começa definindo o que é tsunâmi, como num dicionário.", "partes": {"p1": {"trecho": "Grande onda ou sucessão de ondas marinhas que se deslocam através do oceano por milhares de quilômetros em alta velocidade"}, "p2": {"trecho": "Caracteriza-se por ter grande extensão, chegando a ter mais de 100 km de comprimento"}, "p3": {"trecho": "Tsunâmi é um dos desastres naturais que podem, com frequência, atingir dimensões catastróficas ao provocar a morte de milhares de pessoas."}}}, "q:2024-2025-01": {"genero": "Texto de divulgação científica", "por_que": "Explica os benefícios das plantas para a vida na Terra.", "partes": {"p1": {"trecho": "As plantas proporcionam uma infinidade de benefícios que são essenciais para a manutenção da vida na Terra, como a produção de alimentos e de oxigênio."}, "p2": {"trecho": "Outro papel fundamental das plantas é o controle da dinâmica da água na Terra e da temperatura do planeta."}, "p3": {"trecho": "são utilizadas para a produção de biocombustíveis e de remédios."}, "p4": {"trecho": "Compreender suas funções vitais é importante para promover esforços de conservação do meio ambiente."}}}, "q:2024-2025-02": {"genero": "Texto de divulgação científica", "por_que": "Usa dados de um órgão da ONU para explicar a alimentação humana.", "partes": {"p1": {"trecho": "na história da humanidade, das 30 mil espécies de plantas comestíveis, somente de 6 a 7 mil espécies foram cultivadas para produzir alimentos."}, "p2": {"trecho": "Além disso, a monocultura desses grãos pode provocar a degradação do solo, acarretando o esgotamento de seus nutrientes e, consequentemente, o empobrecimento nutricional."}, "p3": {"trecho": "são provenientes de três grãos"}, "p4": {"trecho": "Por outro lado, existem milhares de culturas que foram esquecidas ou subutilizadas e que nunca entraram no mercado mundial."}}}, "q:2024-2025-03": {"genero": "Texto informativo de história", "por_que": "Conta como o trigo se espalhou pelo mundo ao longo de milhares de anos.", "partes": {"p1": {"trecho": "Em apenas alguns milênios, estava crescendo no mundo inteiro."}, "p2": {"trecho": "Há dez mil anos, o trigo era apenas uma gramínea silvestre, confinada a uma pequena região do Oriente Médio."}, "p3": {"trecho": "", "ver": "O texto fala dos seres humanos em geral, sem nomear pessoas. Veja o fim do 2º parágrafo."}, "p4": {"trecho": "por isso os seres humanos tiveram que dedicar cada vez mais esforços para seu cultivo."}}}, "q:2024-2025-04": {"genero": "Texto de divulgação científica", "por_que": "Explica o que são as PANCs e por que elas importam.", "partes": {"p1": {"trecho": "A sigla PANCs significa Plantas Alimentícias Não Convencionais, ou seja, espécies já conhecidas, mas que não são popularmente consumidas."}, "p2": {"trecho": "O que se sabe é que essas espécies são rústicas, propagadas por mudas ou sementes e resistentes a doenças e pragas."}, "p3": {"trecho": "Acredita-se que o Brasil tenha, aproximadamente, 10 mil espécies de plantas com potencial de uso alimentar."}, "p4": {"trecho": "Infelizmente, essas plantas ainda não são produzidas em larga escala. Isso poderia ajudar a combater a fome, por exemplo."}}}, "q:2024-2025-05": {"genero": "Texto de divulgação científica", "por_que": "Explica a produção do café com dados e cálculos.", "partes": {"p1": {"trecho": "A humanidade só conheceu o café bem depois."}, "p2": {"trecho": "Hoje, ele é um dos mais valiosos produtos primários comercializados no mundo"}, "p3": {"trecho": "É curioso observar que cada saca de café verde tem 60 kg e rende somente 48 kg de café torrado"}, "p4": {"trecho": "Deste modo, é possível estimar que, para produzir uma tonelada de café torrado, são necessárias, no mínimo,"}}}, "q:2024-2025-06": {"genero": "Texto de divulgação científica", "por_que": "Explica como a dioneia se fecha usando conceitos de ciência.", "partes": {"p1": {"trecho": "Plantas carnívoras, como as dioneias, são conhecidas pelo aprisionamento de suas presas."}, "p2": {"trecho": "Esse movimento ocorre por um processo denominado tigmonastia, em que, ao serem tocadas, as células sensíveis da planta geram sinais elétricos que são propagados rapidamente e fazem com que a planta se feche."}, "p3": {"trecho": "a resistência elétrica entre dois pontos do caule pode ser obtida por meio da Lei de Ohm"}, "p4": {"trecho": "", "ver": "O texto termina na fórmula da Lei de Ohm. Não traz conclusão."}}}, "b:2024-2025::cientirinhas": {"genero": "Tirinha", "por_que": "Conta uma história curta em quadrinhos, com plantas como personagens e humor.", "partes": {"p1": {"trecho": "", "ver": "Olhe as personagens: a Planta Carnívora e a amiga dela."}, "p2": {"trecho": "", "ver": "Olhe a conversa entre as amigas nos primeiros quadrinhos."}, "p3": {"trecho": "", "ver": "Leia os balões: aparecem \"amiga\", \"menina\", \"pra\" e \"né\"."}, "p4": {"trecho": "", "ver": "Olhe o quarto quadrinho: o \"uai\" mostra a surpresa da personagem."}}}, "b:2024-2025::cravos": {"genero": "Texto informativo de história", "por_que": "Conta um fato do passado de Portugal e explica suas causas.", "partes": {"p1": {"trecho": "foi o responsável pelo fim da longeva ditadura de António de Oliveira Salazar"}, "p2": {"trecho": "O movimento, que completou 50 anos em 2024"}, "p3": {"trecho": "Esse movimento ficou conhecido pelo nome da flor que a população colocava nos canos das armas dos soldados do exército"}, "p4": {"trecho": "Um dos motivos da insatisfação foi a desastrosa campanha militar do governo ditatorial"}}}, "b:2024-2025::cravo": {"genero": "Texto de divulgação científica", "por_que": "Explica os usos do cravo-da-índia com base em suas propriedades.", "partes": {"p1": {"trecho": "O cravo-da-índia é uma especiaria usada desde a Antiguidade."}, "p2": {"trecho": "Seu uso em doces teve início por sua ação repelente que impede a invasão de formigas, motivo pelo qual é usado popularmente em açucareiros."}, "p3": {"trecho": "Seu óleo essencial é rico em eugenol, princípio ativo responsável pelas propriedades analgésicas e antissépticas, sendo bastante usado em odontologia."}, "p4": {"trecho": "", "ver": "O texto não tem conclusão. Termina citando mais um uso: a vanilina."}}}, "q:2025-2026-01": {"genero": "Texto de divulgação científica", "por_que": "Explica como a convivência com animais mudou o corpo humano.", "partes": {"p1": {"trecho": "A convivência com os animais mudou os seres humanos."}, "p2": {"trecho": "Quando os seres humanos começaram a criar gado, começaram a beber mais leite, havendo uma adaptação do sistema digestivo para o consumo do leite durante toda a vida."}, "p3": {"trecho": "Talvez o exemplo mais popular seja o consumo de leite"}, "p4": {"trecho": "A domesticação é parte da conexão humana com os animais"}}}, "b:2025-2026::caes": {"genero": "Texto de divulgação científica", "por_que": "Explica para que servem os cães-guia e traz números.", "partes": {"p1": {"trecho": "Cães-guia são treinados para facilitar a locomoção"}, "p2": {"trecho": "conduzir a pessoa cega ou com baixa visão em segurança"}, "p3": {"trecho": "Estima-se que, atualmente, 207 cães-guia estão em atividade no Brasil."}, "p4": {"trecho": "", "ver": "O texto é curto. Termina nos números das raças, sem conclusão."}}}, "q:2025-2026-04": {"genero": "Fragmento de romance", "por_que": "Usa linguagem poética em 1ª pessoa para refletir sobre a vida.", "partes": {"p1": {"trecho": "Meu cão me revigora toda."}, "p2": {"trecho": "Sem falar que dorme às vezes aos meus pés enchendo o quarto da cálida vida úmida."}, "p3": {"trecho": "O meu cão me ensina a viver."}}}, "q:2025-2026-05": {"genero": "Texto informativo de história", "por_que": "Conta como os antigos egípcios conviviam com os felinos.", "partes": {"p1": {"trecho": "Uma das primeiras domesticações de gatos"}, "p2": {"trecho": "aconteceu no antigo Egito."}, "p3": {"trecho": "Por meio da observação, os egípcios vieram a admirar os felinos pela sua natureza complexa e dual."}, "p4": {"trecho": "sendo essenciais para a sociedade egípcia na proteção contra pragas de casas e de celeiros."}}}, "q:2025-2026-06": {"genero": "Texto de divulgação científica", "por_que": "Usa pesquisas para explicar os benefícios de conviver com animais.", "partes": {"p1": {"trecho": "pode ajudar no desenvolvimento afetivo e psicológico"}, "p2": {"trecho": "aumentando a produção de endorfina no organismo, minimizando os efeitos da depressão, da dor e da ansiedade."}, "p3": {"trecho": "Pesquisas revelam que 80% das pessoas se sentem menos solitárias ao conviver com um animal de estimação"}, "p4": {"trecho": "", "ver": "O texto não tem conclusão. Termina listando os efeitos nas crianças."}}}, "q:2025-2026-07": {"genero": "Texto informativo de história", "por_que": "Conta um fato do passado com datas, países e consequências.", "partes": {"p1": {"trecho": "enviaram 65 animais ao espaço, sendo 48 cães, 15 macacos e 2 coelhos."}, "p2": {"trecho": "Entre 1948 e 1961"}, "p3": {"trecho": "União Soviética (URSS) e Estados Unidos (EUA)"}, "p4": {"trecho": "O envio de animais não humanos ao espaço começou a cessar com o lançamento de pessoas."}}}, "b:2025-2026::xerimbabos": {"genero": "Reportagem", "por_que": "Aprofunda um tema real com cena, lugar e fala de uma moradora.", "partes": {"p1": {"trecho": "tomaram um susto: um bicho-preguiça estava dentro de casa."}, "p2": {"trecho": "Moradoras da terra indígena do Alto Rio Guamá"}, "p3": {"trecho": "“Elas sempre foram ensinadas que, sem natureza e animais, nada progride”, conta Josiane Tenetehar, mãe das meninas."}, "p4": {"trecho": "Os animais vivem soltos na floresta."}, "p5": {"trecho": "Para esses bichinhos, dá-se o nome de xerimbabos, que em tupi significa “coisa muito querida”."}}}}};
+function m7Dois(x){ return (x<10?"0":"")+x }
+function m7N2(x){ return (Math.round(x*100)/100).toFixed(2).replace(".",",") }
+
+/* ---------- T · a sequência das telas, para o "Tela N de M" ---------- */
+function m7Seq(){
+  var s=[{t:"ident"},{t:"escolha"},{t:"cfg"}];
+  if(!fila.length) return s;
+  var gs=gruposDaFila();
+  fila.forEach(function(q,i){
+    s.push({t:"q",i:i});
+    var prox=fila[i+1];
+    if(!prox || grupoDe(prox)!==grupoDe(q)) s.push({t:"parcial",g:gs.indexOf(grupoDe(q))});
+  });
+  s.push({t:"fim"});
+  return s;
+}
+function m7TelaN(){
+  var s=m7Seq(), k=-1;
+  s.forEach(function(x,j){
+    if(x.t!==tela) return;
+    if(tela==="q" && x.i!==iQ) return;
+    if(tela==="parcial" && x.g!==iG) return;
+    if(k<0) k=j;
+  });
+  return {n:k+1, m:s.length, temFila:fila.length>0};
+}
+try{ window.m7TelaN=m7TelaN; window.m7Seq=m7Seq }catch(e){}
+
+/* ---------- T · cronômetro, tela cheia e saídas (a mesma regra da RETOMADA) ---------- */
+var CRONO={ini:0, saidas:0}, avisoAberto=false;
+function chaveCrono(){ return "etec_crono_"+VERSAO+"_"+(turma||"")+"_"+(numero||"") }
+function lerCrono(){ try{ var c=JSON.parse(localStorage.getItem(chaveCrono())||"null"); CRONO=c||{ini:0,saidas:0} }catch(e){ CRONO={ini:0,saidas:0} } }
+function gravarCrono(){ try{ localStorage.setItem(chaveCrono(), JSON.stringify(CRONO)) }catch(e){} }
+function pedirTelaCheia(){ var e=document.documentElement; try{ if(e.requestFullscreen) e.requestFullscreen().catch(function(){}) }catch(x){} }
+function voltarTelaCheia(){ $("avisoTC").classList.remove("abre"); avisoAberto=false; pedirTelaCheia() }
+function ignorarTelaCheia(){ $("avisoTC").classList.remove("abre"); avisoAberto=false }
+document.addEventListener("fullscreenchange", function(){
+  if(!CRONO.ini || avisoAberto) return;
+  if(!document.fullscreenElement){
+    CRONO.saidas=(CRONO.saidas||0)+1; gravarCrono(); avisoAberto=true;
+    $("contTC").textContent=CRONO.saidas; $("avisoTC").classList.add("abre"); pintarTopo();
+  }
+});
+function txtCrono(){
+  if(!CRONO.ini) return "00:00";
+  var s=Math.floor((Date.now()-CRONO.ini)/1000), h=Math.floor(s/3600), m=Math.floor((s%3600)/60), g=s%60;
+  return (h?h+":":"")+m7Dois(m)+":"+m7Dois(g);
+}
+setInterval(function(){
+  try{ $("cronoTxt").textContent=txtCrono();
+       var d=new Date(); $("stHora").innerHTML='<span class="em20">🕐</span> '+m7Dois(d.getHours())+":"+m7Dois(d.getMinutes()) }catch(e){}
+}, 1000);
+/* o relógio começa quando o estudante sai da identificação, como na RETOMADA */
+var avancar_V0504=avancar;
+avancar=function(){
+  var era=tela;
+  var v=avancar_V0504.apply(this, arguments);
+  try{ if(era==="ident" && tela!=="ident"){ lerCrono(); if(!CRONO.ini){ CRONO.ini=Date.now(); gravarCrono() } pedirTelaCheia(); pintarTopo() } }catch(e){}
+  return v;
+};
+try{ window.avancar=avancar }catch(e){}
+
+/* ---------- T · o topo ---------- */
+var pintarTopo_V0504=pintarTopo;
+pintarTopo=function(){
+  pintarTopo_V0504.apply(this, arguments);
+  try{
+    if(!CRONO.ini && estudante) lerCrono();
+    var t=m7TelaN();
+    $("stTelaN").textContent = t.temFila ? ("Tela "+t.n+" de "+t.m) : ("Tela "+t.n);
+    $("stTelaN").title = t.temFila ? "" : "o total aparece depois que você escolher o caminho";
+    var nv=$("stNav");
+    if(tela==="q"){ nv.style.display=""; nv.innerHTML='<span class="em20">🔍</span> NAV.07 · lupa na prova' } else nv.style.display="none";
+    /* placar do simulado: acertos sobre as questões do caminho · nota de 0 a 10 */
+    var N=fila.length, ac=fila.filter(function(q){ return resp[q.pid] && resp[q.pid].ok }).length;
+    var sn=$("stNota");
+    if(!N){ sn.textContent="Simulado · acertos 00"; sn.style.color="#4A5560" }
+    else { var nt=ac/N*10;
+      sn.textContent="Simulado · acertos "+m7Dois(ac)+" de "+m7Dois(N)+" · "+m7N2(nt);
+      sn.style.color = nt>=8 ? "#2E6029" : (nt>=6 ? "#8A6D00" : "#B3001B");
+      sn.title="Acertos sobre as "+N+" questões deste caminho. A nota vai de 0 a 10."; }
+    /* o grupo de agora: conta só o que já foi respondido (a regra do CLD-020 da RETOMADA) */
+    var sg=$("stNotaGrupo"), g=null;
+    if(tela==="q" && fila[iQ]) g=grupoDe(fila[iQ]);
+    if(tela==="parcial"){ var gs=gruposDaFila(); g=gs[iG] }
+    if(!g){ sg.style.display="none" }
+    else {
+      sg.style.display="";
+      var k=gruposDaFila().indexOf(g)+1, its=fila.filter(function(q){ return grupoDe(q)===g }),
+          fe=its.filter(function(q){ return resp[q.pid] }), a2=fe.filter(function(q){ return resp[q.pid].ok }).length;
+      if(!fe.length){ sg.textContent="Grupo "+m7Dois(k)+" · nenhuma respondida ainda"; sg.style.color="#4A5560" }
+      else { var n2=a2/fe.length*10;
+        sg.textContent="Grupo "+m7Dois(k)+" · acertos "+m7Dois(a2)+" de "+m7Dois(fe.length)+(fe.length<its.length?" feitas · faltam "+(its.length-fe.length):"");
+        sg.style.color = n2>=8 ? "#2E6029" : (n2>=6 ? "#8A6D00" : "#B3001B"); }
+      sg.title="Grupo "+k+": "+rotGrupo(g)+". Questão ainda não respondida não conta como erro.";
+    }
+    $("stSaidas").innerHTML='<span class="em20">👁️</span> Saídas: '+(CRONO.saidas||0);
+    $("cronoTxt").textContent=txtCrono();
+  }catch(e){}
+};
+
+/* ---------- G · 2.3 gênero textual ---------- */
+CFG.gen = !!CFG.gen;
+function temGen(){ try{ return !!(GENERO_ETEC && GENERO_ETEC.textos && Object.keys(GENERO_ETEC.textos).length) }catch(e){ return false } }
+var ligarCfg_V0504=ligarCfg;
+ligarCfg=function(k){
+  if(k==="gen"){ if(!temGen()) return; CFG.gen=!CFG.gen; salvarCfg(); return render() }
+  return ligarCfg_V0504.apply(this, arguments);
+};
+try{ window.ligarCfg=ligarCfg }catch(e){}
+var telaCfg_V0504=telaCfg;
+telaCfg=function(){
+  telaCfg_V0504.apply(this, arguments);
+  try{
+    var bts=document.querySelector("#palco .bloco.bl5 .bts");
+    if(bts) bts.insertAdjacentHTML("beforeend",
+      cardCfg("gen","2.3","📐","Gênero textual",
+              "O nome do gênero aparece sobre o texto. Toque nele e veja como o texto se constrói. Os números no texto mostram cada parte.",
+              CFG.gen, temGen()));
+    var nt=document.querySelector("#palco .bloco.bl5 > .nota");
+    if(nt) nt.innerHTML='✔ Ligado agora: <b>'+([(CFG.grifo?"grifo":""),(CFG.glos?"glossário":""),(CFG.gen?"gênero textual":"")].filter(Boolean).join(" · ")||"nenhum")+'</b>';
+  }catch(e){}
+};
+function idTexto(q){ return q.base ? ("b:"+q.base) : ("q:"+q.pid) }
+function parteGen(tid){ var t=(GENERO_ETEC.textos||{})[tid]; if(!t) return null; var g=(GENERO_ETEC.generos||{})[t.genero]; return g?{t:t,g:g}:null }
+var M7GEN_FALHA=[];
+var telaQuestao_V0504=telaQuestao;
+telaQuestao=function(){
+  var v=telaQuestao_V0504.apply(this, arguments);
+  try{
+    if(!CFG.gen || !temGen() || tela!=="q") return v;
+    var q=fila[iQ]; if(!q) return v;
+    var tid=idTexto(q), d=parteGen(tid); if(!d) return v;
+    var pal=$("palco");
+    var caixa = q.base ? pal.querySelector("details.base") : (q.texto_proprio ? pal.querySelector("div.base") : null);
+    var pill='<div class="genbx"><button type="button" class="genpill" id="genPill" onclick="abrirGenero(\''+tid+'\')">'+
+      '<span class="em20">📐</span> '+esc(d.t.genero)+'</button>'+
+      '<span class="gensub">toque no nome do gênero para ver como ele se constrói'+
+      (caixa?' · os números no texto mostram cada parte':'')+'</span></div>';
+    if(caixa) caixa.insertAdjacentHTML("beforebegin", pill);
+    else { var qb=pal.querySelector(".qbox"); if(qb) qb.insertAdjacentHTML("beforebegin", pill) }
+    if(caixa){
+      var ps=[].slice.call(caixa.querySelectorAll("p"));
+      d.g.partes.forEach(function(pt,j){
+        var tr=((d.t.partes||{})[pt.id]||{}).trecho; if(!tr) return;
+        var feito=false;
+        ps.forEach(function(p){
+          if(feito) return;
+          var h=p.innerHTML, alvo=tr.replace(/&/g,"&amp;").replace(/ /g,"&nbsp;");
+          var i=h.indexOf(alvo); if(i<0) return;
+          p.innerHTML=h.slice(0,i)+'<button type="button" class="gsel" data-p="'+pt.id+'" onclick="abrirParteGen(\''+tid+'\',\''+pt.id+'\')" title="'+esc(pt.rot)+'">'+(j+1)+'</button>'+
+            '<mark class="gtr" data-p="'+pt.id+'" onclick="abrirParteGen(\''+tid+'\',\''+pt.id+'\')">'+alvo+'</mark>'+h.slice(i+alvo.length);
+          feito=true;
+        });
+        if(!feito) M7GEN_FALHA.push(tid+"/"+pt.id);
+      });
+    }
+  }catch(e){ M7GEN_FALHA.push("erro:"+e) }
+  return v;
+};
+function janelaGen(h){
+  fecharGlos();
+  var e=document.createElement("div"); e.id="glosjan"; e.className="sumjan";
+  e.innerHTML='<div class="sumcx genjan">'+h+'<button type="button" class="fechar" onclick="fecharGlos()">← Voltar</button></div>';
+  e.onclick=function(ev){ if(ev.target===e) fecharGlos() };
+  document.body.appendChild(e);
+}
+function pergsGen(pt){ return (pt.perg||[]).map(function(x){ return '<div class="cumpre"><span class="chave">'+esc(x.k)+'</span><span>'+esc(x.p)+'</span></div>' }).join("") }
+function abrirGenero(tid){
+  var d=parteGen(tid); if(!d) return;
+  var h='<div class="sumtt"><span class="em20">📐</span> '+esc(d.t.genero)+' · como se constrói</div>'+
+    '<div class="gendiz">'+esc(d.g.diz)+'</div>'+
+    '<div class="cumpre"><span class="em20">🔎</span><span><b>Como saber que é '+esc(d.t.genero.toLowerCase())+':</b> '+esc(d.t.por_que)+'</span></div>';
+  d.g.partes.forEach(function(pt,j){
+    var x=(d.t.partes||{})[pt.id]||{};
+    h+='<div class="genparte"><div class="gpt"><span class="gsel est">'+(j+1)+'</span><b>'+esc(pt.rot)+'</b> · '+esc(pt.diz)+'</div>'+
+       pergsGen(pt)+
+       '<div class="cumpre"><span class="em20">'+(x.trecho?"✅":"❌")+'</span><span><b>Este texto:</b> '+
+       (x.trecho?'“'+esc(x.trecho)+'”':esc(x.ver||"não traz esta parte"))+'</span></div></div>';
+  });
+  janelaGen(h);
+}
+function abrirParteGen(tid,pid){
+  var d=parteGen(tid); if(!d) return;
+  var j=-1; d.g.partes.forEach(function(p,k){ if(p.id===pid) j=k }); if(j<0) return;
+  var pt=d.g.partes[j], x=(d.t.partes||{})[pid]||{};
+  janelaGen('<div class="sumtt"><span class="gsel est">'+(j+1)+'</span> '+esc(pt.rot)+'</div>'+
+    '<div class="gendiz">'+esc(pt.diz)+' · parte '+(j+1)+' de '+d.g.partes.length+' do gênero '+esc(d.t.genero.toLowerCase())+'</div>'+
+    '<div class="cumpre"><span class="em20">❓</span><span><b>As perguntas desta parte</b></span></div>'+pergsGen(pt)+
+    '<div class="cumpre"><span class="em20">📄</span><span><b>Neste texto:</b> '+(x.trecho?'“'+esc(x.trecho)+'”':esc(x.ver||""))+'</span></div>'+
+    '<button type="button" class="genver" onclick="abrirGenero(\''+tid+'\')"><span class="em20">📐</span> ver o gênero inteiro</button>');
+}
+try{ window.abrirGenero=abrirGenero; window.abrirParteGen=abrirParteGen; window.m7GenFalha=function(){ return M7GEN_FALHA.slice() } }catch(e){}
+
+
 /* ---------- partida ---------- */
 (function(){
   var d=carregar();
@@ -1227,5 +1702,2598 @@ function voltar(){
   render();
   document.addEventListener("input", function(e){ if(e.target&&e.target.id==="inNome") pintarBarra() });
 })();
+
+/* cópia de cld031.py (RETOMADA) · CLD-031 · gerada pelo PADRONIZADOR_002 */
+
+/* ══════════════════════════════════════════════════════════════════════════
+   🔴 CLD-031 · o número do comando sai com dois dígitos, em negrito e grifado
+   ("Escolha três" → "Escolha 03"). Passa depois de cada desenho de tela.
+   ══════════════════════════════════════════════════════════════════════════ */
+(function(){
+  var N={"um":1,"uma":1,"dois":2,"duas":2,"três":3,"tres":3,"quatro":4,"cinco":5,"seis":6,"sete":7,"oito":8,"nove":9,"dez":10};
+  var V="Escolha|Escolher|Escolham|Marque|Marcar|Marquem|Selecione|Leia|Ler|Toque em|Responda|Encontre|Ache|Junte|Escreva|Digite|Monte|Liste|Cite|Arraste|Pinte|Copie|Confira|Só|Apenas";
+  var NW="uma|um|duas|dois|três|tres|quatro|cinco|seis|sete|oito|nove|dez";
+  /* verbo + (artigo)? + número  ·  número + "certas"/"estão certas"/"corretas" */
+  var RX=new RegExp("(^|[^A-Za-zÀ-ÿ])((?:"+V+")\\s+(?:(?:as|os|a|o|só|apenas|mais)\\s+)?)("+NW+")(?=([^A-Za-zÀ-ÿ]|$))(\\s*[A-Za-zÀ-ÿ]*)","gi");
+  var RX2=new RegExp("(^|[^A-Za-zÀ-ÿ])("+NW+")(\\s+(?:estão\\s+certas|estão\\s+corretas|certas|corretas)\\b)","gi");
+  var UMOK=/^\s*(e|das|dos|de|delas|deles|só|alternativa|alternativas|frase|frases|opção|opções|resposta|card|cards|missão)?$/i;
+  function dois(w){ var n=N[String(w).toLowerCase()]; return n==null?null:(n<10?"0"+n:String(n)) }
+  function trocaTexto(t){
+    var mudou=false;
+    var r=t.replace(RX,function(m,a,b,w,lk,prox){
+      var lw=w.toLowerCase();
+      if((lw==="um"||lw==="uma") && !/^(só|apenas)/i.test(b) && !UMOK.test(prox||"")) return m;   /* "um tom", "uma célula": artigo · depois de "Só" é sempre quantidade */
+      var d=dois(w); if(!d) return m; mudou=true;
+      return a+b+"\u0001"+d+"\u0002"+(prox||"");
+    });
+    r=r.replace(RX2,function(m,a,w,c){
+      if(/\u0001/.test(m)) return m;
+      var d=dois(w); if(!d) return m; mudou=true;
+      return a+"\u0001"+d+"\u0002"+c;
+    });
+    return mudou?r:null;
+  }
+  var PULA={SCRIPT:1,STYLE:1,TEXTAREA:1,INPUT:1,CODE:1,PRE:1,SELECT:1,OPTION:1};
+  /* o verbo e o número podem estar em pedaços diferentes ("Marque as <b>duas</b>"): o vizinho conta */
+  /* o verbo pode vir sozinho num pedaço ("<b>Arraste</b> os três") ou já com o artigo ("Marque as <b>duas</b>") */
+  var RXV=new RegExp("(?:^|[^A-Za-zÀ-ÿ])(?:"+V+")(?:\\s+(?:as|os|a|o|só|apenas|mais))?\\s*$","i");
+  var RXL=new RegExp("^(\\s*(?:(?:as|os|a|o|só|apenas|mais)\\s+)?)("+NW+")(?=([^A-Za-zÀ-ÿ]|$))(\\s*[A-Za-zÀ-ÿ]*)","i");
+  var RXF=new RegExp("(^|[^A-Za-zÀ-ÿ])("+NW+")(\\s*)$","i");
+  var RXC=/^\s+(estão\s+certas|estão\s+corretas|certas|corretas)\b/i;
+  /* 🔴 CLD-031 · a DICA fixa do porta.py dizia "Leia as quatro alternativas antes de marcar. Só uma
+     está certa." também na questão que a tela mostra como 5 frases e 2 certas (o quarteto):
+     medido no 8º, tela 27, a dica contradizia a frase do lado. Agora ela segue a questão. */
+  var NUMX=["","uma","duas","três","quatro","cinco","seis"];
+  var DICA_VELHA="Leia as quatro alternativas antes de marcar. Só uma está certa.";
+  function m7DicaQuantas(){
+    try{
+      if(typeof parAtual==="undefined" || !parAtual || !parAtual.quarteto || !parAtual.alts) return;
+      var n=parAtual.alts.length, c=(typeof quantasCertas==="function")?quantasCertas():2;
+      var nova="Leia as "+(NUMX[n]||n)+" frases antes de marcar. "+((NUMX[c]||String(c)).replace(/^./,function(x){return x.toUpperCase()}))+" estão certas.";
+      var pal=document.getElementById("palco"); if(!pal) return;
+      var w=document.createTreeWalker(pal,NodeFilter.SHOW_TEXT,null), k;
+      while((k=w.nextNode())){ if(k.nodeValue.indexOf(DICA_VELHA)>=0) k.nodeValue=k.nodeValue.replace(DICA_VELHA,nova) }
+    }catch(e){}
+  }
+  window.m7DicaQuantas=m7DicaQuantas;
+  function m7NumCmd(raiz){
+    try{
+      try{ m7DicaQuantas() }catch(e){}
+      raiz=raiz||document.body; if(!raiz) return 0;
+      var w=document.createTreeWalker(raiz,NodeFilter.SHOW_TEXT,null), T=[], n;
+      while((n=w.nextNode())){
+        var p=n.parentElement; if(!p) continue;
+        if(PULA[p.tagName] || p.closest("#statusbar,#idbar,[contenteditable],.cel,.fc-cel,code,pre")) continue;
+        T.push(n);
+      }
+      var L=[];
+      T.forEach(function(n,k){
+        if(n.parentElement.closest(".m7n")) return;
+        var t=n.nodeValue; if(!/[A-Za-zÀ-ÿ]/.test(t)) return;
+        var r=trocaTexto(t), base=(r==null)?t:r, mudou=(r!=null);
+        var ant=k>0?T[k-1].nodeValue.slice(-40):"", dep=k<T.length-1?T[k+1].nodeValue.slice(0,24):"";
+        /* número no começo deste pedaço, verbo no fim do anterior */
+        if(RXV.test(ant)){
+          base=base.replace(RXL,function(m,sp,wd,lk,prox){
+            var lw=wd.toLowerCase(), pr=(prox||"");
+            if((lw==="um"||lw==="uma") && !/(só|apenas)\s*$/i.test(ant) && !UMOK.test(pr.trim()?pr:(dep.match(/^\s*[A-Za-zÀ-ÿ]*/)||[""])[0])) return m;
+            var d=dois(wd); if(!d) return m; mudou=true; return sp+"\u0001"+d+"\u0002"+pr });
+        }
+        /* número no fim deste pedaço, "certas" no começo do seguinte */
+        if(RXC.test(dep)){
+          base=base.replace(RXF,function(m,a,wd,sp){ var d=dois(wd); if(!d) return m; mudou=true; return a+"\u0001"+d+"\u0002"+sp });
+        }
+        if(mudou) L.push([n,base]);
+      });
+      L.forEach(function(x){
+        var frag=document.createDocumentFragment();
+        x[1].split(/(\u0001\d+\u0002)/).forEach(function(s){
+          if(!s) return;
+          var m=s.match(/^\u0001(\d+)\u0002$/);
+          if(m){ var b=document.createElement("b"); b.className="m7n"; b.textContent=m[1]; frag.appendChild(b) }
+          else frag.appendChild(document.createTextNode(s));
+        });
+        if(x[0].parentNode) x[0].parentNode.replaceChild(frag,x[0]);
+      });
+      return L.length;
+    }catch(e){ return 0 }
+  }
+  window.m7NumCmd=m7NumCmd; window.m7NumCmdTexto=function(t){ var r=trocaTexto(t); return r==null?t:r.replace(/\u0001(\d+)\u0002/g,"[$1]") };
+  var agendado=false;
+  function agenda(){ if(agendado) return; agendado=true;
+    (window.requestAnimationFrame||setTimeout)(function(){ agendado=false; m7NumCmd(document.body) }) }
+  try{ new MutationObserver(function(){ agenda() }).observe(document.documentElement,{childList:true,subtree:true,characterData:true}) }catch(e){}
+  try{ document.addEventListener("DOMContentLoaded", agenda) }catch(e){}
+  agenda();
+})();
+
+/* ══════════════════════════════════════════════════════════════════════════
+   etec_c149.js · PADRONIZADOR_002 · CLD-149 · 04/10/2026 · SIMU-ETEC V05.07
+   Marcos, 04/10 16:26: "ainda há outras pendências que não dependem de mim? Produza o máximo".
+   FAROL S.04.00 · S.04.04 · S.04.05 (3) · S.04.06. Nada é apagado: cada função antiga fica
+   guardada com _V0506 no nome e a nova chama a antiga.
+
+   ① R.30 · 1 frase por linha + 1 card por parágrafo (card 2.4 da tela 3, nasce LIGADO).
+   ② R.01 · o grifo segue a tabela da RETOMADA: verde = pista (grifo_etec.json, manual) ·
+      vermelho = pergunta e comando · azul = números · laranja = unidades e grandezas ·
+      rosa = operação e sinais · "?" vermelho e negrito. Antes: tudo num amarelo só.
+   ③ Cards "🎨 As cores do grifo" e "🧰 O que faz cada botão" na tela da questão.
+   ④ Missão 3 · resolução passo a passo (Polya): entender → planejar → executar → olhar para trás.
+      Usa só o que o banco já tem: objetivo da questão, palavras-pista e chute a gol.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------- ① R.30 · as frases, uma por linha ---------- */
+var ETEC_ABREV = /(^|\s)(Sr|Sra|Srs|Dr|Dra|Prof|Profa|nº|n|p|pág|págs|ex|aprox|cap|vol|fig|séc|av|tel|obs)\.$/i;
+var ETEC_VOID = /^<(br|img|input|hr|wbr|meta|source)\b/i;
+function etecFrases(html){
+  var partes = String(html||"").split(/(<[^>]*>)/), fundo = 0, cur = "", out = [];
+  for(var i=0;i<partes.length;i++){
+    var p = partes[i];
+    if(!p) continue;
+    if(p.charAt(0)==="<"){
+      if(/^<\//.test(p)) fundo = Math.max(0, fundo-1);
+      else if(!ETEC_VOID.test(p) && !/\/>$/.test(p)) fundo++;
+      cur += p; continue;
+    }
+    if(fundo>0){ cur += p; continue }
+    /* corta depois de . ! ? … quando a próxima palavra começa com maiúscula, número ou aspas */
+    var rx = /([.!?…]+["”’»)]*)(\s+)(?=[A-ZÁÉÍÓÚÂÊÔÃÕÀÇ0-9"“«(—–])/g, ult = 0, m;
+    while((m = rx.exec(p))){
+      var ate = m.index + m[1].length, pedaco = cur + p.slice(ult, ate);
+      if(ETEC_ABREV.test(p.slice(Math.max(0,m.index-6), ate))){ continue }
+      out.push(pedaco); cur = ""; ult = ate + m[2].length;
+    }
+    /* a frase acaba no fim deste pedaço e a próxima começa depois de uma tag ("cinco. <b>Só uma</b>") */
+    var resto = p.slice(ult), fim = /([.!?…]+["”’»)]*)(\s*)$/.exec(resto);
+    if(fim){
+      var prox = "";
+      var temQuebra = !!fim[2];
+      for(var j=i+1;j<partes.length;j++){ if(!partes[j]) continue; if(partes[j].charAt(0)!=="<"){ prox = partes[j]; break } if(/^<(br|\/p|p|\/div|div)\b/i.test(partes[j])) temQuebra = true }
+      if(temQuebra && /^\s*[A-ZÁÉÍÓÚÂÊÔÃÕÀÇ0-9"“«(—–]/.test(prox) && !ETEC_ABREV.test(resto.slice(0, fim.index+fim[1].length).slice(-8))){
+        out.push(cur + resto.slice(0, fim.index+fim[1].length)); cur = ""; continue;
+      }
+    }
+    cur += resto;
+  }
+  if(cur.replace(/<[^>]*>/g,"").trim()) out.push(cur); else if(out.length) out[out.length-1] += cur;
+  return out;
+}
+function etecLinhas(el){
+  if(!el || el.dataset.etln) return 0;
+  /* referência bibliográfica ("HARARI, Yuval Noah. Sapiens…") não é frase: fica inteira */
+  if(/^\s*(\d+\s*)?[A-ZÁÉÍÓÚÂÊÔÃÕÀÇ]{2,}[A-ZÁÉÍÓÚÂÊÔÃÕÀÇ \-]*,\s/.test(el.textContent)){ el.dataset.etln="ref"; el.classList.add("etref"); return 1 }
+  var F = etecFrases(el.innerHTML);
+  el.dataset.etln = String(F.length);
+  if(F.length < 2) return F.length;
+  el.innerHTML = F.map(function(f){ return '<span class="etln">'+f.trim().replace(/^(\s*<br\s*\/?>\s*)+|(\s*<br\s*\/?>\s*)+$/gi,"")+'</span>' }).join("");
+  return F.length;
+}
+
+/* ---------- ② R.01 · o grifo da tabela ---------- */
+var ETEC_GRIFO = [
+  {c:"gf-lar", r:/(^|[^\wÀ-ÿ])(km\/h|m\/s|quilocalorias?|calorias?|kcal|watts?|mm|cm|km|kg|mg|ml|litros?|minutos?|segundos?|horas?|dias?|semanas?|meses|mês|anos?|R\$|%|°C|metros?|quilômetros?|centímetros?|milímetros?|toneladas?|gramas?|quilogramas?|mililitros?|graus|reais|alturas?|larguras?|comprimentos?|distâncias?|pesos?|massas?|temperaturas?|velocidades?|áreas?|volumes?)(?![\wÀ-ÿ])/gi},
+  {c:"gf-ros", r:/(^|[^\wÀ-ÿ])(soma|somar|somou|média|médias|total|totais|maior|menor|diferença|dividir|multiplicar|porcentagem|comparar|repartir|reparte|igualmente|adição|subtração|multiplicação|divisão)(?![\wÀ-ÿ])/gi},
+  {c:"gf-azu", r:/(^|[^\wÀ-ÿ\d])(\d+(?:[.,]\d+)*(?:º|ª)?)(?![\wÀ-ÿ\d])/g},
+  {c:"gf-azu", r:/(^|[^\wÀ-ÿ])(dobro|triplo|metade|milhões|milhão|bilhões|bilhão|terço|quarta parte|dezenas?|dúzia|centenas?|milhar|milhares|primeir[oa]s?|terceir[oa]s?|quart[oa]s?|quint[oa]s?|sext[oa]s?|sétim[oa]s?|oitav[oa]s?|non[oa]s?|décim[oa]s?)(?![\wÀ-ÿ])/gi},
+  {c:"gf-cnt", r:/(^|[^\wÀ-ÿ])(Onde|O que|Como|Quando|Por que|Por quê|Quem|Quantos|Quantas|Quanto|Qual|Quais|Assinale|Marque|Escolha|Leia|Calcule|Responda|Complete|Compare|Efetue|Resolva|Escreva|Represente|Identifique|Indique|correto afirmar|é correto|está correta|está correto|corretamente|incorreta|incorreto|exceto|EXCETO)(?![\wÀ-ÿ])/g}
+];
+var ETEC_SIN = /(\s|^)(-)(?=\s)|([+×÷=≠≥≤−±√π∞∆])/g;
+function etecPassa(html, rx, fn){
+  var partes = String(html).split(/(<[^>]*>)/), fundo = 0;
+  for(var k=0;k<partes.length;k++){
+    var p = partes[k];
+    if(p.charAt(0)==="<"){ if(/^<\//.test(p)) fundo=Math.max(0,fundo-1); else if(!ETEC_VOID.test(p)) fundo++; continue }
+    if(fundo) continue;
+    partes[k] = p.replace(rx, fn);
+  }
+  return partes.join("");
+}
+function etecEsc(s){ return String(s).replace(/[.*+?^${}()|[\]\\]/g,"\\$&") }
+var aplicarGrifo_V0506 = aplicarGrifo;
+aplicarGrifo = function(t, q){
+  try{
+    var h = String(t||"");
+    /* 🟢 verde · a pista (manual, grifo_etec.json) · vence os outros grifos (R.01.06) */
+    ((GRIFO[q.pid]||{}).palavras||[]).slice().sort(function(a,b){ return b.length-a.length }).forEach(function(w){
+      if(!w) return;
+      h = etecPassa(h, new RegExp("(^|[^\\wÀ-ÿ])("+etecEsc(w)+")(?![\\wÀ-ÿ])","gi"),
+        function(m,a,b){ return a+'<b class="gf gf-ver">'+b+'</b>' });
+    });
+    ETEC_GRIFO.forEach(function(g){
+      h = etecPassa(h, g.r, function(m,a,b){ return a+'<span class="gf '+g.c+'">'+b+'</span>' });
+    });
+    h = etecPassa(h, ETEC_SIN, function(m,a,hf,s){ return (a||"")+'<span class="gf gf-sin">'+(hf||s)+'</span>' });
+    h = etecPassa(h, /\?/g, function(){ return '<span class="gf gf-int">?</span>' });
+    /* "segundo o texto" não é tempo (R.01.04) · "por que" não é rosa */
+    h = h.replace(/<span class="gf gf-lar">(segundo)<\/span>(?=\s+(o|a|os|as|ele|ela)\b)/gi, "$1");
+    return h;
+  }catch(e){ return aplicarGrifo_V0506(t, q) }
+};
+try{ window.aplicarGrifo = aplicarGrifo }catch(e){}
+
+/* ---------- configuração 2.4 · 1 frase por linha (nasce ligada: R.30 é prioridade) ---------- */
+try{
+  var _c149 = JSON.parse(localStorage.getItem("etec_cfg")||"null");
+  CFG.linhas = (_c149 && typeof _c149.linhas==="boolean") ? _c149.linhas : true;
+}catch(e){ CFG.linhas = true }
+var ligarCfg_V0506 = ligarCfg;
+ligarCfg = function(k){
+  if(k==="linhas"){ CFG.linhas = !CFG.linhas; salvarCfg(); return render() }
+  return ligarCfg_V0506.apply(this, arguments);
+};
+try{ window.ligarCfg = ligarCfg }catch(e){}
+var telaCfg_V0506 = telaCfg;
+telaCfg = function(){
+  telaCfg_V0506.apply(this, arguments);
+  try{
+    var bts = document.querySelector("#palco .bloco.bl5 .bts");
+    if(bts) bts.insertAdjacentHTML("beforeend",
+      cardCfg("linhas","2.4","📏","Uma frase por linha",
+              "Cada parágrafo do texto vira um card numerado. Cada frase começa na linha de baixo.",
+              CFG.linhas, true));
+    var nt = document.querySelector("#palco .bloco.bl5 > .nota");
+    if(nt) nt.innerHTML = '✔ Ligado agora: <b>'+([(CFG.grifo?"grifo":""),(CFG.glos?"glossário":""),(CFG.gen?"gênero textual":""),(CFG.linhas?"uma frase por linha":"")].filter(Boolean).join(" · ")||"nenhum")+'</b>';
+  }catch(e){}
+};
+
+/* ---------- ③ os cards de ajuda ---------- */
+function etecCardCores(){
+  return '<details class="etaj etcores"><summary><span class="em20">🎨</span> As cores do grifo</summary><div class="etajc">'+
+    '<span class="etln"><span class="gf gf-ver">pista</span> a palavra que decide a resposta.</span>'+
+    '<span class="etln"><span class="gf gf-cnt">Qual</span> a pergunta e o comando.</span>'+
+    '<span class="etln"><span class="gf gf-azu">25</span> os números.</span>'+
+    '<span class="etln"><span class="gf gf-lar">km</span> a unidade e a grandeza.</span>'+
+    '<span class="etln"><span class="gf gf-ros">média</span> a palavra da conta e os sinais.</span>'+
+    '<span class="etln"><span class="gf gf-int">?</span> o fim da pergunta.</span>'+
+    '</div></details>';
+}
+function etecCardBotoes(){
+  var L = [
+    ["💡","Dica","mostra o que a questão está pedindo."],
+    ["🖍️","Grifo","pinta as palavras que decidem a resposta."],
+    ["📖","Pastilha","abre a explicação de uma palavra difícil."],
+    ["📐","Gênero textual","mostra como o texto se constrói."],
+    ["⚽","Chute a gol","explica cada alternativa depois que você confirma."],
+    ["☰","Sumário","leva à lista das telas e das questões."],
+    ["🧭","Escolher outro","troca o caminho: outra prova ou outro componente."]
+  ];
+  return '<details class="etaj etbots"><summary><span class="em20">🧰</span> O que faz cada botão</summary><div class="etajc">'+
+    L.map(function(x){ return '<span class="etln"><span class="em20">'+x[0]+'</span> <b>'+x[1]+'</b>: '+x[2]+'</span>' }).join("")+
+    '</div></details>';
+}
+
+/* ---------- ④ Missão 3 · Polya ---------- */
+try{
+  MISSOES_ETEC.forEach(function(m){
+    if(m.id==="estudo"){ m.pronta = true;
+      m.diz = "O caminho da resposta, uma etapa por vez: entender, planejar, executar e olhar para trás." }
+  });
+}catch(e){}
+var POLYA = {};   /* por questão: {e1:"ok"|"no", e2:[...], e2ok:bool, e4:bool} */
+function polyaEst(pid){ if(!POLYA[pid]) POLYA[pid]={e1:"", e1err:[], e2:[], e2ok:false, e4:false}; return POLYA[pid] }
+function etecSorteio(seed, n){ var x=0; for(var i=0;i<seed.length;i++) x=(x*31+seed.charCodeAt(i))>>>0; return x % n }
+function polyaObjetivos(q){
+  /* a certa + 2 objetivos de outras questões da mesma prova (nunca iguais) */
+  var outros = [], vistos = {}; vistos[q.objetivo]=1;
+  BANCO.forEach(function(x){ if(x.pid!==q.pid && x.prova===q.prova && x.objetivo && !vistos[x.objetivo]){ vistos[x.objetivo]=1; outros.push(x.objetivo) } });
+  var k = etecSorteio(q.pid, Math.max(1,outros.length));
+  var esc2 = [outros[k % outros.length], outros[(k+3) % outros.length]].filter(Boolean);
+  if(esc2[0]===esc2[1]) esc2 = esc2.slice(0,1);
+  var L = [q.objetivo].concat(esc2), pos = etecSorteio(q.pid+"o", L.length);
+  var c = L.shift(); L.splice(pos, 0, c);
+  return L;
+}
+function polyaPistas(q){
+  var minhas = ((GRIFO[q.pid]||{}).palavras||[]).slice(0,2), outras = [];
+  BANCO.forEach(function(x){ if(x.pid!==q.pid && x.prova===q.prova) ((GRIFO[x.pid]||{}).palavras||[]).forEach(function(w){ if(minhas.indexOf(w)<0 && outras.indexOf(w)<0) outras.push(w) }) });
+  var k = etecSorteio(q.pid+"p", Math.max(1,outras.length));
+  var L = minhas.map(function(w){ return {w:w, ok:true} }).concat([outras[k % (outras.length||1)], outras[(k+5) % (outras.length||1)]].filter(Boolean).filter(function(w,i,a){ return a.indexOf(w)===i }).map(function(w){ return {w:w, ok:false} }));
+  return L.sort(function(a,b){ return etecSorteio(q.pid+a.w,97)-etecSorteio(q.pid+b.w,97) });
+}
+function polyaE1(i){ var q=fila[iQ], st=polyaEst(q.pid), L=polyaObjetivos(q); if(st.e1==="ok") return;
+  if(L[i]===q.objetivo) st.e1="ok"; else { st.e1="no"; if(st.e1err.indexOf(i)<0) st.e1err.push(i) } telaQuestao() }
+function polyaE2(i){ var q=fila[iQ], st=polyaEst(q.pid); if(st.e2ok) return;
+  var j=st.e2.indexOf(i); if(j>=0) st.e2.splice(j,1); else st.e2.push(i); telaQuestao() }
+function polyaE2Conf(){ var q=fila[iQ], st=polyaEst(q.pid), L=polyaPistas(q);
+  var certas=L.map(function(x,i){ return x.ok?i:-1 }).filter(function(i){ return i>=0 });
+  st.e2ok = (st.e2.length===certas.length && certas.every(function(i){ return st.e2.indexOf(i)>=0 }));
+  st.e2tent = (st.e2tent||0)+1; if(!st.e2ok) st.e2=[]; telaQuestao() }
+function polyaE4(){ var q=fila[iQ], st=polyaEst(q.pid); st.e4=true; telaQuestao() }
+try{ window.polyaE1=polyaE1; window.polyaE2=polyaE2; window.polyaE2Conf=polyaE2Conf; window.polyaE4=polyaE4 }catch(e){}
+function polyaCabeca(n, emo, tit, estado){
+  return '<div class="pyh'+(estado?" "+estado:"")+'"><span class="pyn">'+n+'</span><span class="em20">'+emo+'</span> '+tit+
+    (estado==="feito"?' <span class="pyok">✅</span>':(estado==="trava"?' <span class="pyok">🔒</span>':''))+'</div>';
+}
+function polyaMonta(q){
+  var st=polyaEst(q.pid), r=resp[q.pid], h='<div class="polya"><div class="pytit"><span class="em20">📐</span> Missão 3 · resolução passo a passo</div>';
+  /* 1 · entender */
+  var L1=polyaObjetivos(q);
+  h+='<div class="pyet">'+polyaCabeca(1,"🔎","Entender · o que a questão pede?", (st.e1==="ok"||r)?"feito":"")+
+     '<span class="etln">Leia o texto e a pergunta.</span><span class="etln">Toque no objetivo <b>desta</b> questão.</span>';
+  L1.forEach(function(o,i){
+    var cls = ((st.e1==="ok"||r) && o===q.objetivo) ? " ok" : (st.e1err.indexOf(i)>=0 ? " no" : "");
+    h+='<button type="button" class="pyop'+cls+'"'+((st.e1==="ok"||r)?' disabled':' onclick="polyaE1('+i+')"')+'>'+esc(o)+'</button>' });
+  if(st.e1==="no") h+='<span class="etln pyerr">❌ Esse é o objetivo de outra questão.</span><span class="etln pyerr">Releia a pergunta e tente de novo.</span>';
+  h+='</div>';
+  var ok1 = (st.e1==="ok"||!!r);
+  /* 2 · planejar */
+  var L2=polyaPistas(q), temPista = L2.some(function(x){ return x.ok });
+  if(!temPista) st.e2ok = true;
+  h+='<div class="pyet'+(ok1?"":" trava")+'">'+polyaCabeca(2,"🗺️","Planejar · onde está a pista?", !ok1?"trava":((st.e2ok||r)?"feito":""));
+  if(ok1 && temPista){
+    var nC = L2.filter(function(x){ return x.ok }).length;
+    h+='<span class="etln">Quais palavras <b>desta</b> questão decidem a resposta?</span><span class="etln">Marque <b class="m7n">'+(nC<10?"0":"")+nC+'</b> e confira.</span><div class="pychips">';
+    L2.forEach(function(x,i){
+      var on = st.e2.indexOf(i)>=0, cls = (st.e2ok||r) ? (x.ok?" ok":"") : (on?" sel":"");
+      h+='<button type="button" class="pychip'+cls+'"'+((st.e2ok||r)?' disabled':' onclick="polyaE2('+i+')"')+'>'+esc(x.w)+'</button>' });
+    h+='</div>';
+    if(!(st.e2ok||r)) h+='<button type="button" class="pyconf"'+(st.e2.length?'':' disabled')+' onclick="polyaE2Conf()">conferir as pistas</button>';
+    if(st.e2tent && !st.e2ok) h+='<span class="etln pyerr">❌ Ainda não.</span><span class="etln pyerr">Procure as palavras no texto desta questão.</span>';
+  } else if(ok1) h+='<span class="etln">Esta questão ainda não tem pistas no banco.</span><span class="etln">Siga para a etapa 3.</span>';
+  h+='</div>';
+  var ok2 = ok1 && (st.e2ok||!!r);
+  /* 3 · executar */
+  h+='<div class="pyet'+(ok2?"":" trava")+'">'+polyaCabeca(3,"✍️","Executar · marque a resposta", !ok2?"trava":(r?"feito":""))+
+     (ok2 ? '<span class="etln">Agora sim: leia as alternativas abaixo.</span><span class="etln">Marque <b class="m7n">01</b> e confirme.</span>' : '')+'</div>';
+  /* 4 · olhar para trás */
+  h+='<div class="pyet'+(r?"":" trava")+'">'+polyaCabeca(4,"🔁","Olhar para trás · confira o caminho", !r?"trava":(st.e4?"feito":""));
+  if(r){
+    h+='<span class="etln">Leia o ⚽ chute a gol da alternativa que você marcou.</span>'+
+       '<span class="etln">Volte às pistas da etapa 2 e veja se elas levam à resposta certa.</span>';
+    h+= st.e4 ? '<span class="etln pyokt">✅ Caminho conferido.</span>' : '<button type="button" class="pyconf" onclick="polyaE4()">conferi o caminho</button>';
+  }
+  h+='</div></div>';
+  return {html:h, libera:ok2};
+}
+
+/* ---------- a tela da questão: ① ③ ④ por cima da V05.06 ---------- */
+var telaQuestao_V0506 = telaQuestao;
+telaQuestao = function(){
+  var v = telaQuestao_V0506.apply(this, arguments);
+  try{
+    if(tela!=="q") return v;
+    var q = fila[iQ]; if(!q) return v;
+    var pal = $("palco");
+    /* ④ Missão 3 · antes das alternativas; elas só abrem depois das etapas 1 e 2 */
+    if(MISSAO==="estudo"){
+      var P = polyaMonta(q), dica = pal.querySelector("details.dica");
+      if(dica) dica.insertAdjacentHTML("beforebegin", P.html);
+      if(!P.libera) pal.querySelectorAll("button.alt2, #btConf").forEach(function(b){ b.disabled = true; b.classList.add("pytr") });
+    }
+    /* ③ os 2 cards de ajuda, logo depois da dica */
+    var dc = pal.querySelector("details.dica");
+    if(dc) dc.insertAdjacentHTML("afterend", (CFG.grifo && temGrifo() ? etecCardCores() : "") + etecCardBotoes());
+    /* ① 1 card por parágrafo + 1 frase por linha */
+    if(CFG.linhas){
+      var n = 0;
+      pal.querySelectorAll(".base > p").forEach(function(p){
+        n++; p.classList.add("etpar");
+        etecLinhas(p);
+        p.insertAdjacentHTML("afterbegin", '<span class="etpn">'+(n<10?"0":"")+n+'</span>');
+      });
+      pal.querySelectorAll(".enun, .conector, .dica .dx, .afrase, .frase.pedia, .confok, .gol").forEach(etecLinhas);
+    }
+  }catch(e){ try{ console.error("CLD-149", e) }catch(_){} }
+  return v;
+};
+
+/* ---------- ① também nas outras telas (R.30 vale em tudo): descrições, notas e subtítulos ---------- */
+var render_V0506 = render;
+render = function(){
+  var v = render_V0506.apply(this, arguments);
+  try{ if(CFG.linhas) document.querySelectorAll("#palco .esc .d, #palco .sub, #palco .nota, #palco .card > p, #palco .dx").forEach(etecLinhas) }catch(e){}
+  return v;
+};
+try{ window.render = render }catch(e){}
+
+var METODO_ETEC = {
+ "formulas": [
+  "Regra de três: se um dobra, o outro dobra",
+  "Porcentagem = parte ÷ todo × 100",
+  "Lei de Ohm: U = R · i",
+  "Razão: um número ÷ o outro",
+  "Área do retângulo = base × altura"
+ ],
+ "q": {
+  "2023-01": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Os oceanos e as ameaças que eles sofrem.",
+    "Chamar o leitor para cuidar dos oceanos."
+   ],
+   "oque": "A quem cada palavra sublinhada no texto se refere?",
+   "onde": "As palavras sublinhadas nos parágrafos 1, 2 e 3.",
+   "quem": "Quem escreve fala direto com quem lê.",
+   "como": 3,
+   "hip": "Escreva, com suas palavras, a quem se refere o primeiro sublinhado: \"Você\".",
+   "passos": [
+    "① Ache a 1ª palavra sublinhada.",
+    "② Pergunte: quem é esse \"você\"? Quem está lendo ou quem escreveu?",
+    "③ Faça o mesmo com cada sublinhado, na ordem.",
+    "④ A alternativa certa tem as respostas na mesma ordem."
+   ],
+   "porque": "\"Você\" é o leitor · \"nos\" são leitores e autor juntos · \"que\" retoma o oxigênio · \"sua\" retoma os oceanos."
+  },
+  "2023-02": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Os oceanos e as ameaças que eles sofrem.",
+    "Chamar o leitor para cuidar dos oceanos."
+   ],
+   "oque": "Que jeito de escrever o texto usa para chamar o leitor?",
+   "onde": "O começo e o fim do texto: as perguntas e as hashtags.",
+   "quem": "Quem escreve conversa com qualquer pessoa, não com cientista.",
+   "como": 4,
+   "hip": "O texto parece uma conversa ou uma aula difícil?",
+   "passos": [
+    "① Procure perguntas feitas direto ao leitor.",
+    "② Veja se as palavras são do dia a dia ou difíceis.",
+    "③ Risque a alternativa que diz algo que o texto não faz.",
+    "④ Fique com a que descreve o que você viu nos passos 1 e 2."
+   ],
+   "porque": "\"Você sabia…?\" e \"Como as mudanças climáticas afetam você? Conte pra gente!\" são perguntas ao leitor, em linguagem do dia a dia.",
+   "dit": [
+    [
+     "Conte pra gente!",
+     "Fale para nós.",
+     "Participe e mande a sua opinião."
+    ]
+   ]
+  },
+  "2023-03": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Os oceanos e as ameaças que eles sofrem.",
+    "Chamar o leitor para cuidar dos oceanos."
+   ],
+   "oque": "Que tipo de texto é este?",
+   "onde": "O texto inteiro, principalmente o último parágrafo e as hashtags.",
+   "como": 4,
+   "hip": "Este texto quer só informar ou quer que o leitor faça alguma coisa?",
+   "passos": [
+    "① Leia de novo o último parágrafo.",
+    "② Pergunte: o texto vende um produto, conta uma notícia ou pede uma atitude?",
+    "③ Para cada alternativa, confira se o motivo que ela dá aparece no texto.",
+    "④ Risque as que falam de algo que o texto não faz."
+   ],
+   "porque": "O texto dá informações e termina pedindo ação: \"Cuidar dos oceanos é cuidar do clima e da vida\" e #HoraDeAgir."
+  },
+  "2023-04": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "A diferença entre mar e oceano.",
+    "Que as duas palavras não são sinônimos."
+   ],
+   "oque": "O que o texto diz de verdade sobre mar e oceano?",
+   "onde": "Parágrafos 3 e 4: onde o texto compara os dois.",
+   "como": 3,
+   "hip": "Com suas palavras: qual é a diferença entre mar e oceano?",
+   "passos": [
+    "① Ache a frase \"A diferença entre os mares e os oceanos está…\".",
+    "② Leia o que o texto diz dos mares e depois dos oceanos.",
+    "③ Para cada alternativa, procure a frase no texto.",
+    "④ Risque a que troca as palavras ou diz o contrário do texto."
+   ],
+   "porque": "\"A diferença entre os mares e os oceanos está na sua extensão territorial. Os primeiros são menores.\""
+  },
+  "2023-05": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "O Aquaman e o que ele faz pelos oceanos.",
+    "Que o herói defende os povos e o meio ambiente."
+   ],
+   "oque": "Qual pessoa real defende a mesma ideia que o Aquaman defende nos filmes?",
+   "onde": "O 1º parágrafo do texto do Aquaman: a última frase.",
+   "como": 2,
+   "hip": "Escreva, em 2 palavras, o que o Aquaman defende nos filmes.",
+   "passos": [
+    "① Ache no texto o que o Aquaman promove nos filmes.",
+    "② Guarde as duas ideias: povos diferentes e meio ambiente.",
+    "③ Leia cada biografia procurando as DUAS ideias juntas.",
+    "④ Biografia com só uma ideia, ou com nenhuma, sai."
+   ],
+   "porque": "O Aquaman promove \"a coexistência entre diferentes povos, bem como a preservação do meio ambiente\": povos indígenas e floresta."
+  },
+  "2023-06": {
+   "tipo": [
+    "conta",
+    "texto"
+   ],
+   "ideia": [
+    "O gasto de energia do Aquaman quando ele nada.",
+    "Que, quanto mais rápido, mais ele gasta."
+   ],
+   "oque": "Quantas quilocalorias o Aquaman gasta por segundo nadando na velocidade do marlim-negro?",
+   "onde": "O 2º parágrafo do texto (3 mil metros por segundo e 240 milhões) e a pergunta (129 km/h).",
+   "como": 1,
+   "hip": "Seu palpite: o gasto vai ser MAIOR ou MENOR que 240 milhões? Por quê?",
+   "dados": [
+    [
+     "velocidade do herói no texto",
+     "3000",
+     "m/s"
+    ],
+    [
+     "gasto nessa velocidade",
+     "240",
+     "milhões de kcal por segundo"
+    ],
+    [
+     "velocidade do marlim-negro",
+     "129",
+     "km/h"
+    ]
+   ],
+   "pede": "o gasto, em milhões de kcal por segundo, na velocidade do marlim-negro",
+   "arm": "Duas velocidades em unidades diferentes: m/s e km/h.",
+   "transf": {
+    "precisa": true,
+    "porque": "Uma velocidade está em m/s e a outra em km/h. Só dá para comparar na mesma unidade.",
+    "tabela": [
+     "1 km = 1 000 m",
+     "1 h = 3 600 s",
+     "de km/h para m/s: divida por 3,6"
+    ],
+    "passos": [
+     {
+      "n": "Transformar 129 km/h em m/s",
+      "fr": "129 ÷ 3,6 = [g]",
+      "g": [
+       35.8
+      ],
+      "tol": 0.15,
+      "dicas": [
+       "Para passar de km/h para m/s, divida por 3,6.",
+       "129 ÷ 3,6 dá um pouco menos que 36.",
+       "Escreva com uma casa depois da vírgula."
+      ]
+     }
+    ]
+   },
+   "formula": {
+    "ops": [
+     "Regra de três: se um dobra, o outro dobra",
+     "Porcentagem = parte ÷ todo × 100",
+     "Lei de Ohm: U = R · i",
+     "Razão: um número ÷ o outro"
+    ],
+    "c": 0,
+    "letras": [
+     [
+      "3000 m/s",
+      "está para",
+      "240"
+     ],
+     [
+      "35,8 m/s",
+      "está para",
+      "❓"
+     ]
+    ]
+   },
+   "quanto": {
+    "n": 3,
+    "est": "35,8 é bem menor que 3 000. Então o gasto também vai ser bem menor que 240."
+   },
+   "anim": "kmh",
+   "exemplo": [
+    "Exemplo com outros números:",
+    "72 km/h ÷ 3,6 = 20 m/s.",
+    "Se 2 000 m/s gasta 100, então 1 m/s gasta 100 ÷ 2 000 = 0,05.",
+    "20 m/s gasta 20 × 0,05 = 1."
+   ],
+   "exec": [
+    {
+     "n": "Passo 1 · quanto gasta 1 m/s",
+     "fr": "240 ÷ 3000 = [g]",
+     "g": [
+      0.08
+     ],
+     "tol": 0.001,
+     "dicas": [
+      "Divida o gasto pela velocidade do texto.",
+      "Corte três zeros: 240 ÷ 3 000 é como 0,24 ÷ 3.",
+      "24 ÷ 3 = 8. Agora acerte a vírgula."
+     ]
+    },
+    {
+     "n": "Passo 2 · quanto gasta 35,8 m/s",
+     "fr": "35,8 × 0,08 = [g]",
+     "g": [
+      2.86
+     ],
+     "tol": 0.03,
+     "dicas": [
+      "Multiplique a velocidade nova pelo gasto de 1 m/s.",
+      "Faça 358 × 8 e depois acerte a vírgula.",
+      "358 × 8 = 2 864. São 3 casas depois da vírgula."
+     ]
+    }
+   ],
+   "tab": [
+    8
+   ],
+   "prova": "Confira: 2,9 é bem menor que 240, como a estimativa dizia.",
+   "porque": "129 ÷ 3,6 ≈ 35,8 m/s · 240 ÷ 3 000 = 0,08 · 35,8 × 0,08 ≈ 2,9."
+  },
+  "2023-07": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "A força que segura quem nada: o arrasto.",
+    "Que a água mais densa segura mais."
+   ],
+   "oque": "Onde o Aquaman deve nadar para gastar menos energia sem ir mais devagar?",
+   "onde": "A pergunta inteira: ela traz as duas pistas.",
+   "como": 2,
+   "hip": "Água mais densa segura mais ou menos o nadador?",
+   "passos": [
+    "① Pista 1: o arrasto aumenta quando a densidade aumenta.",
+    "② Pista 2: a densidade aumenta quando fica mais fundo.",
+    "③ Junte as pistas: mais fundo → mais denso → mais arrasto.",
+    "④ Procure a alternativa que foge do arrasto, não a que muda o jeito de nadar."
+   ],
+   "porque": "Mais fundo, mais densa a água; mais densa, mais arrasto. Perto da superfície a água é menos densa e o arrasto é menor."
+  },
+  "2023-08": {
+   "tipo": [
+    "figura",
+    "texto"
+   ],
+   "ideia": [
+    "Quem come quem no mar gelado.",
+    "Que um ser pode estar em mais de um nível."
+   ],
+   "oque": "O que está certo sobre os níveis da teia alimentar?",
+   "onde": "O diagrama da teia: siga as setas.",
+   "como": 4,
+   "hip": "Escolha um animal da teia e conte quantas setas chegam nele.",
+   "ler": [
+    "A seta vai de quem é comido para quem come.",
+    "O fitoplâncton é a base: ele produz o próprio alimento.",
+    "Quem come o fitoplâncton é consumidor primário. Quem come esse é secundário."
+   ],
+   "passos": [
+    "① Para cada alternativa, ache na teia os seres que ela cita.",
+    "② Siga as setas e confira quem come quem.",
+    "③ Risque a alternativa que troca o sentido da seta.",
+    "④ Desconfie de \"todos\", \"sempre\" e de nomes de grupo trocados."
+   ],
+   "porque": "As focas comem seres de níveis diferentes, por isso ocupam mais de um nível trófico."
+  },
+  "2023-09": {
+   "tipo": [
+    "figura",
+    "texto"
+   ],
+   "ideia": [
+    "Os seres vivos da teia do mar.",
+    "As características de cada um."
+   ],
+   "oque": "O que está certo sobre os seres vivos da teia?",
+   "onde": "O diagrama e o que você já sabe de Ciências.",
+   "como": 4,
+   "hip": "O fitoplâncton precisa de luz? Por quê?",
+   "ler": [
+    "Fitoplâncton: seres que fazem fotossíntese, precisam de luz.",
+    "Zooplâncton e copépodes: animais pequenos que flutuam.",
+    "Baleia-azul: mamífero."
+   ],
+   "passos": [
+    "① Leia cada alternativa e sublinhe a característica que ela dá.",
+    "② Pergunte: isso combina com o que este ser é?",
+    "③ Risque quem diz que animal faz fotossíntese ou que planta vive no escuro.",
+    "④ Fique com a que não tem nenhuma troca."
+   ],
+   "porque": "A baleia-azul é um mamífero sem dentes que filtra a água para comer: ela tem barbatanas, não dentes."
+  },
+  "2023-10": {
+   "tipo": [
+    "imagem",
+    "texto"
+   ],
+   "ideia": [
+    "Uma criança percebe a vida de quem é diferente dela.",
+    "A empatia: se colocar no lugar do outro."
+   ],
+   "oque": "Que sentimento o Armandinho mostra na tirinha?",
+   "onde": "A tirinha: o último quadrinho.",
+   "como": 4,
+   "hip": "Com uma palavra: o que o Armandinho sente no fim?",
+   "ler": [
+    "Leia um quadrinho por vez, da esquerda para a direita.",
+    "Olhe o rosto e a fala do personagem.",
+    "O último quadrinho costuma trazer a virada."
+   ],
+   "passos": [
+    "① Conte com suas palavras o que acontece na tirinha.",
+    "② Dê nome ao que o Armandinho sente no fim.",
+    "③ Leia cada alternativa: o sentimento E o motivo precisam combinar com a tirinha.",
+    "④ Risque as que mudam a história."
+   ],
+   "porque": "Ele percebe a realidade de crianças em condições diferentes da dele: isso é empatia."
+  },
+  "2023-11": {
+   "tipo": [
+    "imagem",
+    "texto"
+   ],
+   "ideia": [
+    "A poluição de rios e mares.",
+    "Que a vida na água está em risco."
+   ],
+   "oque": "O que a charge critica?",
+   "onde": "A charge inteira: desenho e palavras.",
+   "como": 4,
+   "hip": "Com suas palavras: qual problema a charge mostra?",
+   "ler": [
+    "Charge é desenho com crítica.",
+    "Olhe primeiro o que está exagerado no desenho.",
+    "Depois leia as palavras."
+   ],
+   "passos": [
+    "① Diga em uma frase o que o desenho mostra.",
+    "② Pergunte: isso é bom ou ruim? É crítica ou elogio?",
+    "③ Risque as alternativas que falam de coisas que não aparecem no desenho.",
+    "④ Fique com a que fala do mesmo problema."
+   ],
+   "porque": "A charge mostra a poluição de mares e rios, que coloca a vida em risco e pede proteção."
+  },
+  "2023-12": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "O que é um tsunâmi.",
+    "Que é uma onda gigante com várias origens."
+   ],
+   "oque": "O que pode causar um tsunâmi?",
+   "onde": "A definição do tsunâmi e o que você estudou de Geografia.",
+   "como": 4,
+   "hip": "O que pode empurrar tanta água de uma vez?",
+   "passos": [
+    "① Tsunâmi é uma onda enorme causada por um empurrão no fundo do mar.",
+    "② Pense no que pode sacudir o fundo do oceano.",
+    "③ Risque as alternativas que falam de coisas do clima ou do movimento da Terra no espaço.",
+    "④ Fique com a que fala do fundo do mar."
+   ],
+   "porque": "Terremotos no fundo do oceano e erupções de vulcões empurram a água e formam o tsunâmi."
+  },
+  "2024-2025-01": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "A importância das plantas.",
+    "Que precisamos entender como elas vivem."
+   ],
+   "oque": "Que cuidado correto devemos ter ao cultivar plantas?",
+   "onde": "O que você sabe de Ciências: raízes, água e solo.",
+   "como": 4,
+   "hip": "As raízes precisam de ar? O que acontece com o solo encharcado?",
+   "passos": [
+    "① Leia cada alternativa e pergunte: isso ajuda ou atrapalha a planta?",
+    "② Lembre: a raiz também respira.",
+    "③ Risque as que mandam fazer algo que faz mal à planta.",
+    "④ Fique com a que protege a raiz e a água certa."
+   ],
+   "porque": "Cada planta precisa da quantidade certa de água. Solo encharcado deixa a raiz sem ar."
+  },
+  "2024-2025-02": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Poucas plantas alimentam o mundo.",
+    "Que a monocultura traz problemas e muitas plantas são esquecidas."
+   ],
+   "oque": "O que o texto diz de verdade sobre as culturas de plantas?",
+   "onde": "Os 5 parágrafos: cada alternativa fala de um.",
+   "como": 3,
+   "hip": "O que acontece com o solo quando se planta sempre a mesma coisa?",
+   "passos": [
+    "① Para cada alternativa, ache o parágrafo que fala do mesmo assunto.",
+    "② Compare as palavras: \"todas\", \"somente\", \"todos os tipos\".",
+    "③ Risque a que exagera ou diz o contrário do texto.",
+    "④ Fique com a que repete o que o texto diz."
+   ],
+   "porque": "\"A monocultura desses grãos pode provocar a degradação do solo\" e o empobrecimento nutricional."
+  },
+  "2024-2025-03": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Como o trigo se espalhou pelo mundo.",
+    "Que os humanos mudaram a vida para cultivar o trigo."
+   ],
+   "oque": "Onde o trigo é plantado em grande quantidade?",
+   "onde": "O 1º parágrafo: as Grandes Planícies da América do Norte.",
+   "como": 3,
+   "hip": "Que países ficam na América do Norte?",
+   "passos": [
+    "① Ache no texto onde o trigo cobre centenas de quilômetros.",
+    "② Lembre que países ficam nessa região.",
+    "③ Risque as alternativas que falam de desertos ou de lugares que o texto não cita.",
+    "④ Cuidado com a Grã-Bretanha: ela aparece só como comparação de tamanho."
+   ],
+   "porque": "As Grandes Planícies da América do Norte ficam nos Estados Unidos e no Canadá."
+  },
+  "2024-2025-04": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "As PANCs: plantas que comemos pouco.",
+    "Que elas poderiam ajudar a combater a fome."
+   ],
+   "oque": "O que o texto diz sobre as PANCs?",
+   "onde": "O 3º parágrafo: \"Isso poderia ajudar a combater a fome\".",
+   "como": 3,
+   "hip": "Para que as PANCs poderiam servir?",
+   "passos": [
+    "① Leia o que significa a sigla PANCs.",
+    "② Ache a frase que diz para que elas poderiam servir.",
+    "③ Risque as alternativas que dizem o contrário: o texto diz que elas são resistentes e se adaptam bem.",
+    "④ Fique com a que repete a ideia do texto."
+   ],
+   "porque": "\"Infelizmente, essas plantas ainda não são produzidas em larga escala. Isso poderia ajudar a combater a fome.\""
+  },
+  "2024-2025-05": {
+   "tipo": [
+    "conta",
+    "texto"
+   ],
+   "ideia": [
+    "O café perde peso quando é torrado.",
+    "Que dá para calcular a perda e as sacas necessárias."
+   ],
+   "oque": "Quanto por cento o café perde na torra (I) e quantas sacas fazem 1 tonelada de café torrado (II)?",
+   "onde": "O 2º parágrafo: 60 kg, 48 kg e uma tonelada.",
+   "como": 1,
+   "hip": "Palpite: o café perde mais ou menos da metade do peso?",
+   "dados": [
+    [
+     "saca de café verde",
+     "60",
+     "kg"
+    ],
+    [
+     "depois de torrado",
+     "48",
+     "kg"
+    ],
+    [
+     "meta de café torrado",
+     "1",
+     "tonelada"
+    ]
+   ],
+   "pede": "I: a perda em %. II: quantas sacas, no mínimo.",
+   "arm": "171,7 milhões de sacas é só curiosidade: não entra na conta.",
+   "transf": {
+    "precisa": true,
+    "porque": "A meta está em toneladas e a saca está em quilos.",
+    "tabela": [
+     "1 tonelada = 1 000 kg"
+    ],
+    "passos": [
+     {
+      "n": "Transformar a tonelada",
+      "fr": "1 tonelada = [g] kg",
+      "g": [
+       1000
+      ],
+      "tol": 0,
+      "dicas": [
+       "Tonelada é uma unidade grande.",
+       "1 tonelada tem mil de alguma coisa.",
+       "1 tonelada = 1 000 kg."
+      ]
+     }
+    ]
+   },
+   "formula": {
+    "ops": [
+     "Regra de três: se um dobra, o outro dobra",
+     "Porcentagem = parte ÷ todo × 100",
+     "Lei de Ohm: U = R · i",
+     "Razão: um número ÷ o outro"
+    ],
+    "c": 1,
+    "letras": [
+     [
+      "parte",
+      "o que se perdeu",
+      "❓ kg"
+     ],
+     [
+      "todo",
+      "a saca inteira",
+      "60 kg"
+     ]
+    ]
+   },
+   "quanto": {
+    "n": 4,
+    "est": "Perder 12 de 60 é perder bem menos que a metade."
+   },
+   "anim": "perda",
+   "exemplo": [
+    "Exemplo com outros números:",
+    "Uma saca de 40 kg rende 30 kg.",
+    "Perdeu 40 − 30 = 10 kg.",
+    "10 ÷ 40 × 100 = 25%."
+   ],
+   "exec": [
+    {
+     "n": "Passo 1 · quanto se perde",
+     "fr": "60 − 48 = [g] kg",
+     "g": [
+      12
+     ],
+     "tol": 0,
+     "dicas": [
+      "Tire o peso torrado do peso verde.",
+      "60 − 48.",
+      "Escreva 12."
+     ]
+    },
+    {
+     "n": "Passo 2 · a perda em % (espaço I)",
+     "fr": "12 ÷ 60 × 100 = [g] %",
+     "g": [
+      20
+     ],
+     "tol": 0.01,
+     "dicas": [
+      "Parte ÷ todo × 100.",
+      "12 ÷ 60 é o mesmo que 1 ÷ 5.",
+      "1 ÷ 5 = 0,2. Vezes 100."
+     ]
+    },
+    {
+     "n": "Passo 3 · quantas sacas",
+     "fr": "1000 ÷ 48 = [g]",
+     "g": [
+      20.8
+     ],
+     "tol": 0.06,
+     "dicas": [
+      "Cada saca dá 48 kg torrados.",
+      "1 000 ÷ 48 dá um pouco mais que 20.",
+      "Escreva com uma casa depois da vírgula."
+     ]
+    },
+    {
+     "n": "Passo 4 · \"no mínimo\": arredonde (espaço II)",
+     "fr": "no mínimo [g] sacas",
+     "g": [
+      21
+     ],
+     "tol": 0,
+     "dicas": [
+      "Não existe 20,8 saca.",
+      "Com 20 sacas falta café.",
+      "Arredonde para cima."
+     ]
+    }
+   ],
+   "tab": [
+    48
+   ],
+   "prova": "Confira: 21 × 48 = 1 008 kg, um pouco mais que 1 tonelada. Com 20 sacas daria 960 kg, faltaria.",
+   "porque": "Perde 12 de 60 kg = 20% · 1 000 ÷ 48 ≈ 20,8 → no mínimo 21 sacas."
+  },
+  "2024-2025-06": {
+   "tipo": [
+    "conta",
+    "texto"
+   ],
+   "ideia": [
+    "A planta carnívora fecha com sinais elétricos.",
+    "Que dá para medir a resistência do caule com a Lei de Ohm."
+   ],
+   "oque": "Qual é a resistência elétrica do caule?",
+   "onde": "O 2º parágrafo (a fórmula U = R · i) e a pergunta (os dois números).",
+   "como": 1,
+   "hip": "Palpite: a resistência vai dar um número muito grande ou muito pequeno?",
+   "dados": [
+    [
+     "diferença de potencial U",
+     "1 × 10⁻¹",
+     "volt"
+    ],
+    [
+     "corrente i",
+     "2 × 10⁻⁸",
+     "ampère"
+    ]
+   ],
+   "pede": "a resistência R, em ohm",
+   "transf": {
+    "precisa": false,
+    "porque": "Os dois números já estão nas unidades da fórmula: volt e ampère.",
+    "tabela": [
+     "10⁻¹ = 0,1",
+     "10⁻⁸ = 0,000 000 01"
+    ],
+    "passos": []
+   },
+   "formula": {
+    "ops": [
+     "Regra de três: se um dobra, o outro dobra",
+     "Porcentagem = parte ÷ todo × 100",
+     "Lei de Ohm: U = R · i",
+     "Razão: um número ÷ o outro"
+    ],
+    "c": 2,
+    "letras": [
+     [
+      "U",
+      "diferença de potencial",
+      "1 × 10⁻¹"
+     ],
+     [
+      "R",
+      "resistência",
+      "❓"
+     ],
+     [
+      "i",
+      "corrente",
+      "2 × 10⁻⁸"
+     ]
+    ]
+   },
+   "quanto": {
+    "n": 3,
+    "est": "Dividir por um número muito pequeno dá um resultado muito grande."
+   },
+   "anim": "ohm",
+   "exemplo": [
+    "Exemplo com outros números:",
+    "6 = R · 2.",
+    "O 2 multiplica o R. Atravessa o igual dividindo.",
+    "R = 6 ÷ 2 = 3."
+   ],
+   "exec": [
+    {
+     "n": "Passo 1 · os números da frente",
+     "fr": "1 ÷ 2 = [g]",
+     "g": [
+      0.5
+     ],
+     "tol": 0.001,
+     "dicas": [
+      "Divida 1 por 2.",
+      "É a metade de 1.",
+      "Escreva 0,5."
+     ]
+    },
+    {
+     "n": "Passo 2 · as potências de 10",
+     "fr": "10⁻¹ ÷ 10⁻⁸ = 10 elevado a [g]",
+     "g": [
+      7
+     ],
+     "tol": 0,
+     "dicas": [
+      "Na divisão de potências de mesma base, subtraia os expoentes.",
+      "−1 − (−8).",
+      "Menos com menos vira mais: −1 + 8."
+     ]
+    },
+    {
+     "n": "Passo 3 · deixar o número da frente entre 1 e 10",
+     "fr": "0,5 × 10⁷ = 5 × 10 elevado a [g]",
+     "g": [
+      6
+     ],
+     "tol": 0,
+     "dicas": [
+      "0,5 virou 5: ficou 10 vezes maior.",
+      "Para compensar, o expoente diminui 1.",
+      "7 − 1."
+     ]
+    }
+   ],
+   "prova": "Confira: R · i = 5 × 10⁶ · 2 × 10⁻⁸ = 10 × 10⁻² = 10⁻¹. Deu o U do começo.",
+   "porque": "R = U ÷ i = (1 × 10⁻¹) ÷ (2 × 10⁻⁸) = 0,5 × 10⁷ = 5 × 10⁶ ohm."
+  },
+  "2024-2025-07": {
+   "tipo": [
+    "imagem",
+    "texto"
+   ],
+   "ideia": [
+    "Plantas que conversam como pessoas.",
+    "O humor de dar comportamento estranho a plantas."
+   ],
+   "oque": "O que faz os quadrinhos serem engraçados?",
+   "onde": "Os quadrinhos: o que a Planta Carnívora conta.",
+   "como": 4,
+   "hip": "O que a Planta Carnívora faz que é engraçado?",
+   "ler": [
+    "Leia um quadrinho por vez.",
+    "Repare quem fala com quem.",
+    "O humor costuma vir do que é inesperado."
+   ],
+   "passos": [
+    "① Conte com suas palavras o que acontece.",
+    "② Ache o que é inesperado ou exagerado.",
+    "③ Risque as alternativas que falam de coisas que não aparecem nos quadrinhos.",
+    "④ Fique com a que explica o inesperado."
+   ],
+   "porque": "A Planta Carnívora vive da fofoca: a fofoca vira o \"alimento\" que ela precisa para sobreviver.",
+   "dit": [
+    [
+     "falo na lata",
+     "Falar dentro de uma lata.",
+     "Falar direto, sem rodeio."
+    ]
+   ]
+  },
+  "2024-2025-08": {
+   "tipo": [
+    "imagem",
+    "texto"
+   ],
+   "ideia": [
+    "Plantas que conversam como pessoas.",
+    "A linguagem do dia a dia nas falas."
+   ],
+   "oque": "O que está certo sobre as palavras usadas nos quadrinhos?",
+   "onde": "As falas dos quadrinhos: \"amiga\", \"menina\", \"pra\", \"né\".",
+   "como": 4,
+   "hip": "Quando alguém diz \"amiga, …\", essa palavra serve para quê?",
+   "ler": [
+    "Repare as palavras que chamam a outra personagem.",
+    "Repare as palavras do jeito que a gente fala: \"pra\", \"né\"."
+   ],
+   "passos": [
+    "① Para cada alternativa, ache a palavra citada nos quadrinhos.",
+    "② Pergunte: nessa fala, a palavra chama alguém, mostra lugar ou dá opinião?",
+    "③ Risque a que dá a função errada para a palavra.",
+    "④ Fique com a que acerta a função."
+   ],
+   "porque": "\"Amiga\" e \"menina\" chamam a outra personagem: os dois são vocativos.",
+   "reg": [
+    [
+     "pra",
+     "para",
+     "fala do dia a dia, em todo o Brasil"
+    ],
+    [
+     "né",
+     "não é?",
+     "fala do dia a dia"
+    ]
+   ],
+   "dit": [
+    [
+     "falo na lata",
+     "Falar dentro de uma lata.",
+     "Falar direto, sem rodeio."
+    ]
+   ]
+  },
+  "2024-2025-09": {
+   "tipo": [
+    "imagem",
+    "texto"
+   ],
+   "ideia": [
+    "Plantas que conversam como pessoas.",
+    "Como a interjeição mostra o sentimento."
+   ],
+   "oque": "Que sentimento o \"uai\" mostra no 4º quadrinho?",
+   "onde": "O 4º quadrinho: a pergunta da amiga e a resposta.",
+   "como": 2,
+   "hip": "Quando alguém diz \"uai!\", como ele está se sentindo?",
+   "passos": [
+    "① Leia a pergunta da amiga.",
+    "② Leia a resposta que começa com \"uai\".",
+    "③ Pense no rosto de quem diz \"uai\" assim.",
+    "④ Compare com cada sentimento das alternativas."
+   ],
+   "porque": "\"Uai\" mostra surpresa diante da pergunta da amiga.",
+   "reg": [
+    [
+     "uai",
+     "expressão de surpresa ou de espanto",
+     "Minas Gerais e regiões vizinhas"
+    ]
+   ]
+  },
+  "2024-2025-10": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Um movimento que acabou com uma ditadura.",
+    "Que a flor nas armas virou o nome da revolução."
+   ],
+   "oque": "Que nome o evento recebeu?",
+   "onde": "O 1º parágrafo: o nome do ditador e a flor nas armas.",
+   "como": 2,
+   "hip": "Que flor o povo colocava nos canos das armas?",
+   "linha": [
+    [
+     "1968",
+     "Salazar é substituído por Marcello Caetano"
+    ],
+    [
+     "1974",
+     "o movimento da flor acaba com a ditadura"
+    ],
+    [
+     "2024",
+     "o movimento completa 50 anos"
+    ]
+   ],
+   "passos": [
+    "① Ache o nome do ditador: em que país ele governava?",
+    "② Ache a pista da flor.",
+    "③ A alternativa certa combina o país E a flor.",
+    "④ Risque as que erram um dos dois."
+   ],
+   "porque": "António de Oliveira Salazar governou Portugal. O povo colocou cravos nas armas: Revolução dos Cravos.",
+   "dit": [
+    [
+     "dar um basta",
+     "Dizer a palavra basta.",
+     "Fazer parar, acabar com uma situação."
+    ]
+   ]
+  },
+  "2024-2025-11": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Um movimento que acabou com uma ditadura.",
+    "Que as guerras nas colônias da África causaram insatisfação."
+   ],
+   "oque": "Que países africanos eram colônias de Portugal?",
+   "onde": "O 2º parágrafo e o que você estudou de História.",
+   "como": 4,
+   "hip": "Em que países da África se fala português hoje?",
+   "passos": [
+    "① Lembre: nas antigas colônias de Portugal se fala português até hoje.",
+    "② Leia os pares de países de cada alternativa.",
+    "③ Os DOIS países do par precisam ter sido colônias de Portugal.",
+    "④ Risque o par que tem um país que fala inglês ou francês."
+   ],
+   "porque": "Angola e Cabo Verde foram colônias de Portugal e falam português até hoje."
+  },
+  "2024-2025-12": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Os usos do cravo-da-índia.",
+    "Que ele serve na cozinha, nos remédios e nos perfumes."
+   ],
+   "oque": "O que o texto diz de verdade sobre o cravo-da-índia?",
+   "onde": "Os 3 parágrafos: cada alternativa fala de um uso.",
+   "como": 3,
+   "hip": "Por que se põe cravo no açucareiro?",
+   "passos": [
+    "① Para cada alternativa, ache a frase do texto sobre o mesmo uso.",
+    "② Compare: quem faz o quê? O cravo ou o eugenol?",
+    "③ Risque a que troca quem faz a ação.",
+    "④ Fique com a que diz o mesmo que o texto."
+   ],
+   "porque": "\"Seu uso em doces teve início por sua ação repelente que impede a invasão de formigas, motivo pelo qual é usado popularmente em açucareiros.\"",
+   "dit": [
+    [
+     "a preço de ouro",
+     "Pago com ouro.",
+     "Muito caro."
+    ]
+   ]
+  },
+  "2025-2026-01": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Como conviver com animais mudou os humanos.",
+    "Que a domesticação ajudou a evolução humana."
+   ],
+   "oque": "O que o texto diz sobre a domesticação de animais?",
+   "onde": "O 2º parágrafo: ferramentas e linguagem.",
+   "como": 3,
+   "hip": "A domesticação ajudou ou atrapalhou os humanos?",
+   "passos": [
+    "① Leia a última frase do texto.",
+    "② Para cada alternativa, veja se ela fala de ajuda ou de atraso.",
+    "③ Risque as que dizem que a domesticação atrasou ou fez mal.",
+    "④ Fique com a que repete a última frase."
+   ],
+   "porque": "A domesticação \"conecta grandes saltos evolutivos, como o desenvolvimento de ferramentas e até da linguagem\"."
+  },
+  "2025-2026-02": {
+   "tipo": [
+    "conta",
+    "texto"
+   ],
+   "ideia": [
+    "Os cães-guia no Brasil.",
+    "Que há poucos cães para muitas pessoas."
+   ],
+   "oque": "Há 1 cão-guia para cada quantas pessoas com deficiência visual?",
+   "onde": "O texto (207 cães) e a pergunta (6,5 milhões de pessoas).",
+   "como": 1,
+   "hip": "Palpite: é 1 cão para cada mil, para cada dez mil ou para cada trinta mil?",
+   "dados": [
+    [
+     "cães-guia em atividade",
+     "207",
+     "cães"
+    ],
+    [
+     "pessoas com deficiência visual",
+     "6,5",
+     "milhões"
+    ]
+   ],
+   "pede": "quantas pessoas para cada 1 cão",
+   "arm": "153 e 16 são das raças: não entram nesta conta.",
+   "transf": {
+    "precisa": true,
+    "porque": "6,5 milhões precisa virar número escrito por inteiro para dividir.",
+    "tabela": [
+     "1 milhão = 1 000 000",
+     "6,5 milhões = 6 milhões + meio milhão"
+    ],
+    "passos": [
+     {
+      "n": "Escrever 6,5 milhões por inteiro",
+      "fr": "6,5 milhões = [g]",
+      "g": [
+       6500000
+      ],
+      "tol": 0,
+      "dicas": [
+       "1 milhão tem 6 zeros.",
+       "Meio milhão é 500 000.",
+       "6 000 000 + 500 000."
+      ]
+     }
+    ]
+   },
+   "formula": {
+    "ops": [
+     "Regra de três: se um dobra, o outro dobra",
+     "Porcentagem = parte ÷ todo × 100",
+     "Lei de Ohm: U = R · i",
+     "Razão: um número ÷ o outro"
+    ],
+    "c": 3,
+    "letras": [
+     [
+      "pessoas",
+      "o número maior",
+      "6 500 000"
+     ],
+     [
+      "cães",
+      "o número menor",
+      "207"
+     ]
+    ]
+   },
+   "quanto": {
+    "n": 2,
+    "est": "6 500 000 ÷ 200 = 32 500. Como 207 é um pouco mais que 200, a resposta é um pouco menor."
+   },
+   "anim": "razao",
+   "exemplo": [
+    "Exemplo com outros números:",
+    "1 000 pessoas e 8 cães.",
+    "1 000 ÷ 8 = 125.",
+    "1 cão para cada 125 pessoas."
+   ],
+   "exec": [
+    {
+     "n": "Passo 1 · dividir pessoas por cães",
+     "fr": "6 500 000 ÷ 207 ≈ [g]",
+     "g": [
+      31400
+     ],
+     "tol": 120,
+     "dicas": [
+      "Divida o número de pessoas pelo número de cães.",
+      "Comece pela estimativa: perto de 32 500, um pouco menos.",
+      "O resultado fica entre 31 000 e 32 000."
+     ]
+    }
+   ],
+   "prova": "Confira: 207 × 31 400 ≈ 6 500 000.",
+   "porque": "6 500 000 ÷ 207 ≈ 31 401: 1 cão para cada 31 400 pessoas."
+  },
+  "2025-2026-03": {
+   "tipo": [
+    "conta",
+    "grafico"
+   ],
+   "ideia": [
+    "Os cães-guia no Brasil.",
+    "Que a maioria é da raça Labrador."
+   ],
+   "oque": "Que gráfico de pizza mostra certo as raças dos cães-guia?",
+   "onde": "O texto (207, 153 e 16) e os 5 gráficos.",
+   "como": 1,
+   "hip": "Palpite: os Labradores ocupam mais ou menos que três quartos da pizza?",
+   "dados": [
+    [
+     "total de cães-guia",
+     "207",
+     "cães"
+    ],
+    [
+     "Labradores",
+     "153",
+     "cães"
+    ],
+    [
+     "Golden Retriever",
+     "16",
+     "cães"
+    ]
+   ],
+   "pede": "a porcentagem de cada raça",
+   "arm": "As \"outras raças\" não aparecem no texto: é preciso calcular.",
+   "ler": [
+    "Gráfico de pizza: a pizza inteira é 100%.",
+    "Cada fatia é uma parte.",
+    "A fatia maior é a raça com mais cães."
+   ],
+   "transf": {
+    "precisa": true,
+    "porque": "Os dados estão em número de cães e o gráfico está em %.",
+    "tabela": [
+     "% = parte ÷ total × 100"
+    ],
+    "passos": []
+   },
+   "formula": {
+    "ops": [
+     "Regra de três: se um dobra, o outro dobra",
+     "Porcentagem = parte ÷ todo × 100",
+     "Lei de Ohm: U = R · i",
+     "Razão: um número ÷ o outro"
+    ],
+    "c": 1,
+    "letras": [
+     [
+      "parte",
+      "os cães de cada raça",
+      "153 · 16 · ❓"
+     ],
+     [
+      "todo",
+      "todos os cães",
+      "207"
+     ]
+    ]
+   },
+   "quanto": {
+    "n": 4,
+    "est": "153 de 207 é mais que a metade e menos que tudo: fica entre 70% e 80%."
+   },
+   "anim": "pizza",
+   "exemplo": [
+    "Exemplo com outros números:",
+    "10 cães: 5 pretos, 3 brancos, 2 malhados.",
+    "5 ÷ 10 × 100 = 50% · 3 ÷ 10 × 100 = 30% · 2 ÷ 10 × 100 = 20%.",
+    "As fatias somam 100%."
+   ],
+   "monta": "pizza",
+   "exec": [
+    {
+     "n": "Passo 1 · quantos são de outras raças",
+     "fr": "207 − 153 − 16 = [g]",
+     "g": [
+      38
+     ],
+     "tol": 0,
+     "dicas": [
+      "Tire os Labradores e os Golden do total.",
+      "207 − 153 = 54.",
+      "54 − 16."
+     ]
+    },
+    {
+     "n": "Passo 2 · % de Labradores",
+     "fr": "153 ÷ 207 × 100 ≈ [g] %",
+     "g": [
+      74
+     ],
+     "tol": 0.6,
+     "dicas": [
+      "Parte ÷ total × 100.",
+      "153 ÷ 207 dá perto de 0,74.",
+      "Arredonde para o inteiro."
+     ]
+    },
+    {
+     "n": "Passo 3 · % de Golden Retriever",
+     "fr": "16 ÷ 207 × 100 ≈ [g] %",
+     "g": [
+      8
+     ],
+     "tol": 0.6,
+     "dicas": [
+      "Parte ÷ total × 100.",
+      "16 ÷ 207 dá perto de 0,077.",
+      "Arredonde para o inteiro."
+     ]
+    },
+    {
+     "n": "Passo 4 · % de outras raças",
+     "fr": "38 ÷ 207 × 100 ≈ [g] %",
+     "g": [
+      18
+     ],
+     "tol": 0.6,
+     "dicas": [
+      "Use o número do passo 1.",
+      "38 ÷ 207 dá perto de 0,18.",
+      "Arredonde para o inteiro."
+     ]
+    }
+   ],
+   "prova": "Confira: 74 + 8 + 18 = 100. As fatias fecham a pizza.",
+   "porque": "153 ÷ 207 ≈ 74% · 16 ÷ 207 ≈ 8% · 38 ÷ 207 ≈ 18%: o quarto gráfico."
+  },
+  "2025-2026-04": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "A narradora observa o próprio cão.",
+    "Que o cão ensina a viver sem angústia."
+   ],
+   "oque": "Por que o cão é um exemplo a ser seguido?",
+   "onde": "O trecho: \"O meu cão me ensina a viver. Ele só fica sendo.\"",
+   "como": 2,
+   "hip": "Com suas palavras: o que quer dizer \"ele só fica sendo\"?",
+   "passos": [
+    "① Leia a frase \"Ele só fica 'sendo'. 'Ser' é a sua atividade.\"",
+    "② Pense: o cão se preocupa com o futuro? Ele sofre por antecipação?",
+    "③ Para cada alternativa, pergunte: isso combina com \"só ficar sendo\"?",
+    "④ Risque as que falam de submissão, tensão ou inquietação."
+   ],
+   "porque": "\"O meu cão me ensina a viver. Ele só fica sendo\": viver com plenitude, sem angústias.",
+   "dit": [
+    [
+     "ele só fica \"sendo\"",
+     "Ele fica parado existindo.",
+     "Ele vive o agora, sem se preocupar."
+    ]
+   ]
+  },
+  "2025-2026-05": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Os gatos e os felinos no antigo Egito.",
+    "Que os egípcios admiravam as qualidades dos felinos."
+   ],
+   "oque": "O que dá para concluir sobre os egípcios e os felinos?",
+   "onde": "O 3º parágrafo: graça, fertilidade, cuidado e os deuses.",
+   "como": 3,
+   "hip": "Por que os deuses egípcios tinham cara de felino?",
+   "passos": [
+    "① Leia o 3º parágrafo.",
+    "② Liste as qualidades que os egípcios viam nos felinos.",
+    "③ Risque as alternativas com \"apenas\", \"se restringia\" ou que dizem o contrário.",
+    "④ Fique com a que liga as qualidades aos deuses."
+   ],
+   "porque": "Os felinos \"combinavam graça, fertilidade e cuidado\" e os deuses \"eram representados com características felinas\"."
+  },
+  "2025-2026-06": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Os benefícios de conviver com animais.",
+    "Que os pets ajudam o desenvolvimento afetivo."
+   ],
+   "oque": "O que a convivência com animais traz para as crianças?",
+   "onde": "O 2º parágrafo: a última frase.",
+   "como": 3,
+   "hip": "Escreva um benefício de ter um animal por perto.",
+   "passos": [
+    "① Ache a frase sobre as crianças.",
+    "② Liste as melhoras que ela cita.",
+    "③ Risque as alternativas com exagero: \"dispensável\", \"completamente\", \"redução de remédios\".",
+    "④ Fique com a que repete as melhoras."
+   ],
+   "porque": "\"melhora na convivência social, na capacidade de concentração e nas habilidades de comunicação\"."
+  },
+  "2025-2026-07": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Os animais enviados ao espaço.",
+    "A disputa entre União Soviética e Estados Unidos."
+   ],
+   "oque": "Em que período da História isso aconteceu?",
+   "onde": "O 1º parágrafo: os anos e os dois países.",
+   "como": 2,
+   "hip": "Que disputa havia entre União Soviética e Estados Unidos?",
+   "linha": [
+    [
+     "1945",
+     "fim da Segunda Guerra Mundial"
+    ],
+    [
+     "1948 a 1961",
+     "URSS e EUA mandam 65 animais ao espaço"
+    ],
+    [
+     "1957",
+     "a cachorra Laika no Sputnik 2"
+    ],
+    [
+     "1961",
+     "Yuri Gagarin no espaço"
+    ],
+    [
+     "1991",
+     "fim da União Soviética"
+    ]
+   ],
+   "passos": [
+    "① Ache os anos no texto.",
+    "② Coloque os anos na linha do tempo.",
+    "③ Pense: que disputa havia entre URSS e EUA nessa época?",
+    "④ Risque os períodos que ficam antes ou que não têm os dois países."
+   ],
+   "porque": "Entre 1948 e 1961, URSS e EUA disputavam a corrida espacial: é a Guerra Fria."
+  },
+  "2025-2026-08": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Crianças indígenas e os animais da floresta.",
+    "Que a relação com os animais é de cuidado e respeito."
+   ],
+   "oque": "O que o texto diz sobre a relação dos indígenas com os animais?",
+   "onde": "Os parágrafos 2 e 4.",
+   "como": 3,
+   "hip": "Os animais da aldeia são presos ou ficam livres?",
+   "passos": [
+    "① Leia o 2º e o 4º parágrafos.",
+    "② Anote: como é a relação com os animais?",
+    "③ Para cada alternativa, procure no texto. Desconfie de \"traumatizou\" e \"desequilíbrio\".",
+    "④ Fique com a que repete a ideia de cuidado e equilíbrio."
+   ],
+   "porque": "\"A relação com eles é de cuidado e de respeito, equilibrando a subsistência e o bem-viver.\"",
+   "reg": [
+    [
+     "xerimbabo",
+     "\"coisa muito querida\", o bicho que é cuidado",
+     "tupi, língua de povos indígenas"
+    ]
+   ],
+   "dit": [
+    [
+     "entrou de mansinho",
+     "Entrou mansinho.",
+     "Entrou devagar, sem fazer barulho."
+    ]
+   ]
+  },
+  "2025-2026-09": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Crianças indígenas e os animais da floresta.",
+    "Os animais sagrados e o papel da onça."
+   ],
+   "oque": "O que está certo sobre os animais citados?",
+   "onde": "O enunciado (a onça, guardiã da floresta) e o que você sabe de Ciências.",
+   "como": 4,
+   "hip": "Quem a onça come? Quem come a onça?",
+   "passos": [
+    "① Leia cada alternativa e sublinhe a característica que ela dá.",
+    "② Ave tem pena, não pelo. Cativeiro não é o que o texto conta.",
+    "③ Risque as que trocam características ou contradizem o texto.",
+    "④ Fique com a que acerta o lugar da onça na cadeia."
+   ],
+   "porque": "A onça está no topo da cadeia: come herbívoros e predadores menores e mantém o equilíbrio."
+  },
+  "2025-2026-10": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Crianças indígenas e os animais da floresta.",
+    "As circunstâncias das ações: tempo, lugar, companhia."
+   ],
+   "oque": "Que ideia cada expressão em negrito dá: tempo, lugar, companhia…?",
+   "onde": "As 4 expressões em negrito no texto.",
+   "como": 2,
+   "hip": "\"Certa manhã\" responde à pergunta quando, onde ou com quem?",
+   "passos": [
+    "① Ache a 1ª expressão em negrito.",
+    "② Faça a pergunta: quando? onde? com quem? como?",
+    "③ Anote a resposta de cada uma, na ordem.",
+    "④ A alternativa certa tem as 4 na mesma ordem."
+   ],
+   "porque": "\"Certa manhã\" = tempo · as outras respondem onde, com quem e onde."
+  },
+  "2025-2026-11": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Crianças indígenas e os animais da floresta.",
+    "Como \"acabou indo\" mostra uma ação que terminou."
+   ],
+   "oque": "O que \"acabou indo\" mostra sobre a ação?",
+   "onde": "O 3º parágrafo: a capivara que cresceu.",
+   "como": 2,
+   "hip": "A capivara foi embora ou ainda está indo?",
+   "passos": [
+    "① Leia a frase inteira da capivara.",
+    "② Pergunte: no fim, ela foi ou não foi com o bando?",
+    "③ Risque as alternativas que dizem que a ação não acabou.",
+    "④ Fique com a que diz que a ação terminou."
+   ],
+   "porque": "\"Acabou indo\": a capivara foi, a ação terminou, e o \"acabou\" dá destaque ao fim.",
+   "dit": [
+    [
+     "acabou indo",
+     "Terminou de ir.",
+     "No fim, foi mesmo."
+    ]
+   ]
+  },
+  "2025-2026-12": {
+   "tipo": [
+    "texto"
+   ],
+   "ideia": [
+    "Crianças indígenas e os animais da floresta.",
+    "A quem o pronome \"eles\" se refere."
+   ],
+   "oque": "A quem o \"eles\" sublinhado se refere?",
+   "onde": "O 4º parágrafo: as frases antes do \"eles\".",
+   "como": 3,
+   "hip": "Quem recebe cuidado e respeito nesse parágrafo: pessoas ou bichos?",
+   "passos": [
+    "① Ache o \"eles\" sublinhado.",
+    "② Volte nas frases de antes e procure palavras no plural.",
+    "③ Troque \"eles\" por cada par das alternativas e leia a frase.",
+    "④ Fica certo o par que faz a frase ter sentido."
+   ],
+   "porque": "\"A relação com eles\" fala dos bichos: os \"pets\" e os \"animais\" das frases de antes."
+  }
+ }
+};
+/* ══════════════════════════════════════════════════════════════════════════
+   etec_c176.js · PADRONIZADOR_002 · CLD-176 · 05/10/2026 · SIMU-ETEC V05.08
+   🧭 MÉTODO DE ESTUDO em TELA SEPARADA (Marcos, 05/10 00:03: "gerar telas com esse passo a passo de camadas…
+   incluindo animações… é tela separada · o modo puro do modo de resolução").
+   A tela da questão continua PURA: só ganha 1 botão para abrir o método.
+   Etapas (prévia V01.01, CLD-174): 0 LER · 1 ENTENDER · 1½ ORGANIZAR · 2 PLANEJAR · 3 EXECUTAR · 4 CONFERIR.
+   Conteúdo: metodo_etec.json (metodo_etec.py) + o que o banco já tem (GLOS, GRIFO, GENERO_ETEC, GOLETEC).
+   REGRA DE OURO: nada antes da etapa 4 entrega a letra certa. A etapa 4 só abre depois de confirmar a questão.
+   Estado só na memória da página (como a Missão 3). Nada é apagado: render/avancar/voltar/telaQuestao/telaCfg
+   antigos ficam em *_V0507 e a nova chama a antiga.
+   ══════════════════════════════════════════════════════════════════════════ */
+var MET = {};
+function metEst(pid){ if(!MET[pid]) MET[pid]={visto:false, leu:false, ideia:"", ideiaErr:[], transf:"", como:0, comoErr:[], form:-1, formErr:[], hip:"", hipOk:false, dados:{}, dadosOk:false, lac:{}, lacOk:{}, dic:{}, elim:{}, passo:1, ab:{e0:true}}; return MET[pid] }
+var MET_ETAPAS = [
+  {id:"e0", tp:"🆕 PRÉ-ETAPA", emo:"📖", nome:"Etapa 0 · LER E INTERPRETAR", ch:"ler o texto e o suporte", c:"#6A1B9A", b:"#F5EDF9"},
+  {id:"e1", tp:"POLYA 1", emo:"🔍", nome:"Etapa 1 · ENTENDER o problema", ch:"chaves ONDE · O QUÊ · QUEM", c:"#2E5C8A", b:"#EEF4FA"},
+  {id:"e15", tp:"🆕 INTERMEDIÁRIA", emo:"🧱", nome:"Etapa 1½ · ORGANIZAR os dados", ch:"transformar · montar · desenhar", c:"#00838F", b:"#E0F7FA"},
+  {id:"e2", tp:"POLYA 2", emo:"🗺️", nome:"Etapa 2 · PLANEJAR o caminho", ch:"chaves COMO · QUANTO", c:"#4A8C3F", b:"#EFF7ED"},
+  {id:"e3", tp:"POLYA 3", emo:"🛠️", nome:"Etapa 3 · EXECUTAR", ch:"chave QUANDO", c:"#E07B2C", b:"#FDF1E7"},
+  {id:"e4", tp:"POLYA 4", emo:"✅", nome:"Etapa 4 · CONFERIR (olhar para trás)", ch:"chave POR QUÊ", c:"#B4306B", b:"#FBE9F1"}];
+var MET_CAMINHOS = ["fazer a conta","comparar","voltar ao texto","eliminar alternativas"];
+var MET_CIRC = "①②③④⑤⑥⑦⑧⑨⑩";
+function metQ(q){ return ((typeof METODO_ETEC!=="undefined" && METODO_ETEC.q)||{})[q.pid] || null }
+function metConta(m){ return !!(m && m.tipo && m.tipo.indexOf("conta")>=0) }
+function metH(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") }
+function metLn(L){ return [].concat(L||[]).map(function(x){ return '<span class="mtln">'+x+'</span>' }).join("") }
+function metNum(t){
+  var s = String(t||"").trim().replace(/[−–—]/g,"-").replace(/\s+/g,"");
+  if(/^\-?\d{1,3}(\.\d{3})+(,\d+)?$/.test(s)) s = s.replace(/\./g,"");
+  s = s.replace(",", "."); return parseFloat(s);
+}
+function metCfgOn(e){ return CFG["met_"+e]!==false }
+
+/* ---------- as animações (SVG + CSS, ciclo de 6 s, números diferentes dos da questão) ---------- */
+var MET_ANIM = {
+  lupa: '<svg viewBox="0 0 300 150" class="mtsvg"><g fill="#CFD8DC"><rect x="20" y="18" width="240" height="12" rx="6"/><rect x="20" y="44" width="200" height="12" rx="6"/><rect x="20" y="70" width="230" height="12" rx="6"/><rect x="20" y="96" width="180" height="12" rx="6"/></g>'+
+        '<rect class="mt-acha" x="20" y="70" width="230" height="12" rx="6" fill="#FFC000"/><g class="mt-lupa"><circle cx="0" cy="0" r="17" fill="none" stroke="#2E5C8A" stroke-width="6"/><line x1="12" y1="12" x2="30" y2="30" stroke="#2E5C8A" stroke-width="8" stroke-linecap="round"/></g>'+
+        '<text x="150" y="140" text-anchor="middle" class="mtlg">a lupa procura · o pedaço certo acende</text></svg>',
+  kmh: '<svg viewBox="0 0 460 230" class="mtsvg"><rect x="20" y="30" width="150" height="60" rx="12" fill="#FFF3E0" stroke="#E07B2C" stroke-width="4"/><text x="95" y="70" text-anchor="middle" class="mteq" fill="#E07B2C">72 km/h</text>'+
+       '<path class="mt-seta" d="M 180 60 L 270 60"/><polygon class="mt-ponta" points="290,60 268,48 268,72"/><text class="mt-op" x="235" y="42" text-anchor="middle" fill="#B4306B">÷ 3,6</text>'+
+       '<g class="mt-surge"><rect x="300" y="30" width="140" height="60" rx="12" fill="#E8F5E9" stroke="#2E7D32" stroke-width="4"/><text x="370" y="70" text-anchor="middle" class="mteq" fill="#2E7D32">20 m/s</text></g>'+
+       '<g class="mt-surge2"><text x="230" y="140" text-anchor="middle" class="mtmd">2 000 m/s → gasta 100</text><text x="230" y="172" text-anchor="middle" class="mtmd">1 m/s → gasta 100 ÷ 2 000 = 0,05</text><text x="230" y="204" text-anchor="middle" class="mtmd" fill="#2E7D32">20 m/s → gasta 20 × 0,05 = 1</text></g></svg>',
+  perda: '<svg viewBox="0 0 460 210" class="mtsvg"><text x="20" y="30" class="mtmd">saca verde · 40 kg</text><rect x="20" y="42" width="400" height="44" rx="10" fill="#C8E6C9" stroke="#2E7D32" stroke-width="4"/>'+
+         '<rect class="mt-corta" x="320" y="42" width="100" height="44" rx="10" fill="#EF9A9A" stroke="#C62828" stroke-width="4"/><text class="mt-surge mtmd" x="370" y="72" text-anchor="middle" fill="#C62828">−10 kg</text>'+
+         '<g class="mt-surge2"><text x="20" y="122" class="mtmd">torrado · 30 kg</text><text x="230" y="160" text-anchor="middle" class="mteq" fill="#B4306B">10 ÷ 40 × 100</text><text x="230" y="198" text-anchor="middle" class="mteq" fill="#2E7D32">= 25% de perda</text></g></svg>',
+  ohm: '<svg viewBox="0 0 460 230" class="mtsvg"><text class="mteq" x="40" y="70">6</text><text class="mteq" x="90" y="70">=</text><text class="mteq" x="140" y="70">R</text>'+
+       '<rect class="mt-caixa" x="178" y="34" width="70" height="50" rx="11" fill="none" stroke="#2E5C8A" stroke-width="4"/><g class="mt-sai"><text class="mteq" x="186" y="70" fill="#2E5C8A">· 2</text><text x="213" y="104" text-anchor="middle" class="mtsm" fill="#2E5C8A">vezes</text></g>'+
+       '<path class="mt-arco" d="M 213 110 C 213 190 50 190 50 100"/><polygon class="mt-ponta" points="50,84 39,108 61,108"/>'+
+       '<g class="mt-chega"><text class="mteq" x="70" y="150" fill="#E07B2C">÷ 2</text><text x="96" y="176" text-anchor="middle" class="mtsm" fill="#E07B2C">dividindo</text></g>'+
+       '<g class="mt-surge2"><text class="mteq" x="300" y="150" fill="#2E7D32">R = 6 ÷ 2</text><text class="mteq" x="300" y="200" fill="#2E7D32">R = 3</text></g></svg>',
+  razao: '<svg viewBox="0 0 460 230" class="mtsvg"><text x="230" y="34" text-anchor="middle" class="mtmd">1 000 pessoas · 8 cães</text>'+
+         [0,1,2,3,4,5,6,7].map(function(i){ var x=20+i*54; return '<g class="mt-grupo" style="animation-delay:'+(i*0.35)+'s"><rect x="'+x+'" y="60" width="46" height="70" rx="9" fill="#E3F2FD" stroke="#1565C0" stroke-width="3"/><text x="'+(x+23)+'" y="88" text-anchor="middle" class="mtem">🐕</text><text x="'+(x+23)+'" y="118" text-anchor="middle" class="mtsm" fill="#1565C0">125</text></g>' }).join("")+
+         '<g class="mt-surge2"><text x="230" y="172" text-anchor="middle" class="mteq" fill="#B4306B">1 000 ÷ 8 = 125</text><text x="230" y="212" text-anchor="middle" class="mtmd" fill="#2E7D32">1 cão para cada 125 pessoas</text></g></svg>',
+  pizza: '<svg viewBox="0 0 460 230" class="mtsvg"><g transform="translate(115,115)">'+
+         '<circle r="80" fill="#ECEFF1"/>'+
+         '<circle class="mt-fatia f1" r="40" fill="none" stroke="#1565C0" stroke-width="80" stroke-dasharray="125.7 251.3" transform="rotate(-90)"/>'+
+         '<circle class="mt-fatia f2" r="40" fill="none" stroke="#E07B2C" stroke-width="80" stroke-dasharray="0 125.7 75.4 251.3" transform="rotate(-90)"/>'+
+         '<circle class="mt-fatia f3" r="40" fill="none" stroke="#2E7D32" stroke-width="80" stroke-dasharray="0 201.1 50.3 251.3" transform="rotate(-90)"/></g>'+
+         '<text x="230" y="70" class="mtmd" fill="#1565C0">■ 5 de 10 = 50%</text><text x="230" y="110" class="mtmd" fill="#E07B2C">■ 3 de 10 = 30%</text><text x="230" y="150" class="mtmd" fill="#2E7D32">■ 2 de 10 = 20%</text><text x="230" y="195" class="mtmd">juntas: 100%</text></svg>'
+};
+
+/* ---------- pedaços da tela ---------- */
+function metCab(et, st, m, q){
+  var ab = !!st.ab[et.id], trava = (et.id==="e4" && !resp[q.pid]);
+  return '<button type="button" class="mtcab'+(ab?" ab":"")+(trava?" trava":"")+'" onclick="metAbre(\''+et.id+'\')" style="--c:'+et.c+';--b:'+et.b+'">'+
+    '<span class="mtem20">'+et.emo+'</span><span class="mtct"><span class="mttp">'+et.tp+'</span>'+et.nome+'<span class="mtch">'+et.ch+'</span></span>'+
+    '<span class="mtst">'+(trava?"🔒":(ab?"▼":"▶"))+'</span></button>';
+}
+function metSub(n, emo, tit, corpo){
+  return '<div class="mtsub"><div class="mtst2"><span class="mtn">'+MET_CIRC.charAt(n-1)+'</span><span class="mtem20">'+emo+'</span> '+tit+'</div>'+corpo+'</div>';
+}
+function metOps(L, cb, st, certa, errs, feito){
+  return '<div class="mtops">'+L.map(function(o,i){
+    var cls = feito ? (i===certa?" ok":"") : (errs.indexOf(i)>=0?" no":"");
+    return '<button type="button" class="mtop'+cls+'"'+(feito?' disabled':' onclick="'+cb+'('+i+')"')+'>'+o+'</button>' }).join("")+'</div>';
+}
+function metLacuna(chave, p, st){
+  var feito = !!st.lacOk[chave], k = 0, vals = st.lac[chave] || [];
+  var fr = metH(p.fr).replace(/\[g\]/g, function(){ var j=k++; return feito ? '<span class="mtcxf">'+metH(vals[j])+'</span>' : '<input class="mtcx" id="mtg_'+chave+'_'+j+'" inputmode="decimal" autocomplete="off" value="'+metH(vals[j]||"")+'">' });
+  var nd = st.dic[chave]||0, h = '<div class="mtlac'+(feito?" feito":"")+'"><div class="mtlt">'+metH(p.n)+'</div><div class="mtfr">'+fr+'</div>';
+  if(feito) h += '<span class="mtln mtokt">✅ Certo.</span>';
+  else h += '<div class="mtbts"><button type="button" class="mtbt v" onclick="metConfLac(\''+chave+'\')">conferir</button><button type="button" class="mtbt a" onclick="metDica(\''+chave+'\')"'+(nd>=(p.dicas||[]).length?' disabled':'')+'>💡 me ajuda</button></div>';
+  for(var d=0; d<nd; d++) h += '<div class="mtdica"><b>Dica '+(d+1)+' de '+p.dicas.length+' ·</b> '+metH(p.dicas[d])+'</div>';
+  return h + '</div>';
+}
+function metTabuada(ns){
+  return '<div class="mttabs">'+[].concat(ns||[]).map(function(n){ return '<div class="mttab"><div class="mtlt">TABUADA DO '+String(n).replace(".",",")+'</div>'+
+    [1,2,3,4,5,6,7,8,9,10].map(function(k){ return '<div class="mttl"><span>'+String(n).replace(".",",")+' × '+k+'</span><b>'+String(Math.round(n*k*100)/100).replace(".",",")+'</b></div>' }).join("")+'</div>' }).join("")+'</div>';
+}
+function metTexto(q){
+  var h = "";
+  if(q.base && BASES[q.base]){ var b = BASES[q.base];
+    h += '<div class="mtlt">'+metH(b.titulo)+'</div>' + (b.paragrafos||[]).map(function(p,i){ return '<p class="mtpar"><span class="mtpn">'+(i<9?"0":"")+(i+1)+'</span>'+p+'</p>' }).join("");
+    if(b.imagem) h += '<span class="mtln">📷 Este texto é uma figura: olhe com calma na tela da questão.</span>';
+  }
+  if(q.texto_proprio) h += [].concat(q.texto_proprio).map(function(p,i){ return '<p class="mtpar"><span class="mtpn">'+(i<9?"0":"")+(i+1)+'</span>'+p+'</p>' }).join("");
+  if(q.imagem) h += '<span class="mtln">📷 Esta questão tem uma figura: olhe com calma na tela da questão.</span>';
+  return h || '<span class="mtln">O texto desta questão está na própria pergunta.</span>';
+}
+function metIdeiaOps(q, m){
+  var outros = [], vistos = {}; vistos[m.ideia[0]] = 1;
+  Object.keys(METODO_ETEC.q).forEach(function(k){ var x = METODO_ETEC.q[k]; if(!vistos[x.ideia[0]]){ vistos[x.ideia[0]]=1; outros.push(x.ideia[0]) } });
+  var s = etecSorteio(q.pid+"id", Math.max(1,outros.length)), L = [outros[s%outros.length], outros[(s+7)%outros.length]];
+  var pos = etecSorteio(q.pid+"ip", 3); L.splice(pos, 0, m.ideia[0]); return L;
+}
+
+/* ---------- as 6 etapas ---------- */
+function metE0(q, m, st){
+  var h = "", n = 0;
+  h += metSub(++n, "👀", "Ler tudo uma vez, sem caneta",
+    metLn(["Leia até o fim.","Ainda sem procurar a resposta."])+'<details class="mtdet"'+(st.leu?"":" open")+'><summary>📄 o texto desta questão</summary>'+metTexto(q)+'</details>'+
+    (st.leu ? '<span class="mtln mtokt">✅ Leitura feita.</span>' : '<button type="button" class="mtbt v" onclick="metLeu()">✔ li tudo</button>'));
+  var L = metIdeiaOps(q, m), certa = L.indexOf(m.ideia[0]), feito = st.ideia==="ok";
+  h += metSub(++n, "💭", "Interpretar: a ideia principal",
+    metLn(["Do que o texto fala?","Toque em 01."])+metOps(L, "metIdeia", st, certa, st.ideiaErr, feito)+
+    (feito ? metLn(['✅ E o que ele quer mostrar: <b>'+metH(m.ideia[1])+'</b>']) : (st.ideiaErr.length ? metLn(["❌ Esse é o assunto de outro texto.","Releia e tente de novo."]) : "")));
+  var G = (typeof GENERO_ETEC!=="undefined") ? (GENERO_ETEC.textos["q:"+q.pid] || (q.base ? GENERO_ETEC.textos["b:"+q.base] : null)) : null;
+  if(G) h += metSub(++n, "🏷️", "Gênero do texto", metLn(['<b>'+metH(G.genero)+'</b>', metH(G.por_que)]));
+  var T = (GLOS[q.pid]||{}).termos;
+  if(T && Object.keys(T).length) h += metSub(++n, "📚", "Glossário", Object.keys(T).map(function(w){ return '<span class="mtln"><span class="mtgl">'+metH(w)+'</span> '+metH(T[w])+'</span>' }).join(""));
+  if(m.reg) h += metSub(++n, "🗺️", "Palavras regionais", m.reg.map(function(r){ return '<span class="mtln"><span class="mtgv">'+metH(r[0])+'</span> = '+metH(r[1])+'.</span><span class="mtln mtsm2">De onde vem: '+metH(r[2])+'.</span>' }).join(""));
+  if(m.dit) h += metSub(++n, "💬", "Ditados e expressões", m.dit.map(function(d){ return '<span class="mtln"><b>"'+metH(d[0])+'"</b></span><span class="mtln">Ao pé da letra: '+metH(d[1])+'</span><span class="mtln">O que quer dizer: <b>'+metH(d[2])+'</b></span>' }).join(""));
+  if(m.ler){ var tp = m.tipo.indexOf("grafico")>=0 ? ["📈","Ler o gráfico"] : (m.tipo.indexOf("figura")>=0 ? ["📐","Ler a figura"] : ["🖼️","Ler a imagem"]);
+    h += metSub(++n, tp[0], tp[1], metLn(m.ler)) }
+  return h;
+}
+function metE1(q, m, st){
+  var h = "", n = 0, en = String(q.enunciado||"");
+  var avesso = /incorret|exceto|EXCETO|\bNÃO\b|falsa/.test(en);
+  h += metSub(++n, "🔑", "ONDE · o comando da pergunta", metLn(["As palavras em vermelho dizem o que fazer."])+'<div class="mtenun">'+(typeof aplicarGrifo==="function" ? aplicarGrifo(en, q) : en)+'</div>'+
+    (avesso ? metLn(["⚠️ Cuidado: esta pergunta pede o que está ERRADO."]) : metLn(["Aqui você procura a alternativa CERTA."])));
+  h += metSub(++n, "🔑", "ONDE · onde está a informação", (MET_ANIM.lupa)+metLn(['👉 '+metH(m.onde)]));
+  h += metSub(++n, "🔑", "O QUÊ · a pergunta numa frase curta", metLn(['<b>'+metH(m.oque)+'</b>']));
+  if(m.quem) h += metSub(++n, "🔑", "QUEM · quem fala no texto", metLn([metH(m.quem)]));
+  if(m.dados){
+    var tab = '<table class="mttb"><tr><th>dado</th><th>número</th><th>unidade</th></tr>'+m.dados.map(function(d,i){
+      var simples = /^[\d.,\s]+$/.test(d[1]), v = st.dados[i]||"";
+      var cel = (simples && !st.dadosOk) ? '<input class="mtcx pq" id="mtd_'+i+'" inputmode="decimal" value="'+metH(v)+'">' : '<b>'+metH(d[1])+'</b>';
+      return '<tr><td>'+metH(d[0])+'</td><td>'+cel+'</td><td>'+metH(d[2])+'</td></tr>' }).join("")+
+      '<tr class="mtpede"><td>❓ o que a questão quer</td><td colspan="2">'+metH(m.pede)+'</td></tr></table>';
+    h += metSub(++n, "📋", "Coletar os dados", metLn(["Procure cada número no texto e escreva na tabela."])+tab+
+      (st.dadosOk ? metLn(["✅ Dados coletados."]) : '<button type="button" class="mtbt v" onclick="metConfDados()">conferir os dados</button>')+
+      (st.dadosErr && !st.dadosOk ? metLn(["❌ Algum número não é o do texto.","Procure de novo."]) : "")+
+      (m.arm ? metLn(['🪤 Armadilha: '+metH(m.arm)]) : ""));
+  }
+  return h;
+}
+function metTemE15(m){ return !!(m && (metConta(m) || m.linha || m.monta)) }
+function metE15(q, m, st){
+  var h = "", n = 0;
+  if(m.transf){
+    var T = m.transf, resp1 = st.transf;
+    h += metSub(++n, "🔄", "Precisa transformar?", metLn(["Os dados falam a mesma língua?","As unidades e as porcentagens combinam?"])+
+      '<div class="mtops"><button type="button" class="mtop'+(resp1? (T.precisa?" ok":(resp1==="sim"?" no":"")) :"")+'"'+(resp1?' disabled':' onclick="metTransf(\'sim\')"')+'>Sim, precisa</button>'+
+      '<button type="button" class="mtop'+(resp1? (!T.precisa?" ok":(resp1==="nao"?" no":"")) :"")+'"'+(resp1?' disabled':' onclick="metTransf(\'nao\')"')+'>Não precisa</button></div>'+
+      (resp1 ? metLn([(((resp1==="sim")===T.precisa)?"✅ ":"❌ Ainda não. ")+metH(T.porque)]) : ""));
+    if(resp1 && (T.tabela||[]).length) h += metSub(++n, "⚖️", "A tabela de conversão", '<div class="mtconv">'+metLn(T.tabela.map(metH))+'</div>');
+    if(resp1) (T.passos||[]).forEach(function(p,i){ h += metSub(++n, "✏️", "Fazer a transformação", metLacuna("t"+i, p, st)) });
+  }
+  if(m.monta==="pizza"){
+    var v = [st.lacOk.x1?metNum((st.lac.x1||[])[0]):0, st.lacOk.x2?metNum((st.lac.x2||[])[0]):0, st.lacOk.x3?metNum((st.lac.x3||[])[0]):0];
+    var C = 251.3, a = v[0]/100*C, b = v[1]/100*C, c = v[2]/100*C;
+    var svg = '<svg viewBox="0 0 220 220" class="mtsvg mtpz"><g transform="translate(110,110)"><circle r="90" fill="#ECEFF1" stroke="#90A4AE" stroke-width="3"/>'+
+      (a?'<circle r="40" fill="none" stroke="#1565C0" stroke-width="80" stroke-dasharray="'+a+' '+C+'" transform="rotate(-90)"/>':'')+
+      (b?'<circle r="40" fill="none" stroke="#E07B2C" stroke-width="80" stroke-dasharray="0 '+a+' '+b+' '+C+'" transform="rotate(-90)"/>':'')+
+      (c?'<circle r="40" fill="none" stroke="#2E7D32" stroke-width="80" stroke-dasharray="0 '+(a+b)+' '+c+' '+C+'" transform="rotate(-90)"/>':'')+'</g></svg>';
+    h += metSub(++n, "📉", "Montar o gráfico", metLn(["A sua pizza se desenha sozinha com as % que você acertar na etapa 3.","Azul = Labradores · laranja = Golden · verde = outras raças."])+svg);
+  }
+  if(m.linha) h += metSub(++n, "🕰️", "Linha do tempo", '<div class="mtlinha">'+m.linha.map(function(x){ return '<div class="mtli"><span class="mtano">'+metH(x[0])+'</span><span>'+metH(x[1])+'</span></div>' }).join("")+'</div>');
+  return h;
+}
+function metE2(q, m, st){
+  var h = "", n = 0;
+  var feitoC = st.como===m.como;
+  h += metSub(++n, "🔑", "COMO · escolher o caminho", metLn(["Qual caminho serve melhor para esta questão?"])+
+    metOps(MET_CAMINHOS.map(function(c,i){ return MET_CIRC.charAt(i)+' '+c }), "metComo", st, m.como-1, st.comoErr, feitoC)+
+    (feitoC ? metLn(["✅ Bom caminho."]) : (st.comoErr.length ? metLn(["❌ Este caminho não é o melhor aqui.","Tente outro."]) : "")));
+  if(m.formula){
+    var F = m.formula, feitoF = st.form===F.c;
+    h += metSub(++n, "🧮", "Escolher a fórmula", metLn(["Qual destas resolve a questão?"])+metOps(F.ops.map(metH), "metForm", st, F.c, st.formErr, feitoF)+
+      (feitoF ? '<table class="mttb">'+F.letras.map(function(l){ return '<tr><td><b>'+metH(l[0])+'</b></td><td>'+metH(l[1])+'</td><td>'+metH(l[2])+'</td></tr>' }).join("")+'</table>'
+              : (st.formErr.length ? metLn(["❌ Essa fórmula é de outro tipo de conta."]) : "")));
+  }
+  if(m.quanto) h += metSub(++n, "🔑", "QUANTO · quantos passos e uma estimativa", metLn(['Esta conta tem <b>'+(m.quanto.n<10?"0":"")+m.quanto.n+'</b> passos.', '🎯 '+metH(m.quanto.est)]));
+  h += metSub(++n, "💡", "Hipótese · o meu palpite", metLn([metH(m.hip)])+
+    (st.hipOk ? metLn(['📌 Seu palpite: <b>'+metH(st.hip)+'</b>', 'Você confere na etapa 4.'])
+              : '<textarea class="mthip" id="mtHip" rows="2" placeholder="escreva aqui o seu palpite">'+metH(st.hip)+'</textarea><button type="button" class="mtbt v" onclick="metHip()">guardar o palpite</button>'));
+  var P = (GRIFO[q.pid]||{}).palavras||[];
+  if(P.length) h += metSub(++n, "🟢", "Palavras-pista", metLn(["Estas palavras decidem a resposta."])+'<div class="mtchips">'+P.map(function(w){ return '<span class="mtchip">'+metH(w)+'</span>' }).join("")+'</div>');
+  return h;
+}
+function metE3(q, m, st){
+  var h = "", n = 0;
+  if(metConta(m)){
+    h += metSub(++n, "🔑", "QUANDO · a ordem dos passos", metLn(m.exec.map(function(p,i){ return (st.lacOk["x"+i]?"✅ ":"⬜ ")+metH(p.n) })));
+    h += metSub(++n, "🎬", "Exemplo animado com outros números", (MET_ANIM[m.anim]||"")+'<div class="mtex">'+metLn(m.exemplo.map(metH))+'</div>'+metLn(["Agora é a sua vez, com os números da questão."]));
+    var lib = true;
+    m.exec.forEach(function(p,i){
+      if(!lib){ h += metSub(++n, "🔒", metH(p.n), metLn(["Abre quando o passo de cima fechar."])); return }
+      h += metSub(++n, "✏️", "Lacunas", metLacuna("x"+i, p, st));
+      if(!st.lacOk["x"+i]) lib = false;
+    });
+    if(m.tab) h += metSub(++n, "🔢", "Tabuada ao lado", metTabuada(m.tab));
+    if(lib) h += metLn(['🏁 Todos os passos feitos.','Agora vá para a questão e marque a alternativa que bate com o seu resultado.']);
+  } else {
+    var p = st.passo;
+    h += metSub(++n, "🔑", "QUANDO · a ordem dos passos", m.passos.slice(0,p).map(function(x){ return '<span class="mtln">'+metH(x)+'</span>' }).join("")+
+      (p < m.passos.length ? '<button type="button" class="mtbt a" onclick="metPasso()">👉 próximo passo</button>' : metLn(["✅ Você viu todos os passos."])));
+    var L = Object.keys(q.alternativas), E = st.elim;
+    h += metSub(++n, "✂️", "Eliminar as alternativas", metLn(["Leia cada alternativa e compare com o texto.","Marque o que você acha.","Esta tela não diz se está certo: quem decide é você."])+
+      L.map(function(l){ var e = E[l]||"";
+        return '<div class="mtel'+(e==="nao"?" risc":"")+'"><div class="mtelt"><b>'+l+')</b> '+q.alternativas[l]+'</div><div class="mtbts">'+
+          '<button type="button" class="mtbt'+(e==="sim"?" on":"")+'" onclick="metElim(\''+l+'\',\'sim\')">✔ o texto diz</button>'+
+          '<button type="button" class="mtbt'+(e==="nao"?" on":"")+'" onclick="metElim(\''+l+'\',\'nao\')">✘ não diz</button></div></div>' }).join("")+
+      (function(){ var s = L.filter(function(l){ return E[l]!=="nao" }); return metLn(['Sobrou: <b>'+(s.join(" · ")||"nenhuma")+'</b>.']) })());
+  }
+  return h;
+}
+function metE4(q, m, st){
+  var r = resp[q.pid];
+  if(!r) return metLn(["🔒 Esta etapa abre depois que você confirmar a resposta na tela da questão."]);
+  var h = "", n = 0, G = (GOLETEC[q.pid]||{}).alts||{};
+  h += metSub(++n, "🔑", "POR QUÊ · a prova no texto", metLn([metH(m.porque)]));
+  h += metSub(++n, "💡", "Conferir a hipótese", metLn(['📌 Seu palpite: <b>'+metH(st.hip||"(você não escreveu)")+'</b>',
+      'Você marcou <b>'+r.marcou+'</b>. '+(r.ok?"✅ Acertou.":"❌ A certa era a "+q.gabarito+"."),
+      'A certa diz: '+q.alternativas[q.gabarito], 'Seu palpite chegou perto?']));
+  h += metSub(++n, "⚽", "Por que as outras estão erradas", Object.keys(q.alternativas).filter(function(l){ return l!==q.gabarito }).map(function(l){
+      return '<span class="mtln"><b>'+l+')</b> '+metH((G[l]||{}).j||"")+'</span>' }).join(""));
+  if(m.prova) h += metSub(++n, "✔️", "Prova real", metLn([metH(m.prova)]));
+  return h;
+}
+
+/* ---------- a tela ---------- */
+function telaMetodo(){
+  var q = fila[iQ]; if(!q){ tela="fim"; return render() }
+  var m = metQ(q), st = metEst(q.pid); st.visto = true;
+  var h = '<div class="mtwrap"><div class="mttopo"><div class="mtt1"><span class="mtem20">🧭</span> Método de estudo · questão '+(iQ+1)+' de '+fila.length+'</div>'+
+    '<span class="mtln">Esta é a tela de ESTUDO.</span><span class="mtln">A questão de verdade fica na tela seguinte, no modo puro.</span>'+
+    '<span class="mtln">Abra as etapas na ordem.</span>'+
+    '<button type="button" class="mtir" onclick="metIrQuestao()">👉 Ir para a questão (modo puro)</button></div>';
+  if(!m){ $("palco").innerHTML = h + metLn(["Esta questão ainda não tem método escrito."]) + '</div>'; return }
+  h += '<details class="mtcfg"><summary><span class="mtem20">⚙️</span> Configurar as etapas</summary>'+MET_ETAPAS.map(function(et){
+      if(et.id==="e15" && !metTemE15(m)) return "";
+      var on = metCfgOn(et.id);
+      return '<button type="button" class="mtsw'+(on?" on":"")+'" onclick="metSw(\''+et.id+'\')"><span class="mttick">'+(on?"✔":"")+'</span><span class="mtem20">'+et.emo+'</span> '+et.nome+'</button>' }).join("")+'</details>';
+  MET_ETAPAS.forEach(function(et){
+    if(et.id==="e15" && !metTemE15(m)) return;
+    if(!metCfgOn(et.id)) return;
+    h += '<div class="mtet" style="--c:'+et.c+';--b:'+et.b+'">'+metCab(et, st, m, q);
+    if(st.ab[et.id] && !(et.id==="e4" && !resp[q.pid]))
+      h += '<div class="mtcorpo">'+({e0:metE0,e1:metE1,e15:metE15,e2:metE2,e3:metE3,e4:metE4})[et.id](q, m, st)+'</div>';
+    else if(et.id==="e4" && !resp[q.pid] && st.ab.e4) h += '<div class="mtcorpo">'+metE4(q,m,st)+'</div>';
+    h += '</div>';
+  });
+  h += '<button type="button" class="mtir" onclick="metIrQuestao()">👉 Ir para a questão (modo puro)</button></div>';
+  $("palco").innerHTML = h;
+}
+function metRe(){ var y = window.scrollY; telaMetodo(); try{ window.scrollTo(0,y) }catch(e){} }
+function metAbre(id){ var st = metEst(fila[iQ].pid); st.ab[id] = !st.ab[id]; metRe() }
+function metSw(id){ CFG["met_"+id] = !metCfgOn(id); try{ salvarCfg() }catch(e){} metRe() }
+function metLeu(){ metEst(fila[iQ].pid).leu = true; metRe() }
+function metIdeia(i){ var q=fila[iQ], m=metQ(q), st=metEst(q.pid), L=metIdeiaOps(q,m); if(L[i]===m.ideia[0]) st.ideia="ok"; else if(st.ideiaErr.indexOf(i)<0) st.ideiaErr.push(i); metRe() }
+function metComo(i){ var q=fila[iQ], m=metQ(q), st=metEst(q.pid); if(i===m.como-1) st.como=m.como; else if(st.comoErr.indexOf(i)<0) st.comoErr.push(i); metRe() }
+function metForm(i){ var q=fila[iQ], m=metQ(q), st=metEst(q.pid); if(i===m.formula.c) st.form=i; else if(st.formErr.indexOf(i)<0) st.formErr.push(i); metRe() }
+function metTransf(v){ metEst(fila[iQ].pid).transf = v; metRe() }
+function metHip(){ var st=metEst(fila[iQ].pid), t=$("mtHip"); st.hip = t ? t.value.trim() : ""; if(st.hip) st.hipOk = true; metRe() }
+function metPasso(){ metEst(fila[iQ].pid).passo++; metRe() }
+function metElim(l, v){ var st=metEst(fila[iQ].pid); st.elim[l] = (st.elim[l]===v) ? "" : v; metRe() }
+function metConfDados(){
+  var q=fila[iQ], m=metQ(q), st=metEst(q.pid), ok=true;
+  m.dados.forEach(function(d,i){ if(!/^[\d.,\s]+$/.test(d[1])) return; var e=$("mtd_"+i), v=e?e.value:""; st.dados[i]=v;
+    if(Math.abs(metNum(v)-metNum(d[1]))>1e-9) ok=false });
+  st.dadosOk = ok; st.dadosErr = !ok; metRe();
+}
+function metPassoDe(m, chave){ return chave.charAt(0)==="t" ? m.transf.passos[+chave.slice(1)] : m.exec[+chave.slice(1)] }
+function metConfLac(chave){
+  var q=fila[iQ], m=metQ(q), st=metEst(q.pid), p=metPassoDe(m, chave), vals=[], ok=true;
+  p.g.forEach(function(g,j){ var e=$("mtg_"+chave+"_"+j), v=e?e.value:""; vals.push(v);
+    var x=metNum(v); if(isNaN(x) || Math.abs(x-g)>(p.tol||0)+1e-9) ok=false });
+  st.lac[chave]=vals;
+  if(ok) st.lacOk[chave]=true; else st.dic[chave]=Math.min((st.dic[chave]||0)+1, (p.dicas||[]).length);
+  metRe();
+}
+function metDica(chave){ var st=metEst(fila[iQ].pid), m=metQ(fila[iQ]), p=metPassoDe(m,chave);
+  st.lac[chave] = p.g.map(function(_,j){ var e=$("mtg_"+chave+"_"+j); return e?e.value:"" });
+  st.dic[chave]=Math.min((st.dic[chave]||0)+1, (p.dicas||[]).length); metRe() }
+function metIrQuestao(){ tela="q"; render() }
+function metAbrir(){ tela="met"; render() }
+try{ ["metAbre","metSw","metLeu","metIdeia","metComo","metForm","metTransf","metHip","metPasso","metElim","metConfDados","metConfLac","metDica","metIrQuestao","metAbrir"].forEach(function(f){ window[f]=eval(f) }) }catch(e){}
+
+/* ---------- ligar no fluxo: render · barra · voltar · avançar · topo ---------- */
+CFG.metodo = !!CFG.metodo;   /* nasce DESLIGADO: quem liga é o estudante, na tela 3 (card 2.5) */
+var render_V0507 = render;
+render = function(){
+  /* com o método ligado, toda questão ainda não estudada abre primeiro na tela do método */
+  if(tela==="q" && CFG.metodo && fila[iQ] && !metEst(fila[iQ].pid).visto) tela="met";
+  if(tela!=="met") return render_V0507.apply(this, arguments);
+  telaMetodo();
+  try{ pintarCena() }catch(e){}
+  try{ pintarBarra_OFF_CLD014() }catch(e){}
+  try{ var p=$("bProx"), v=$("bVolta"), o=$("bOutro"); p.disabled=false; p.textContent="Ir para a questão →"; v.disabled=false; if(o) o.style.display="" }catch(e){}
+  /* o topo conta a tela da questão: o método é a mesma tela, em modo estudo (antes aparecia "Tela 0") */
+  try{ tela="q"; pintarTopo(); tela="met"; $("stTela").textContent="método · questão "+(iQ+1)+" de "+fila.length;
+       var tn=$("stTelaN"); if(tn) tn.textContent += " · estudo" }catch(e){ tela="met" }
+  try{ salvar() }catch(e){}
+  try{ window.scrollTo(0,0) }catch(e){}
+};
+try{ window.render = render }catch(e){}
+var avancar_V0507 = avancar;
+avancar = function(){ if(tela==="met"){ tela="q"; return render() } return avancar_V0507.apply(this, arguments) };
+var voltar_V0507 = voltar;
+voltar = function(){ if(tela==="met"){ tela="q"; return voltar_V0507.apply(this, arguments) } return voltar_V0507.apply(this, arguments) };
+try{ window.avancar=avancar; window.voltar=voltar }catch(e){}
+
+/* a tela da questão continua PURA: ganha só 1 botão para abrir o método */
+var telaQuestao_V0507 = telaQuestao;
+telaQuestao = function(){
+  var v = telaQuestao_V0507.apply(this, arguments);
+  try{ if(tela==="q" && fila[iQ] && metQ(fila[iQ])){ var c=$("palco").querySelector(".croxo");
+    if(c) c.insertAdjacentHTML("afterend", '<button type="button" class="mtabrir" onclick="metAbrir()"><span class="mtem20">🧭</span> Abrir o método de estudo desta questão</button>') } }catch(e){}
+  return v;
+};
+
+/* tela 3 · card 2.5 */
+var ligarCfg_V0507 = ligarCfg;
+ligarCfg = function(k){ if(k==="metodo"){ CFG.metodo=!CFG.metodo; salvarCfg(); return render() } return ligarCfg_V0507.apply(this, arguments) };
+try{ window.ligarCfg = ligarCfg }catch(e){}
+var telaCfg_V0507 = telaCfg;
+telaCfg = function(){
+  telaCfg_V0507.apply(this, arguments);
+  try{ var bts=document.querySelector("#palco .bloco.bl5 .bts");
+    if(bts) bts.insertAdjacentHTML("beforeend", cardCfg("metodo","2.5","🧭","Método de estudo · tela separada",
+      "Antes de cada questão, abre uma tela de estudo com 6 etapas: ler, entender, organizar, planejar, executar e conferir. A questão continua pura, na tela seguinte.", CFG.metodo, true)) }catch(e){}
+};
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔴 CLD-228 · O "👨‍🏫 sair" VERMELHO NO TOPO, IGUAL AO DA REVISÃO SAAIB (V02.18).
+   Marcos, 05/10 13:12: "gerar novamente a versão ETEC, se tiver atualização que dê para
+   adaptar, assim como você está melhorando a revisão SAAIB".
+   Aqui a "tela 4" é a ESCOLHA (caminho · esporte · componente · prova).
+   Clicou: fecha a janela aberta (sumário, glossário), salva e volta à escolha.
+   Não aparece na identificação, nem na escolha quando não há janela aberta.
+   ═══════════════════════════════════════════════════════════════════════════ */
+(function(){
+  var JAN=["sumjan","glosjan"];
+  function aberta(){ return JAN.some(function(id){ return document.getElementById(id) }) }
+  function pode(){
+    try{ if(typeof tela==="undefined" || tela==="ident") return false;
+         if(tela==="escolha") return aberta(); return true }catch(e){ return false }
+  }
+  function mostra(){
+    try{
+      var b=document.getElementById("m7sair4");
+      if(!b){ b=document.createElement("button"); b.type="button"; b.id="m7sair4"; b.className="m7profsai";
+        b.innerHTML='<span class="em">👨‍🏫</span><span class="tx">sair</span><span class="tx2">escolha</span>';
+        b.title="sair daqui e voltar à escolha · o que você fez fica guardado";
+        b.onclick=function(ev){ ev.stopPropagation(); ev.preventDefault(); window.m7Sair4() };
+        document.body.appendChild(b) }
+      var v=pode(); if(b.style.display!==(v?"":"none")) b.style.display=v?"":"none";
+      document.body.classList.toggle("m7comsair4", v);
+    }catch(e){}
+  }
+  window.m7Sair4=function(){
+    JAN.forEach(function(id){ var e=document.getElementById(id); if(e) e.remove() });
+    try{ salvar() }catch(e){}
+    try{ if(tela!=="escolha"){ tela="escolha"; render() } }catch(e){}
+    mostra();
+  };
+  window.addEventListener("load", function(){ mostra(); setInterval(mostra, 400) });
+})();
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔴 CLD-254 · A CONTA ARMADA NA MALHA QUADRICULADA, PASSO A PASSO, EM TODA ETAPA DE CÁLCULO.
+   Marcos, 05/10 20:14: "a imagem 1 pede cálculo e aqui não há lugar para a malha quadriculada como o
+   preparatório SARESP faz, montando a divisão · o divisor tem vírgula, então precisaria montar uma conta
+   onde o estudante aprendesse a resolver isso · fração equivalente (× 10) e/ou dividir direto, passo a passo".
+   20:17: "lembre das setas etc. que o SARESP já sabe fazer · fazer o mesmo aqui, inclusive com a vírgula ·
+   e não apenas nesta conta: em todas as questões, na etapa de cálculo · sempre com a tabuada ·
+   são 4 tabuadas (+ × − ÷) e eu uso mais 2: a da potenciação e a da radiciação".
+   COMO (por cima do etec_c176, sem mudar nada dele):
+     ① cada lacuna de conta ganha o botão "🧮 fazer a conta na malha";
+     ② abre embaixo: a PERGUNTA do passo (esquerda) · a MALHA com a conta armada (meio) · a TABUADA (direita);
+     ③ cada acerto escreve na malha e libera o próximo passo; 2 erros no mesmo passo mostram a certa e seguem;
+     ④ o divisor com vírgula: multiplica os DOIS por 10 (ou 100) até a vírgula sair · fração equivalente;
+     ⑤ vírgula no dividendo / fim da parte inteira: a vírgula sobe para o resultado e desce um 0 (↓);
+     ⑥ multiplicação com vírgula: multiplica sem a vírgula e depois conta as casas;
+     ⑦ × 10, × 100: a vírgula anda para a direita; potências de 10: a tabuada da potenciação;
+     ⑧ no fim, o resultado vai para a lacuna (o estudante ainda aperta "conferir").
+   As tabuadas: + · − · × · ÷ · potenciação · radiciação (CTA_TAB). A da radiciação fica pronta para as contas
+   que pedirem raiz (nenhuma das contas atuais pede).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ---------- números com vírgula, sem erro de arredondamento: {i: inteiro sem vírgula, d: casas} ---------- */
+function ctaN(t){
+  var s = String(t).replace(/\s+/g, "").replace(/\./g, "").replace(",", ".");
+  var p = s.split("."), d = p[1] ? p[1].length : 0;
+  return {i: parseInt(p[0] + (p[1] || ""), 10), d: d};
+}
+function ctaS(n){                     /* {i,d} → "35,8" */
+  var neg = n.i < 0, s = String(Math.abs(n.i));
+  if(n.d > 0){ while(s.length <= n.d) s = "0" + s; s = s.slice(0, s.length - n.d) + "," + s.slice(s.length - n.d) }
+  return (neg ? "−" : "") + s;
+}
+function ctaV(n){ return n.i / Math.pow(10, n.d) }
+function ctaLimpa(n){ while(n.d > 0 && n.i % 10 === 0){ n.i = n.i / 10; n.d-- } return n }
+function ctaEsc(n, d){ return n.i * Math.pow(10, d - n.d) }   /* o inteiro de n com d casas */
+function ctaPot10(n){ var v = ctaV(n); var k = Math.round(Math.log(v) / Math.LN10); return (v >= 10 && Math.pow(10, k) === v) ? k : 0 }
+function ctaCasasG(g){ var s = String(g); return s.indexOf(".") >= 0 ? s.split(".")[1].length : 0 }
+function ctaDz(x){ return (x < 10 ? "0" : "") + x }
+
+/* ---------- a conta da lacuna vira uma lista de operações (da esquerda para a direita) ---------- */
+function ctaLe(fr){
+  var lado = String(fr).split(/=|≈/)[0].trim();
+  var pot = lado.match(/^10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)\s*([÷×])\s*10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
+  if(pot) return {pot: true, a: ctaSup(pot[1]), op: pot[2], b: ctaSup(pot[3])};
+  var pc = lado.match(/^([\d,]+)\s*×\s*10([⁻⁰¹²³⁴⁵⁶⁷⁸⁹]+)$/);
+  if(pc) return {potc: true, m: pc[1], e: ctaSup(pc[2]), alvo: fr};
+  var t = lado.split(/ ([÷×−+]) /);
+  if(t.length < 3) return null;
+  var ns = [], ops = [];
+  for(var k = 0; k < t.length; k++){
+    if(k % 2){ ops.push(t[k]) }
+    else { if(!/^[\d][\d ,]*$/.test(t[k].trim())) return null; ns.push(t[k].trim()) }
+  }
+  return {ns: ns, ops: ops};
+}
+function ctaSup(s){ var M = {"⁻":"-","⁰":"0","¹":"1","²":"2","³":"3","⁴":"4","⁵":"5","⁶":"6","⁷":"7","⁸":"8","⁹":"9"}; return parseInt(String(s).split("").map(function(c){ return M[c] }).join(""), 10) }
+function ctaSupS(n){ var M = {"-":"⁻","0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"}; return String(n).split("").map(function(c){ return M[c] }).join("") }
+
+/* ---------- o PLANO: as contas, cada uma com a sua malha e os seus passos ---------- */
+function ctaPlano(p){
+  var L = ctaLe(p.fr); if(!L) return null;
+  var g = (p.g || [])[0], contas = [];
+  if(L.pot) return {contas: [ctaPotencia(L)], fim: String(g)};
+  if(L.potc) return {contas: [ctaPotCient(L)], fim: String(g)};
+  var cur = ctaN(L.ns[0]);
+  for(var k = 0; k < L.ops.length; k++){
+    var b = ctaN(L.ns[k + 1]), op = L.ops[k], C;
+    if(op === "÷"){
+      /* casas que a divisão precisa dar: as da resposta + as que o "× 100" de depois vai empurrar */
+      var cas = ctaCasasG(g);
+      for(var j = k + 1; j < L.ops.length; j++) if(L.ops[j] === "×") cas += ctaPot10(ctaN(L.ns[j + 1]));
+      C = ctaDivide(cur, b, cas + 1);   /* 1 casa a mais, para poder arredondar no fim */
+    } else if(op === "×"){
+      C = ctaPot10(b) ? ctaVezes10(cur, b) : ctaMult(cur, b);
+    } else if(op === "+") C = ctaSoma(cur, b, false);
+    else C = ctaSoma(cur, b, true);
+    contas.push(C); cur = C.res;
+  }
+  /* o arredondamento: a chave deu 1 casa a mais do que a resposta pede */
+  var cg = ctaCasasG(g);
+  if(cur.d > cg){
+    var f = Math.pow(10, cur.d - cg), r = ctaLimpa({i: Math.round(cur.i / f), d: cg}), prox = Math.floor(cur.i / Math.pow(10, cur.d - cg - 1)) % 10;
+    var R = {tipo: "≈", tit: "arredondar " + ctaS(cur), passos: [], tab: {t: ""}, res: r, G: {tipo: "pot", lin: [ctaS(cur) + " ≈ ?"]}};
+    R.passos.push({info: true, q: ["A resposta pede " + (cg ? cg + " casa(s) depois da vírgula." : "um número sem vírgula."), "Olhe o algarismo logo depois: é o " + prox + ".", prox >= 5 ? "5 ou mais: o anterior sobe 1." : "Menos que 5: o anterior fica como está."]});
+    R.passos.push({q: [ctaS(cur) + " arredondado fica quanto?"], r: ctaS(r), ap: function(G){ G.lin = [ctaS(cur) + " ≈ " + ctaS(r)] }});
+    contas.push(R); cur = r;
+  }
+  return {contas: contas, fim: ctaS(cur)};
+}
+
+/* ---------- ÷ · o método da chave, com a vírgula ---------- */
+function ctaDivide(a, b, casas){
+  var C = {tipo: "÷", tit: ctaS(a) + " ÷ " + ctaS(b), passos: [], tab: {t: "÷"}};
+  var A = {i: a.i, d: a.d}, B = {i: b.i, d: b.d};
+  /* ④ o divisor com vírgula: os dois × 10 (ou × 100) até a vírgula sair · fração equivalente */
+  if(B.d > 0){
+    var f = Math.pow(10, B.d);
+    var A2 = A.d >= B.d ? ctaLimpa({i: A.i, d: A.d - B.d}) : {i: A.i * Math.pow(10, B.d - A.d), d: 0}, B2 = {i: B.i, d: 0};
+    C.passos.push({info: true, pot: true, q: ["O divisor " + ctaS(B) + " tem vírgula.", "Na chave, o divisor precisa ser um número inteiro.", "Multiplique os DOIS números por " + f + ".", "A divisão continua dando o mesmo resultado.", "É a fração equivalente: " + ctaS(A) + "/" + ctaS(B) + " = " + ctaS(A2) + "/" + ctaS(B2) + "."]});
+    C.passos.push({pot: true, q: [ctaS(A) + " × " + f + " = ?", "A vírgula anda " + B.d + " casa(s) para a direita."], r: ctaS(A2)});
+    C.passos.push({pot: true, q: [ctaS(B) + " × " + f + " = ?"], r: ctaS(B2), ap: function(G){ G.troca = true }});
+    A = A2; B = B2;
+  }
+  C.tab.n = B.i;
+  var dv = B.i, ints = String(Math.floor(ctaV(A) + 1e-9)), dec = A.d ? String(A.i).slice(-A.d) : "";
+  var dig = (ints + dec).split("").map(Number), ci = ints.length;
+  C.G = {tipo: "÷", dividendo: ctaS(A), dig: dig.slice(), nreal: dig.length, ci: ci, divisor: String(dv), quo: "", rows: [], troca: !(b.d > 0)};
+  var i = 0, cur = dig[0];
+  while(cur < dv && i < ci - 1){ i++; cur = cur * 10 + dig[i] }
+  if(cur >= dv) C.passos.push({q: ["Separe o 1º pedaço do " + ctaS(A) + " que dá para dividir por " + dv + ".", "Comece pela esquerda.", "Pegue o menor pedaço que seja " + dv + " ou mais."], r: String(cur)});
+  var qc = 0, rs = 0, guarda = 0;
+  while(guarda++ < 40){
+    var q = Math.floor(cur / dv), pr = q * dv; rs = cur - pr;
+    C.passos.push({q: ["Quantas vezes o " + dv + " cabe em " + cur + "?", q === 0 ? "Se não cabe nenhuma vez, a resposta é 0." : "Olhe a tabuada do " + dv + " ao lado."], r: String(q), ap: (function(qq){ return function(G){ G.quo += String(qq) } })(q)});
+    if(q > 0){
+      C.passos.push({q: [q + " × " + dv + " = ?", "O resultado vai embaixo do " + cur + ", para subtrair."], r: String(pr), ap: (function(pp, ff){ return function(G){ G.rows.push({fim: ff, v: "−" + pp, prod: true}) } })(pr, i)});
+      C.passos.push({q: [cur + " − " + pr + " = ?", "É o que sobra."], r: String(rs), ap: (function(rr, ff){ return function(G){ G.rows.push({fim: ff, v: String(rr), resto: true}) } })(rs, i)});
+    }
+    if(i >= ci) qc++;
+    if(i >= ci - 1 && (qc >= casas || (rs === 0 && i >= dig.length - 1))) break;
+    if(i + 1 === ci){
+      C.passos.push({info: true, q: [i + 1 >= dig.length ? "Acabaram os algarismos da parte inteira." : "Agora vem a parte depois da vírgula.", "A vírgula sobe para o resultado.", i + 1 >= dig.length ? "Para continuar, desce um 0 (↓)." : "Depois desce o próximo algarismo (↓)."], ap: function(G){ G.quo += "," }});
+    }
+    var base = rs, nd = (i + 1 < dig.length) ? dig[i + 1] : 0, novo = base * 10 + nd;
+    C.passos.push({q: ["Desça o " + nd + " (↓) ao lado do " + base + ": fica quanto?"], r: String(novo), ap: (function(ii, nn){ return function(G){
+      if(ii + 1 >= G.dig.length) G.dig.push(0);
+      var L = G.rows[G.rows.length - 1];
+      if(L && L.resto){ L.v = String(nn); L.fim = ii + 1; L.desce = ii + 1 } else G.rows.push({fim: ii + 1, v: String(nn), resto: true, desce: ii + 1});
+    } })(i, novo)});
+    i++; cur = novo;
+  }
+  var qi = Math.floor(ctaV(a) / ctaV(b) * Math.pow(10, casas) + 1e-9);
+  C.res = ctaLimpa({i: qi, d: casas});
+  C.passos.push({info: true, fim: true, q: ["Pronto: " + ctaS(a) + " ÷ " + ctaS(b) + (rs ? " ≈ " : " = ") + ctaS(C.res) + "."]});
+  return C;
+}
+
+/* ---------- × por 10, 100, 1000: a vírgula anda ---------- */
+function ctaVezes10(a, b){
+  var k = ctaPot10(b), res = a.d >= k ? ctaLimpa({i: a.i, d: a.d - k}) : {i: a.i * Math.pow(10, k - a.d), d: 0};
+  var C = {tipo: "×10", tit: ctaS(a) + " × " + ctaS(b), passos: [], res: res, tab: {t: "pot", n: 10}};
+  C.G = {tipo: "×10", a: ctaS(a), b: ctaS(b), r: ""};
+  C.passos.push({info: true, q: ["Multiplicar por " + ctaS(b) + " é andar a vírgula " + ctaDz(k) + " casa" + (k > 1 ? "s" : "") + " para a DIREITA.", "Se faltar algarismo, completa com 0."], vir: true});
+  C.passos.push({q: [ctaS(a) + " × " + ctaS(b) + " = ?"], r: ctaS(res), vir: true, ap: function(G){ G.r = ctaS(res) }});
+  return C;
+}
+
+/* ---------- × armada (sem a vírgula; depois conta as casas) ---------- */
+function ctaMult(a, b){
+  var C = {tipo: "×", tit: ctaS(a) + " × " + ctaS(b), passos: [], tab: {t: "×"}};
+  var A = Math.abs(a.i), B = Math.abs(b.i), Bd = String(B).split("").map(Number).reverse(), Ad = String(A).split("").map(Number).reverse();
+  var casas = a.d + b.d, total = A * B;
+  C.G = {tipo: "×", a: ctaS(a), b: ctaS(b), A: String(A), B: String(B), parc: [], sobe: {}, soma: "", r: "", cols: String(total).length + 1};
+  if(casas) C.passos.push({info: true, q: ["Tem vírgula: multiplique como se ela não existisse.", ctaS(a) + " vira " + A + " e " + ctaS(b) + " vira " + B + ".", "No fim, a vírgula volta: conte as casas."], vir: true});
+  var nz = Bd.filter(function(x){ return x }).length;
+  Bd.forEach(function(bd, j){
+    if(!bd) return;
+    var vai = 0, linha = "";
+    Ad.forEach(function(ad, i){
+      var v = ad * bd + vai, ult = (i === Ad.length - 1);
+      var w = ult ? String(v) : String(v % 10);
+      C.passos.push({q: [bd + " × " + ad + (vai ? " + " + vai + " (o que subiu)" : "") + " = ?", ult ? "É o último: escreva o número todo." : (v >= 10 ? "Escreva o " + (v % 10) + " e o " + Math.floor(v / 10) + " sobe (↑)." : "Escreva embaixo.")], r: String(v), tab: true, tabn: bd,
+        ap: (function(jj, ii, ww, vv, uu){ return function(G){ G.parc[jj] = ww + (G.parc[jj] || ""); if(!uu && vv >= 10) G.sobe[jj + ":" + (ii + 1)] = Math.floor(vv / 10) } })(j, i, w, v, ult)});
+      linha = w + linha; vai = ult ? 0 : Math.floor(v / 10);
+    });
+  });
+  if(nz > 1){
+    C.passos.push({q: ["Agora some as linhas: quanto dá?", "Some coluna por coluna, da direita para a esquerda."], r: String(total), tab2: {t: "+"}, ap: function(G){ G.soma = String(total) }});
+  }
+  var res = ctaLimpa({i: total * ((a.i < 0) !== (b.i < 0) ? -1 : 1), d: casas});
+  if(casas){
+    C.passos.push({q: [ctaS(a) + " tem " + ctaDz(a.d) + " casa(s) depois da vírgula.", ctaS(b) + " tem " + ctaDz(b.d) + ".", "Quantas casas o resultado precisa ter?"], r: String(casas), vir: true});
+    C.passos.push({q: ["Conte " + casas + " casas da direita para a esquerda e ponha a vírgula: " + total + " vira quanto?"], r: ctaS({i: total, d: casas}), vir: true, ap: function(G){ G.r = ctaS({i: total, d: casas}) }});
+  } else C.passos.push({info: true, q: ["Pronto: " + ctaS(a) + " × " + ctaS(b) + " = " + ctaS(res) + "."], ap: function(G){ G.r = ctaS(res) }});
+  C.res = res;
+  return C;
+}
+
+/* ---------- + e − armadas, coluna por coluna, com a vírgula embaixo da vírgula ---------- */
+function ctaSoma(a, b, menos){
+  var d = Math.max(a.d, b.d), A = ctaEsc(a, d), B = ctaEsc(b, d), R = menos ? A - B : A + B;
+  var C = {tipo: menos ? "−" : "+", tit: ctaS(a) + (menos ? " − " : " + ") + ctaS(b), passos: [], tab: {t: menos ? "−" : "+"}};
+  var w = Math.max(String(A).length, String(B).length, String(Math.abs(R)).length);
+  var ad = String(A).split("").map(Number).reverse(), bd = String(B).split("").map(Number).reverse();
+  C.G = {tipo: "+-", op: menos ? "−" : "+", A: String(A), B: String(B), d: d, w: w, res: "", marca: {}, sobe: {}};
+  if(d && (a.d !== b.d)) C.passos.push({info: true, q: ["Vírgula embaixo de vírgula.", "Onde falta casa, completa com 0."], vir: true});
+  var vai = 0, emp = 0, x = ad.slice();
+  for(var i = 0; i < w; i++){
+    var t = (x[i] || 0), u = (bd[i] || 0);
+    if(i >= Math.max(ad.length, bd.length) && !vai && !emp) break;
+    if(menos){
+      t = t - emp; emp = 0;
+      if(t < u){
+        C.passos.push({info: true, q: ["Na coluna, " + t + " é menor que " + u + ".", "Peça 1 emprestado à casa da esquerda: o " + t + " vira " + (t + 10) + "."], ap: (function(ii, tt){ return function(G){ G.marca[ii] = tt + 10; G.marca[ii + 1] = "−1" } })(i, t)});
+        t += 10; emp = 1;
+      }
+      var r = t - u;
+      C.passos.push({q: [t + " − " + u + " = ?"], r: String(r), tab: true, tabn: t, ap: (function(rr){ return function(G){ G.res = rr + G.res } })(r)});
+    } else {
+      var s = t + u + vai;
+      C.passos.push({q: [t + " + " + u + (vai ? " + " + vai + " (o que subiu)" : "") + " = ?", s >= 10 && i < w - 1 ? "Escreva o " + (s % 10) + " e o 1 sobe (↑)." : "Escreva embaixo."], r: String(s), tab: true, tabn: t,
+        ap: (function(ss, ii, last){ return function(G){ G.res = (last ? String(ss) : String(ss % 10)) + G.res; if(ss >= 10 && !last) G.sobe[ii + 1] = 1 } })(s, i, i >= Math.max(ad.length, bd.length) - 1)});
+      vai = s >= 10 ? 1 : 0;
+      if(i >= Math.max(ad.length, bd.length) - 1){ break }
+    }
+  }
+  C.res = ctaLimpa({i: R, d: d});
+  if(d) C.passos.push({info: true, q: ["A vírgula desce no mesmo lugar: " + ctaS(C.res) + "."], vir: true});
+  return C;
+}
+
+/* ---------- potências de 10 ---------- */
+function ctaPotencia(L){
+  var C = {tipo: "pot", tit: "10" + ctaSupS(L.a) + " " + L.op + " 10" + ctaSupS(L.b), passos: [], tab: {t: "pot", n: 10}, G: {tipo: "pot", lin: []}};
+  var r = L.op === "÷" ? L.a - L.b : L.a + L.b;
+  C.passos.push({info: true, q: [L.op === "÷" ? "Divisão de potências de mesma base: fica a base e SUBTRAI os expoentes." : "Multiplicação de potências de mesma base: fica a base e SOMA os expoentes.", "Olhe a tabuada da potenciação do 10 ao lado."]});
+  C.passos.push({q: [L.op === "÷" ? "(" + L.a + ") − (" + L.b + ") = ?" : "(" + L.a + ") + (" + L.b + ") = ?", "Cuidado com o sinal: menos com menos vira mais."], r: String(r), ap: function(G){ G.lin.push("10" + ctaSupS(L.a) + " " + L.op + " 10" + ctaSupS(L.b) + " = 10" + ctaSupS(r)) }});
+  C.res = {i: r, d: 0};
+  return C;
+}
+function ctaPotCient(L){
+  var m = ctaN(L.m), C = {tipo: "pot", tit: L.m + " × 10" + ctaSupS(L.e), passos: [], tab: {t: "pot", n: 10}, G: {tipo: "pot", lin: []}};
+  var k = m.d, ni = ctaLimpa({i: m.i, d: 0});
+  C.passos.push({info: true, q: ["A resposta pede o número sem vírgula na frente: " + ctaS(ni) + " × 10 elevado a ?", L.m + " = " + ctaS(ni) + " × 10" + ctaSupS(-k) + " (a vírgula andou " + k + " casa)."], ap: function(G){ G.lin.push(L.m + " = " + ctaS(ni) + " × 10" + ctaSupS(-k)) }});
+  C.passos.push({q: ["(" + (-k) + ") + (" + L.e + ") = ?", "Multiplicação de potências de mesma base: soma os expoentes."], r: String(L.e - k), ap: function(G){ G.lin.push(ctaS(ni) + " × 10" + ctaSupS(-k) + " × 10" + ctaSupS(L.e) + " = " + ctaS(ni) + " × 10" + ctaSupS(L.e - k)) }});
+  C.res = {i: L.e - k, d: 0};
+  return C;
+}
+
+/* ---------- as 6 tabuadas ---------- */
+function ctaTabuada(t, n){
+  var L = [], tit = "";
+  if(t === "×" || t === "÷"){ tit = (t === "÷" ? "➗ Tabuada do " : "✖️ Tabuada do ") + n; for(var k = 1; k <= 10; k++) L.push([n + " × " + k, n * k]) }
+  else if(t === "+"){ tit = "➕ Tabuada da adição do " + n; for(var k2 = 0; k2 <= 9; k2++) L.push([n + " + " + k2, n + k2]) }
+  else if(t === "−"){ tit = "➖ Tabuada da subtração do " + n; for(var k3 = 0; k3 <= Math.min(9, n); k3++) L.push([n + " − " + k3, n - k3]) }
+  else if(t === "pot"){ tit = "🔼 Tabuada da potenciação do " + n; for(var k4 = -3; k4 <= 6; k4++) L.push([n + ctaSupS(k4), k4 < 0 ? "0," + "0".repeat(-k4 - 1) + "1" : String(Math.pow(n, k4)).replace(/\B(?=(\d{3})+(?!\d))/g, " ")]) }
+  else if(t === "raiz"){ tit = "√ Tabuada da radiciação"; for(var k5 = 1; k5 <= 10; k5++) L.push(["√" + (k5 * k5), k5]) }
+  return '<div class="ctatab"><div class="ctatt">' + tit + '</div>' + L.map(function(x){ return '<div class="ctatl"><span>' + x[0] + '</span><span class="ig">=</span><b>' + x[1] + '</b></div>' }).join("") + '</div>';
+}
+var CTA_TAB = ["+", "−", "×", "÷", "pot", "raiz"];
+
+/* ---------- a malha ---------- */
+function ctaCel(v, cls){ return '<span class="ctac' + (cls ? " " + cls : "") + '">' + (v == null ? "" : v) + '</span>' }
+function ctaMalha(C, G){
+  var h = "";
+  if(G.tipo === "÷"){
+    var n = Math.max(G.dig.length, 1) + 1, linhas = [];
+    var dv = '<div class="ctadv"><div class="ctadvn">' + G.divisor + '</div><div class="ctaquo">' + (G.quo || "&nbsp;") + '</div></div>';
+    var cab = ctaCel("", ""); for(var c = 0; c < n; c++){ cab += ctaCel(c < G.nreal ? G.dig[c] : "", (c === G.ci - 1 && G.nreal > G.ci ? "vg" : "")) }
+    linhas.push('<div class="ctal">' + cab + '</div>');
+    G.rows.forEach(function(r){
+      var s = String(r.v), cells = [], ini = r.fim - s.length + 1;
+      for(var c2 = -1; c2 < n; c2++){
+        var k = c2 - ini, ch = (k >= 0 && k < s.length) ? s.charAt(k) : "";
+        var cls = r.prod ? "prod" : (r.resto ? "resto" : "");
+        if(r.desce === c2) cls += " desce";
+        cells.push(ctaCel(ch, cls));
+      }
+      linhas.push('<div class="ctal' + (r.prod ? " risco" : "") + '">' + cells.join("") + '</div>');
+    });
+    h = '<div class="ctadiv"><div class="ctadd">' + linhas.join("") + '</div>' + dv + '</div>';
+    if(G.troca === false) h = '<div class="ctaaviso">Primeiro tire a vírgula do divisor ↓</div>' + h;
+  } else if(G.tipo === "×"){
+    var w = Math.max(G.cols, G.A.length + 1, G.B.length + 1);
+    var lin = function(s, op, cls){ s = String(s); var o = ""; for(var c = 0; c < w; c++){ var k = c - (w - s.length); o += ctaCel(k >= 0 ? s.charAt(k) : (c === 0 && op ? op : ""), cls) } return '<div class="ctal">' + o + '</div>' };
+    var sobe = []; Object.keys(G.sobe).forEach(function(k){ var p = k.split(":"); if(+p[0] === G.parc.filter(function(x){ return x != null }).length - 1 || true) sobe[+p[1]] = G.sobe[k] });
+    var so = ""; for(var c = 0; c < w; c++){ var col = w - 1 - c; so += ctaCel(sobe[col] ? "+" + sobe[col] : "", "sobe") }
+    h = '<div class="ctal">' + so + '</div>' + lin(G.A, "") + lin(G.B, "×") + '<div class="ctarisco"></div>';
+    G.parc.forEach(function(p, j){ if(p != null) h += lin(p + "0".repeat(j).replace(/0/g, "·"), G.parc.filter(function(x){ return x != null }).length > 1 && j ? "+" : "", "parc") });
+    if(G.soma) h += '<div class="ctarisco"></div>' + lin(G.soma, "", "resto");
+    if(G.r) h += '<div class="ctafim">com a vírgula: <b>' + G.r + '</b></div>';
+    h = '<div class="ctagr">' + h + '</div><div class="ctaori">' + G.a + ' × ' + G.b + '</div>';
+  } else if(G.tipo === "+-"){
+    var W = G.w + 1, D = G.d;
+    var lin2 = function(s, op, cls){ s = String(s); var o = ""; for(var c = 0; c < W; c++){ var k = c - (W - s.length), col = W - 1 - c; var mk = G.marca[col]; o += ctaCel(k >= 0 ? s.charAt(k) : (c === 0 && op ? op : ""), cls + (D && col === D ? " vg" : "") ) } return '<div class="ctal">' + o + '</div>' };
+    var sb = ""; for(var c3 = 0; c3 < W; c3++){ var col3 = W - 1 - c3, m = G.marca[col3]; sb += ctaCel(G.sobe[col3] ? "+1" : (m != null ? m : ""), "sobe") }
+    h = '<div class="ctagr"><div class="ctal">' + sb + '</div>' + lin2(G.A, "") + lin2(G.B, G.op) + '<div class="ctarisco"></div>' + lin2(String(G.res).replace(/^0+(?=\d)/, ""), "", "resto") + '</div>';
+  } else if(G.tipo === "×10"){
+    h = '<div class="ctapot"><div>' + G.a + ' × ' + G.b + '</div><div>→ a vírgula anda para a direita →</div>' + (G.r ? '<div><b>' + G.r + '</b></div>' : '') + '</div>';
+  } else if(G.tipo === "pot"){
+    h = '<div class="ctapot">' + (G.lin.length ? G.lin.map(function(x){ return '<div>' + x + '</div>' }).join("") : '<div>' + C.tit + '</div>') + '</div>';
+  }
+  return '<div class="ctamalha">' + h + '</div>';
+}
+
+/* ---------- o estado e a tela ---------- */
+function ctaEst(st, chave){ st.cta = st.cta || {}; return st.cta[chave] = st.cta[chave] || {ab: false, c: 0, k: 0, err: 0, msg: ""} }
+var CTA_PLANOS = {};
+function ctaPlanoDe(chave, p){ var id = (fila[iQ] || {}).pid + "|" + chave; if(!(id in CTA_PLANOS)) CTA_PLANOS[id] = ctaPlano(p); return CTA_PLANOS[id] }
+function ctaGrade(C, ate){
+  var G = JSON.parse(JSON.stringify(C.G));
+  for(var k = 0; k < ate && k < C.passos.length; k++) if(C.passos[k].ap) C.passos[k].ap(G);
+  return G;
+}
+function ctaPainel(chave, p, st){
+  var P = ctaPlanoDe(chave, p); if(!P) return "";
+  var E = ctaEst(st, chave);
+  if(!E.ab) return '<button type="button" class="ctabt" onclick="ctaAbre(\'' + chave + '\')"><span class="em20">🧮</span> fazer a conta na malha · passo a passo</button>';
+  var C = P.contas[E.c], fim = E.c >= P.contas.length;
+  var h = '<div class="ctapn"><div class="ctahd"><span class="em20">🧮</span> a conta na malha' + (P.contas.length > 1 ? ' · conta ' + ctaDz(Math.min(E.c + 1, P.contas.length)) + ' de ' + ctaDz(P.contas.length) : '') +
+          '<button type="button" class="ctafe" onclick="ctaAbre(\'' + chave + '\')">✖ fechar</button></div>';
+  if(fim){
+    return h + '<div class="ctaok"><div>✅ Todas as contas feitas.</div><div>Resultado: <b>' + metH(P.fim) + '</b></div><div>Ele já foi para a lacuna.</div><div>👉 Aperte <b>conferir</b>.</div></div></div>';
+  }
+  var ps = C.passos[E.k] || {}, G = ctaGrade(C, E.k);
+  var esq = '<div class="ctac3 e"><div class="ctat">👉 passo ' + ctaDz(E.k + 1) + ' de ' + ctaDz(C.passos.length) + '</div><div class="ctaq">' + (ps.q || []).map(function(x){ return '<div>' + metH(x) + '</div>' }).join("") + '</div>';
+  if(ps.info || ps.fim) esq += '<button type="button" class="ctaok2" onclick="ctaInfo(\'' + chave + '\')">' + (ps.fim ? (E.c + 1 < P.contas.length ? "▶ próxima conta" : "✔ terminar") : "✔ entendi") + '</button>';
+  else esq += '<div class="ctaresp"><input id="ctain_' + chave + '" inputmode="decimal" autocomplete="off" onkeydown="if(event.key===\'Enter\')ctaConf(\'' + chave + '\')"><button type="button" class="ctaok2" onclick="ctaConf(\'' + chave + '\')">conferir</button></div>';
+  if(E.msg) esq += '<div class="ctamsg">' + E.msg + '</div>';
+  esq += '</div>';
+  var tb = "";
+  if(ps.pot || C.tipo === "pot" || C.tipo === "×10") tb = ctaTabuada("pot", 10);
+  else if(C.tipo === "÷" && C.G.troca !== undefined && (G.troca || C.G.troca)) tb = ctaTabuada("÷", C.tab.n);
+  else if(C.tipo === "×" && ps.tabn != null) tb = ctaTabuada("×", ps.tabn);
+  else if(C.tipo === "+" && ps.tabn != null) tb = ctaTabuada("+", ps.tabn);
+  else if(C.tipo === "−" && ps.tabn != null) tb = ctaTabuada("−", ps.tabn);
+  var dir = '<div class="ctac3 d"><div class="ctat">a tabuada</div>' + (tb || '<div class="ctav">Neste passo não precisa da tabuada.</div>') + '</div>';
+  var meio = '<div class="ctac3 m"><div class="ctat">🧮 ' + metH(C.tit) + '</div>' + ctaMalha(C, G) + '</div>';
+  return h + '<div class="cta3">' + esq + meio + dir + '</div></div>';
+}
+function ctaAbre(chave){ var st = metEst(fila[iQ].pid), E = ctaEst(st, chave); E.ab = !E.ab; metRe() }
+function ctaAvanca(chave, st, E, P){
+  var C = P.contas[E.c]; E.k++; E.err = 0;
+  if(E.k >= C.passos.length){ E.c++; E.k = 0 }
+  if(E.c >= P.contas.length){
+    var m = metQ(fila[iQ]), p = metPassoDe(m, chave);
+    st.lac[chave] = [String(P.fim).replace(/^−/, "-")];
+    for(var j = 1; j < (p.g || []).length; j++) st.lac[chave].push("");
+  }
+}
+function ctaInfo(chave){
+  var st = metEst(fila[iQ].pid), E = ctaEst(st, chave), P = ctaPlanoDe(chave, metPassoDe(metQ(fila[iQ]), chave));
+  E.msg = ""; ctaAvanca(chave, st, E, P); metRe();
+}
+function ctaIgual(v, r){
+  var a = String(v).replace(/\s/g, "").replace(/^−/, "-").replace(/,$/, ""), b = String(r).replace(/\s/g, "").replace(/^−/, "-");
+  if(a === b) return true;
+  var x = parseFloat(a.replace(",", ".")), y = parseFloat(b.replace(",", "."));
+  return !isNaN(x) && !isNaN(y) && Math.abs(x - y) < 1e-9;
+}
+function ctaConf(chave){
+  var st = metEst(fila[iQ].pid), E = ctaEst(st, chave), P = ctaPlanoDe(chave, metPassoDe(metQ(fila[iQ]), chave));
+  var C = P.contas[E.c], ps = C.passos[E.k], i = document.getElementById("ctain_" + chave), v = i ? i.value.trim() : "";
+  if(!v) return;
+  if(ctaIgual(v, ps.r)){ E.msg = "✅ Isso: " + metH(ps.r) + "."; ctaAvanca(chave, st, E, P) }
+  else {
+    E.err++;
+    if(E.err >= 2){ E.msg = "❌ A certa era <b>" + metH(ps.r) + "</b>. Ela já foi para a malha."; ctaAvanca(chave, st, E, P) }
+    else E.msg = "❌ Ainda não. " + (ps.tab || ps.tab2 ? "Olhe a tabuada ao lado." : "Leia o passo de novo.");
+  }
+  metRe();
+  setTimeout(function(){ var n = document.getElementById("ctain_" + chave); if(n) try{ n.focus({preventScroll: true}) }catch(e){} }, 0);
+}
+/* liga na lacuna: o painel entra logo depois dela, só nas lacunas que têm conta */
+var metLacuna_OFF_CLD254 = metLacuna;
+metLacuna = function(chave, p, st){
+  var h = metLacuna_OFF_CLD254.apply(this, arguments);
+  try{ if(!st.lacOk[chave] && ctaPlanoDe(chave, p)) h += ctaPainel(chave, p, st) }catch(e){}
+  return h;
+};
+try{ window.ctaPlano = ctaPlano; window.ctaAbre = ctaAbre; window.ctaConf = ctaConf; window.ctaInfo = ctaInfo }catch(e){}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔴 CLD-258 · OS NÚMEROS DA RESOLUÇÃO NO PADRÃO DA REVISÃO: CÍRCULO CHEIO, NÚMERO BRANCO, SUBNÚMERO 1.1.
+   Marcos, 06/10 02:08 (print do 1 e do 1.1 verdes da revisão): "o ETEC tem números e círculos (onde eu notei
+   foi na resolução), mas não tem cor de preenchimento, está meio pequeno, grudado ao texto, e o fundo
+   transparente não ajuda a destacar · use isso como exemplo padrão".
+   COMO: o ① de cada passo da resolução vira o círculo verde cheio com o número branco; cada linha do passo
+   ganha o subnúmero (1.1, 1.2...) na mesma pastilha. A função antiga fica em metSub_OFF_CLD258.
+   ═══════════════════════════════════════════════════════════════════════════ */
+var metSub_OFF_CLD258 = metSub;
+metSub = function(n, emo, tit, corpo){
+  var k = 0;
+  var c = String(corpo).replace(/<span class="mtln(?: [^"]*)?">/g, function(m){ k++; return m + '<span class="mtsn">' + n + '.' + k + '</span>' });
+  return '<div class="mtsub"><div class="mtst2"><span class="mtnum">' + n + '</span><span class="mtem20">' + emo + '</span> ' + tit + '</div>' + c + '</div>';
+};
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   🔴 CLD-263 · AS 3 LACUNAS QUE NÃO SÃO CONTA ARMADA TAMBÉM GANHAM A MALHA PASSO A PASSO.
+   Pendência S.06.03 (origem CLD-254 S.08): "1 tonelada = [g] kg", "6,5 milhões = [g]" e "no mínimo [g] sacas"
+   ficavam sem o botão 🧮, porque não têm sinal de conta (÷ × − +).
+   COMO (por cima do ctaPlano do CLD-254, que fica guardado em ctaPlano_OFF_CLD263):
+     ① MEDIDA (tonelada → kg, kg → g, km → m, m → cm, L → mL): 1º passo diz quanto vale 1 unidade;
+        depois é a conta × 1 000 (a vírgula anda para a direita), a mesma do CLD-254;
+     ② NÚMERO POR EXTENSO (mil, milhão, milhões, bilhão, bilhões): 1º passo diz quantos zeros;
+        depois é a conta × 1 000 000 (a vírgula anda 06 casas);
+     ③ "NO MÍNIMO": usa a conta da lacuna de antes (1000 ÷ 48 = 20,8);
+        mostra que com 20 falta e com 21 dá · arredondar para CIMA.
+   ═══════════════════════════════════════════════════════════════════════════ */
+var CTA_MEDIDA = {"tonelada": ["kg", 1000], "toneladas": ["kg", 1000], "kg": ["g", 1000], "km": ["m", 1000], "m": ["cm", 100], "L": ["mL", 1000], "litro": ["mL", 1000], "litros": ["mL", 1000]};
+var CTA_EXTENSO = {"mil": 3, "milhão": 6, "milhões": 6, "bilhão": 9, "bilhões": 9};
+var ctaPlano_OFF_CLD263 = ctaPlano;
+/* número grande com espaço de milhar (1 000 000), como no texto da prova · só no que se lê, nunca na resposta */
+function ctaMilhar(t){ return String(t).replace(/\d{4,}/g, function(n){ return n.replace(/(\d)(?=(\d{3})+$)/g, "$1 ") }) }
+function ctaLegivel(C){ C.tit = ctaMilhar(C.tit); if(C.G){ ["a","b"].forEach(function(k){ if(C.G[k]) C.G[k] = ctaMilhar(C.G[k]) }) }
+  C.passos.forEach(function(ps){ if(ps.q) ps.q = ps.q.map(ctaMilhar) }); return C }
+ctaPlano = function(p){
+  var P = ctaPlano_OFF_CLD263(p); if(P) return P;
+  var fr = String(p.fr || ""), g = (p.g || [])[0];
+  /* ① medida: "1 tonelada = [g] kg" */
+  var m = fr.match(/^([\d.,]+)\s*([A-Za-zÀ-ÿ]+)\s*=\s*\[g\]\s*([A-Za-zÀ-ÿ]+)\s*$/);
+  if(m && CTA_MEDIDA[m[2]] && CTA_MEDIDA[m[2]][0] === m[3]){
+    var f = CTA_MEDIDA[m[2]][1], a = ctaN(m[1]), C = ctaVezes10(a, {i: f, d: 0});
+    C.passos.unshift({info: true, pot: true, q: ["É uma troca de medida: de " + m[2] + " para " + m[3] + ".", "1 " + m[2].replace(/s$/, "") + " tem " + ctaS({i: f, d: 0}).replace(/(\d)(?=(\d{3})+$)/g, "$1 ") + " " + m[3] + ".", "Então multiplique por " + f + "."]});
+    return {contas: [ctaLegivel(C)], fim: ctaS(C.res)};
+  }
+  /* ② número por extenso: "6,5 milhões = [g]" */
+  m = fr.match(/^([\d.,]+)\s*(mil|milhão|milhões|bilhão|bilhões)\s*=\s*\[g\]\s*$/);
+  if(m){
+    var z = CTA_EXTENSO[m[2]], b = {i: Math.pow(10, z), d: 0}, a2 = ctaN(m[1]), C2 = ctaVezes10(a2, b);
+    C2.passos.unshift({info: true, pot: true, q: ["1 " + (z === 3 ? "mil" : z === 6 ? "milhão" : "bilhão") + " = 1 seguido de " + ctaDz(z) + " zeros.", "É 10" + ctaSupS(z) + " na tabuada da potenciação.", ctaS(a2) + " " + m[2] + " = " + ctaS(a2) + " × " + ctaS(b) + "."]});
+    return {contas: [ctaLegivel(C2)], fim: ctaS(C2.res)};
+  }
+  /* ③ "no mínimo [g] sacas": arredondar para cima o resultado da lacuna de antes */
+  m = fr.match(/^no mínimo \[g\]\s*(.*)$/);
+  if(m && g != null){
+    var Q = null, ant = null;
+    try{ Q = metQ(fila[iQ]); var L = Q.exec || [], ix = L.indexOf(p); if(ix > 0) ant = L[ix - 1] }catch(e){}
+    var La = ant ? ctaLe(ant.fr) : null;
+    if(!La || !La.ns || La.ops.length !== 1 || La.ops[0] !== "÷") return null;
+    var tot = ctaN(La.ns[0]), dv = ctaN(La.ns[1]), r = ctaN(String((ant.g || [])[0]).replace(".", ",")), um = m[1] || "";
+    var baixo = Math.floor(ctaV(r)), cima = baixo + 1, vB = baixo * ctaV(dv), vC = cima * ctaV(dv);
+    var R = {tipo: "≈", tit: "no mínimo quantas " + um + "?", passos: [], tab: {t: ""}, res: {i: cima, d: 0}, G: {tipo: "pot", lin: [ctaS(r) + " " + um]}};
+    R.passos.push({info: true, q: ["A conta de antes deu " + ctaS(r) + " " + um + ".", "Não dá para comprar um pedaço: vem inteira.", "Teste o número de baixo (" + baixo + ") e o de cima (" + cima + ")."]});
+    R.passos.push({q: [baixo + " × " + ctaS(dv) + " = ?", "Dica: " + (baixo % 10 === 0 && baixo ? (baixo / 10) + " × " + ctaS(dv) + " = " + (baixo / 10 * ctaV(dv)) + ", depois ponha um 0 no fim." : "use a tabuada.")], r: String(vB), ap: function(G){ G.lin.push(baixo + " × " + ctaS(dv) + " = " + vB + (vB < ctaV(tot) ? " ❌ falta" : " ✅ dá")) }});
+    R.passos.push({q: [cima + " × " + ctaS(dv) + " = ?", "Dica: é " + vB + " + " + ctaS(dv) + " (mais uma vez)."], r: String(vC), ap: function(G){ G.lin.push(cima + " × " + ctaS(dv) + " = " + vC + " ✅ dá") }});
+    R.passos.push({info: true, q: [vB + " é menos que " + ctaS(tot) + ": com " + baixo + " falta.", vC + " passa de " + ctaS(tot) + ": com " + cima + " dá.", "Quando falta, arredonde para CIMA."]});
+    R.passos.push({q: ["No mínimo, quantas " + um + "?"], r: String(cima), ap: function(G){ G.lin.push("no mínimo " + cima + " " + um) }});
+    return {contas: [R], fim: String(cima)};
+  }
+  return null;
+};
 </script>
 </body></html>
